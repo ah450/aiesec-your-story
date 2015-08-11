@@ -1,0 +1,16 @@
+{
+  "name": "aiesec-app",
+  "description": "Aiesec impact application",
+  "version": "0.0.1",
+  "homepage": "tbd",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.2",
+    "jquery": "~2.1.4",
+    "angular-ui-router": "~0.2.15",
+    "letteringjs": "~0.7.0",
+    "satellizer": "~0.11.2",
+    "angular-ui-validate": "~1.1.1",
+    "normalize.css": "~3.0.3"
+  }
+}
