@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: aiesec-data-development
+  username: aiesec_data
+  password: aiesec
+  min_messages: warning
+
+test:
+  <<: *default
+  database: aiesec-data-testing
+  username: aiesec_data
+  password: aiesec
+  min_messages: warning
+
+production:
+  <<: *default
+  database: aiesec-data
