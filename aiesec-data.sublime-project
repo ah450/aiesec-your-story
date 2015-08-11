@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{ 
+      "folder_exclude_patterns":
+      [
+        "your_story/client/build",
+        "your_story/client/dist",
+        "your_story/client/lib",
+        "your_story/client/temp",
+        "your_story/client/node_modules",
+        "your_story/client/bower_components",
+        "your_story/public"
+      ],
+      "path": ".",
+      "follow_symlinks": true
+    }
+	],
+	"settings":
+	{
+		"FuzzyFilePath":
+		    {
+		    },
+		    "tab_size": 2,
+		    "translate_tabs_to_spaces": true
+	}
+}
