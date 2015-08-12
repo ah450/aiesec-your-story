@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 gem 'sqlite3'
+gem 'responders'
 # Use postgresql as the db for activerecord
 # gem 'pg'
 # Use SCSS for stylesheets
@@ -31,7 +32,7 @@ gem 'hash_dot'
 gem 'listen'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

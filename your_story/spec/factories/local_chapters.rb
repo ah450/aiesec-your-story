@@ -1,6 +1,6 @@
+require 'faker'
 FactoryGirl.define do
   factory :local_chapter do
-    name "MyString"
+    name Faker::Address.city
   end
-
 end

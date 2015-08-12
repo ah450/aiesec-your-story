@@ -20,16 +20,19 @@ ActiveRecord::Schema.define(version: 20150811233009) do
   end
 
   create_table "local_chapters", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "member_profiles", force: :cascade do |t|
-    t.integer  "membership_typ", default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "membership_typ",   default: 0
+    t.integer  "local_chapter_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
+
+  add_index "member_profiles", ["local_chapter_id"], name: "index_member_profiles_on_local_chapter_id"
 
   create_table "participants", force: :cascade do |t|
     t.string   "first_name",   null: false
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150811233009) do
   add_index "participants", ["profile_type", "profile_id"], name: "index_participants_on_profile_type_and_profile_id"
 
   create_table "state_names", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
