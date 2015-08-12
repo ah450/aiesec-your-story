@@ -1,4 +1,4 @@
-class CreateCities < ActiveRecord::Migration
+class CreateStates < ActiveRecord::Migration
   def change
     create_table :states do |t|
       t.string :country, null: false

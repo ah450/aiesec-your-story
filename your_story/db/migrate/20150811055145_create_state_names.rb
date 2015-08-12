@@ -1,4 +1,4 @@
-class CreateCityNames < ActiveRecord::Migration
+class CreateStateNames < ActiveRecord::Migration
   def change
     create_table :state_names do |t|
       t.string :name

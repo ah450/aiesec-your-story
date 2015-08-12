@@ -4,6 +4,7 @@ class CreateStories < ActiveRecord::Migration
       t.string :title
       t.text :highlight
       t.belongs_to :participant, index: true, foreign_key: true
+      t.belongs_to :state, index: true, foreign_key: true
       t.date :date
       t.timestamps null: false
     end

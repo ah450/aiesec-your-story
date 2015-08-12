@@ -1,19 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Country.all.each do |c|
-  c.states.each do |s|
-    dbState = State.create country: c.name, lat: c.latitude, lng: c.longitude, default_name: s.name
-    s.names.each { |n| StateName.create state: dbState, name: n }
+  c = Country.find_country_by_name(c.first)
+  c.states.to_a.each do |s|
+    lat = if (s[1].keys.include?("latitude") || s[1].keys.include?(:latitude) ) then
+      s[1].latitude
+    else 
+      c.latitude_dec 
+    end
+    long = if (s[1].keys.include?("longitude") || s[1].keys.include?(:longitude) ) then
+      s[1].longitude
+    else
+        c.longitude_dec
+    end
+    dbState = State.create country: c.name, lat: lat.to_f, lng: long.to_f, default_name: s[1].name
+    if s[1].names.is_a? Array
+      s[1].names.each do |n|
+        StateName.create(state: dbState, name: n) if n != s[1].name and not StateName.exists?(name: n)
+      end
+    end
   end
 end
 
 
-local_chapter_names = []
+local_chapter_names = ["6th of October", "AAST  Alexandria", "AAST in Cairo",
+  "GUC", "AinShams University", "Alexandria", "AUC", "Cairo University",
+  "Assiout", "Mansoura", "Damietta", "Fayoum", "Menoufia", "Minya",
+  "Sohag", "Suez", "Tanta", "Zagazig"]
 
-local_chapter_names.each { |n| LocalChapter.create name: n}
+local_chapter_names.each { |n| LocalChapter.create name: n }
