@@ -18,8 +18,9 @@ gulp.task('css',['sass', 'bower'], function() {
   return gulp.src(['lib/**/*.css', 'build/css/*.css'])
     .pipe(order([
       'lib/normalize/*.css',
-      'lib/**/*.css'
-      ]))
+      'lib/**/*.css',
+      'build/css/*.css'
+      ], {base: './'}))
     .pipe(concatCss('main.css'))
     .pipe(postcss([autoprefixer({browsers: ['last 5 version']})]))
     .pipe(gulp.dest('./build/'));

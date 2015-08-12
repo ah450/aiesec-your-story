@@ -37,7 +37,7 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('reload', ['dummy_dev', 'watch'], function() {
+gulp.task('reload', ['dummy_dev'], function() {
   return gulp.src('./build/**/*')
     .pipe(connect.reload());
 });
