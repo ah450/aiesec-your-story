@@ -17,7 +17,6 @@ gulp.task('css-min', ['css'], function() {
 gulp.task('css',['sass', 'bower'], function() {
   return gulp.src(['lib/**/*.css', 'build/css/*.css'])
     .pipe(order([
-      'lib/normalize/*.css',
       'lib/**/*.css',
       'build/css/*.css'
       ], {base: './'}))

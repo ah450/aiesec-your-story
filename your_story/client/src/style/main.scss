@@ -1,29 +1,26 @@
 /*
  * Main Layout
  */
+@import 'partials/reset';
 @import 'partials/mixins';
 @import 'partials/variables';
 @import 'partials/animations';
 @import 'partials/utility';
-
-html, body {
-  width: 100%;
-}
 
 body {
   background-color: $main-background;
   font-family: $sans-stack;
 }
 
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
-    outline: none;
+form {
+  font-family: $roboto;
 }
+
+
 
 
 ul {
   list-style: none;
 }
+
+@import 'story_form';
