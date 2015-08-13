@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="jpr">
+<html lang="en" data-ng-app="aiesec">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-ng-bind="($title || 'Evaluator')"></title>
+  <title data-ng-bind="($title || 'AIESEC')"></title>
   <link href="main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-  <section data-ui-view id="main"></section>
+  <section data-ui-view class="wrapper" id="main-view"></section>
   <script>
     var polyfilter_scriptpath = '/polyfills/filters/lib/'; 
   </script>
   <script type="text/javascript">
     WebFontConfig = {
-      google: { families: [ 'Droid+Sans::latin', 'Droid+Serif::latin', 'Source+Serif+Pro::latin' ] }
+      google: { families: [ 'Droid+Sans::latin', 'Droid+Serif::latin', 'Source+Serif+Pro::latin', 'Roboto::latin' ] }
     };
     (function() {
       var wf = document.createElement('script');
