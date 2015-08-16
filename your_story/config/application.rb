@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
+require 'active_job'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -21,7 +21,20 @@ module YourStory
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.autoload_paths << "#{Rails.root}/app/exceptions"
     config.active_record.raise_in_transactional_callbacks = true
     config.gulp = {command: 'PATH="$(npm bin)":"$PATH" gulp', directory: Rails.root.join('client') }
+    config.jwt_key = ENV["JWT_KEY"] || "super_secret_string"
+    config.configuration = {
+        error_messages: {
+            expired_token: "Token has expired",
+            token_verification: "Unable to verify Token",
+            forbidden: "Forbidden",
+            authentication_error: "Authentication Error",
+            argument_error: "Argument error",
+            record_not_found: "Record not found",
+        },
+        default_token_exp: 24 * 60 * 60
+    }
   end
 end
