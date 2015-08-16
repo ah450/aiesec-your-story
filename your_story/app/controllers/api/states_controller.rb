@@ -4,8 +4,16 @@ class Api::StatesController < ApplicationController
       super
     else
       # Search all the things you crazy bastard!
-      response = State.search params[:term]
-      render json: response.records.to_a
+      
     end
   end
+
+  private
+    def json_builder(subject)
+      {
+        default_name: subject.default_name,
+        id: subject.id,
+        url: api_states_path(subject)
+      }
+    end
 end

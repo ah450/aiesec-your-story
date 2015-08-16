@@ -1,36 +1,50 @@
 class Api::ParticipantsController < ApplicationController
 
   PROFILE_TYPES = [MemberProfile, TalentProfile, CitizenProfile]
+  
   # POST /api/{plural_resource_name}
   def create  
     begin
-      profile_class = PROFILE_TYPES.detect {|p| participant_params[:type].classify.constantize == p}
+      # Detect clas based on type param
+      profile_klass = PROFILE_TYPES.detect {|p| participant_params[:type].to_s.classify.constantize == p}
     ensure
-      unless profile_class
-        render json: {message: "bad_request"}, status: :bad_request
+      unless profile_klass
+        render json: {message: "Could not detect profile class"}, status: :bad_request
       end
     end
-    profile_params = participant_params.delete :profile_attributes
-    participant = Participant.new participant_params.except(:profile_attributes).reject{|e| ["type", :type].include? e}
-    participant.profile = profile_class.new profile_params.reject{ |e| [:local_chapter, "local_chapter"].include? e  }
-    participant.profile.participant = participant
-    participant.profile.local_chapter = LocalChapter.find(profile_params.local_chapter)
-    if participant.save
-      render json: participant, status: :created
+    # Extract profile specific attributes
+    profile_params = participant_params.delete :profile_attributes 
+    # Initialize participant, minus profile_attributes
+    @participant = Participant.new participant_params.except(
+      :profile_attributes).reject {|e| ["type", "local_chapter"].include? e}
+    # Initialize profile
+    @participant.profile = profile_klass.new profile_params
+    @participant.profile.participant = @participant
+    # Set local chapter
+    @participant.local_chapter = LocalChapter.find(participant_params[:local_chapter])
+    if @participant.save
+      render_single
     else
-      render json: participant.errors, status: :unprocessable_entity
+      render json: @participant.errors, status: :unprocessable_entity
     end
   end
 
   private
 
     def participant_params
-      attributes = model_attributes
-      member_attrs = MemberProfile.attribute_names.reject{|e| [:participant].include? e} | [:local_chapter]
+      attributes = model_attributes | [:local_chapter]
+      member_attrs = MemberProfile.attribute_names.reject{|e| [:participant].include? e}
       talent_attrs = TalentProfile.attribute_names.reject{|e| [:participant].include? e}
       citizen_attrs = CitizenProfile.attribute_names.reject{|e| [:participant].include? e}
       profile_attributes = [profile_attributes: member_attrs | talent_attrs | citizen_attrs]
       attributes.concat(profile_attributes)
       params.require(:participant).permit(attributes | [:type])
+    end
+
+    def json_builder(subject)
+      subject.as_json(
+        except: [:profile_id, :local_chapter_id],
+        include: [:profile, :local_chapter]
+        )
     end
 end

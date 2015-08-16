@@ -1,15 +1,20 @@
 class ApplicationController < ActionController::Base
   respond_to :json
   before_action :set_resource, only: [:destroy, :show, :update]
+  # before_action :authenticate, :authorize, only: [:destroy, :update]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ArgumentError, with: :argument_error
   rescue_from ActionController::ParameterMissing, with: :argument_error
+  rescue_from AuthenticationError, with: :authentication_error
+  rescue_from JWT::ExpiredSignature, with: :expired_signature
+  rescue_from JWT::VerificationError, with: :verification_error
+
+
   # POST /api/{plural_resource_name}
   def create  
     set_resource(resource_class.new(resource_params))
-
     if get_resource.save
-      render json: get_resource, status: :created
+      render_single :created
     else
       render json: get_resource.errors, status: :unprocessable_entity
     end
@@ -17,18 +22,11 @@ class ApplicationController < ActionController::Base
 
   # GET /api/{plural_resource_name}
   def index  
-    plural_resource_name = "@#{resource_name.pluralize}"
     resources = resource_class.where(query_params)
                               .page(page_params[:page])
                               .per(page_params[:page_size])
-
     instance_variable_set(plural_resource_name, resources)
-    render json:  { 
-      data: instance_variable_get(plural_resource_name),
-      page: resources.page,
-      total_pages:  resources.total_pages,
-      page_size: resources.size
-    }
+    render_array
   end
 
   # DELETE /api/{plural_resource_name}/1
@@ -39,13 +37,13 @@ class ApplicationController < ActionController::Base
 
   # GET /api/{plural_resource_name}/1
   def show  
-    render json: get_resource
+   render_single
   end
 
   # PATCH/PUT /api/{plural_resource_name}/1
   def update  
     if get_resource.update(resource_params)
-      render json: get_resource
+      render_single
     else
       render json: get_resource.errors, status: :unprocessable_entity
     end
@@ -76,6 +74,20 @@ class ApplicationController < ActionController::Base
       {}
     end
 
+    def render_array
+      resources = instance_variable_get(plural_resource_name)
+      render json:  { 
+        stories: resources.map { |s| json_builder(s) },
+        page: resources.page,
+        total_pages:  resources.total_pages,
+        page_size: resources.size
+      }
+    end
+
+    def render_single(status=:ok)
+      render json: json_builder(get_resource), status: status
+    end
+
     # The resource class based on the controller
     # @return [Class]
     def resource_class
@@ -103,12 +115,62 @@ class ApplicationController < ActionController::Base
       instance_variable_set("@#{resource_name}", resource)
     end
 
+    # Rescue from ActiveRecord::RecordNotFound
     def record_not_found
-      render json: {message: "Record not found"}, status: :not_found
+      render json: {message: error_messages[:record_not_found]}, status: :not_found
     end
 
+    # Rescue from ArgumentError
     def argument_error
-      render json: {message: "Argument error"}, status: :unprocessable_entity
+      render json: {message: error_messages[:argument_error]}, status: :unprocessable_entity
     end
 
+    # Rescue from AuthenticationError
+    def authentication_error
+      prepare_unauthorized_response
+      render json: {message: error_messages[:authentication_error]}
+    end
+
+    # Rescue from JWT::ExpiredSignature
+    def expired_signature
+      prepare_unauthorized_response
+      render json: {message: error_messages[:expired_token]}
+    end
+
+    # Rescue from JWT::VerificationError
+    def verification_error
+      prepare_unauthorized_response
+      render json: {message: error_messages[:token_verification]}
+    end
+
+    # Attempts to set current user
+    def authenticate
+      authenticate_with_http_token("ImpactAppUser") do |token, options|
+        @current_user = User.find_by_token token
+      end
+    end
+
+    # To be overriden by subclasses
+    # To check for roles
+    def user_authorized
+      true
+    end
+
+    def authorize
+      render json: {message: error_messages[:forbidden]}, status: :forbidden unless user_authorized
+    end
+
+    # Set Header and response
+    def prepare_unauthorized_response
+      response['WWW-Authenticate'] = 'Token realm="ImpactAppUser"'
+      response.status = :unauthorized
+    end
+
+    def error_messages
+      Rails.application.config.configuration[:error_messages]
+    end
+
+    def plural_resource_name
+      "@#{resource_name.pluralize}"
+    end
 end
