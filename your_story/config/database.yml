@@ -1,25 +1,27 @@
 default: &default
-  adapter: sqlite3
-  # encoding: unicode
-  # host: localhost
-  # port: 5432
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
   pool: 1
   timeout: 200
 
 development:
   <<: *default
-  database: db/aiesec_data_development.sqlite3
+  database: aiesec_data_development
   username: aiesec_data
   password: aiesec
   min_messages: warning
 
 test:
   <<: *default
-  database: db/aiesec_data_testing.sqlite3
+  database: aiesec_data_testing
   username: aiesec_data
   password: aiesec
   min_messages: warning
 
 production:
   <<: *default
-  database: db/aiesec_data.sqlite3
+  database: aiesec_data_production
+  username: aiesec_data
+  password: aiesec

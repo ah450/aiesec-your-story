@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811233009) do
+ActiveRecord::Schema.define(version: 20150813223027) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "avatars", force: :cascade do |t|
+    t.binary   "data"
+    t.string   "mime_type"
+    t.string   "filename"
+    t.integer  "participant_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "avatars", ["participant_id"], name: "index_avatars_on_participant_id", using: :btree
 
   create_table "citizen_profiles", force: :cascade do |t|
     t.boolean  "outgoing",   null: false
@@ -26,24 +40,23 @@ ActiveRecord::Schema.define(version: 20150811233009) do
   end
 
   create_table "member_profiles", force: :cascade do |t|
-    t.integer  "membership_typ",   default: 0
-    t.integer  "local_chapter_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "membership_typ", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
-
-  add_index "member_profiles", ["local_chapter_id"], name: "index_member_profiles_on_local_chapter_id"
 
   create_table "participants", force: :cascade do |t|
-    t.string   "first_name",   null: false
-    t.string   "last_name",    null: false
-    t.integer  "profile_id"
-    t.string   "profile_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "first_name",       null: false
+    t.string   "last_name",        null: false
+    t.integer  "profile_id",       null: false
+    t.string   "profile_type",     null: false
+    t.integer  "local_chapter_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "participants", ["profile_type", "profile_id"], name: "index_participants_on_profile_type_and_profile_id"
+  add_index "participants", ["local_chapter_id"], name: "index_participants_on_local_chapter_id", using: :btree
+  add_index "participants", ["profile_type", "profile_id"], name: "index_participants_on_profile_type_and_profile_id", using: :btree
 
   create_table "state_names", force: :cascade do |t|
     t.string   "name",       null: false
@@ -52,8 +65,8 @@ ActiveRecord::Schema.define(version: 20150811233009) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "state_names", ["name"], name: "index_state_names_on_name"
-  add_index "state_names", ["state_id"], name: "index_state_names_on_state_id"
+  add_index "state_names", ["name"], name: "index_state_names_on_name", using: :btree
+  add_index "state_names", ["state_id"], name: "index_state_names_on_state_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string   "country",                               null: false
@@ -64,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150811233009) do
     t.datetime "updated_at",                            null: false
   end
 
-  add_index "states", ["country"], name: "index_states_on_country"
+  add_index "states", ["country"], name: "index_states_on_country", using: :btree
 
   create_table "stories", force: :cascade do |t|
     t.string   "title"
@@ -76,8 +89,8 @@ ActiveRecord::Schema.define(version: 20150811233009) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "stories", ["participant_id"], name: "index_stories_on_participant_id"
-  add_index "stories", ["state_id"], name: "index_stories_on_state_id"
+  add_index "stories", ["participant_id"], name: "index_stories_on_participant_id", using: :btree
+  add_index "stories", ["state_id"], name: "index_stories_on_state_id", using: :btree
 
   create_table "talent_profiles", force: :cascade do |t|
     t.boolean  "outgoing",   null: false
@@ -85,4 +98,14 @@ ActiveRecord::Schema.define(version: 20150811233009) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_foreign_key "state_names", "states"
+  add_foreign_key "stories", "participants"
+  add_foreign_key "stories", "states"
 end
