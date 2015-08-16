@@ -20,12 +20,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # GET /api/{plural_resource_name}
+  # GET /api/{plural_resource_variable}
   def index  
     resources = resource_class.where(query_params)
                               .page(page_params[:page])
                               .per(page_params[:page_size])
-    instance_variable_set(plural_resource_name, resources)
+    instance_variable_set(plural_resource_variable, resources)
     render_array
   end
 
@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
   end 
 
   private
+
     # Returns the resource from the created instance variable
     # @return [Object]
     def get_resource
@@ -75,13 +76,14 @@ class ApplicationController < ActionController::Base
     end
 
     def render_array
-      resources = instance_variable_get(plural_resource_name)
-      render json:  { 
-        stories: resources.map { |s| json_builder(s) },
-        page: resources.page,
+      resources = instance_variable_get(plural_resource_variable)
+       json =  { 
+        page: resources.current_page,
         total_pages:  resources.total_pages,
         page_size: resources.size
       }
+      json[resource_name.pluralize] = resources.map { |s| json_builder(s) }
+      render json: json
     end
 
     def render_single(status=:ok)
@@ -170,7 +172,7 @@ class ApplicationController < ActionController::Base
       Rails.application.config.configuration[:error_messages]
     end
 
-    def plural_resource_name
+    def plural_resource_variable
       "@#{resource_name.pluralize}"
     end
 end
