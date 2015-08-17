@@ -9,10 +9,8 @@ class Api::LocalChaptersController < ApplicationController
 
   private
     def json_builder(subject)
-      {
-        id: subject.id,
-        name: subject.name,
+      subject.json_builder.merge({
         url: api_local_chapters_path(subject)
-      }
+        })
     end
 end

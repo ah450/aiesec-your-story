@@ -9,11 +9,8 @@ class Api::StatesController < ApplicationController
 
   private
     def json_builder(subject)
-      {
-        default_name: subject.default_name,
-        id: subject.id,
-        country: subject.country,
-        url: api_states_path(subject)
-      }
+      subject.json_builder.merge({
+          url: api_states_path(subject)
+        })
     end
 end

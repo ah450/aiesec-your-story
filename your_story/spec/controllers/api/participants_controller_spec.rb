@@ -14,6 +14,9 @@ describe Api::ParticipantsController do
         get :index, format: :json, page: 1, page_size: 5
         json = json_response
         expect(json.length).to be <= 5
+        expect(json_response).to include(
+          :participants, :page, :page_size, :total_pages
+          )
       end
     end
 
@@ -25,22 +28,17 @@ describe Api::ParticipantsController do
     end
   end
 
-  describe "destroy" do
-    let(:participant) {FactoryGirl.create(:participant)}
-    it "Should delete the participant" do
-      expect(MemberProfile.exists?(participant.profile.id)).to be true
-      delete :destroy, id: participant.id
-      expect(Participant.exists?(participant.id)).to be false
-      expect(MemberProfile.exists?(participant.profile.id)).to be false
-    end
-  end
-
   describe "show" do
     let(:participant) {FactoryGirl.create(:participant)}
     it "shows the correct participant" do
       get :show, id: participant.id
       json = json_response
       expect(json.id).to eq participant.id
+      expect(json).to include(
+        :id, :profile_type, :last_name, :first_name,
+        :url, :profile, :local_chapter, :stories_url, :stories,
+        :avatars
+        )
     end
     it "responds with 404 if not found" do
       get :show, id: "not_a_real_id_haha"
@@ -53,12 +51,12 @@ describe Api::ParticipantsController do
       it "creates a new contact" do
         params = FactoryGirl.attributes_for(:participant)
         params[:type] = :member_profile
+        params[:local_chapter] = params[:local_chapter].id
         params[:profile_attributes] = {
-          membership_typ: :team_leader,
-          local_chapter: LocalChapter.first.id
+          membership_typ: :team_leader
         }
         expect{
-          post :create, participant: params
+          post :create, format: :json, participant: params
         }.to change(Participant,:count).by(1)
       end
     end
@@ -67,11 +65,10 @@ describe Api::ParticipantsController do
         params = FactoryGirl.attributes_for(:participant)
         params[:type] = :member_profile
         params[:profile_attributes] = {
-          membership_typ: :wtf,
-          local_chapter: LocalChapter.first.id
+          membership_typ: :wtf
         }
         expect{
-          post :create, participant: params
+          post :create, format: :json, participant: params
         }.to change(Participant,:count).by(0)
         expect(response.status).to eq 422
       end

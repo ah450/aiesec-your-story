@@ -18,6 +18,9 @@ describe Api::StatesController do
         get :index, format: :json, page: 1, page_size: 5
         json = json_response
         expect(json.states.length).to be <= 5
+        expect(json_response).to include(
+          :states, :page, :page_size, :total_pages
+          )
       end
 
       it "should have show" do
@@ -36,7 +39,7 @@ describe Api::StatesController do
         end
 
         it "Should support partial match" do
-          get :index, format: :json, term: state_one.default_name[0..4]
+          get :index, format: :json, term: state_one.default_name[0..6]
           expect(json_response.length).to be >= 1
           expect(
           json_response.any? { |e|  e.id == state_one.id }).to be true

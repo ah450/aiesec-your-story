@@ -20,8 +20,8 @@ module YourStory
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
     config.autoload_paths << "#{Rails.root}/app/exceptions"
+    # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.gulp = {command: 'PATH="$(npm bin)":"$PATH" gulp', directory: Rails.root.join('client') }
     config.jwt_key = ENV["JWT_KEY"] || "super_secret_string"

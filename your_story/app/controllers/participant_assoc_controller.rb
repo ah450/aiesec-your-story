@@ -1,12 +1,12 @@
-class ParticpantAssocController < ApplicationController
-  before_filter :parent_set, only: [:show, :destory, :update]
+class ParticipantAssocController < ApplicationController
+  before_filter :parent_set
   
   private
-    def participant
+    def get_participant
       @participant = Participant.find(params[:participant_id])
     end
 
     def parent_set
-      @parent = participant
+      @parent = get_participant
     end
 end

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   respond_to :json
   before_action :set_resource, only: [:destroy, :show, :update]
-  # before_action :authenticate, :authorize, only: [:destroy, :update]
+  before_action :authenticate, :authorize, only: [:destroy, :update]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ArgumentError, with: :argument_error
   rescue_from ActionController::ParameterMissing, with: :argument_error

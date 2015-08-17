@@ -9,4 +9,4 @@ Make sure you run the db seed task as well
 # Dependencies
 
 ##ElasticSearch
-  after installing from rails console run `State.import` and `LocalChapter.import` to create indexes (only needs to be done once)
+  after installing and migrating run `rake searchkick:reindex:all` to create indexes (only needs to be done once)

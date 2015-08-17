@@ -7,4 +7,11 @@ class LocalChapter < ActiveRecord::Base
     as_json(only: [:name])
   end
 
+  def json_builder
+    {
+      id: id,
+      name: name,
+    }
+  end
+
 end

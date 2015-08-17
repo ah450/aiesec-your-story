@@ -58,4 +58,12 @@ class State < ActiveRecord::Base
       }
     end
   end
+
+  def json_builder
+    {
+      default_name: default_name,
+      id: id,
+      country: country
+    }
+  end
 end

@@ -1,4 +1,4 @@
-class Api::AvatarsController < ParticpantAssocController
+class Api::AvatarsController < ParticipantAssocController
   
   def show
     send_data get_resorce.data, type: get_resource.mime_type, disposition: 'inline'
@@ -12,21 +12,21 @@ class Api::AvatarsController < ParticpantAssocController
       participant: @parent
       )
     if @avatar.save
-      render_single, :created
+      render_single :created
     else
       render json: @avatar.errors, status: :unprocessable_entity
+    end
   end
 
   private
     def avatar_params
-      param.require(:avatar).permit[:data]
+      params.require(:avatar).permit [:data]
     end
 
     def json_builder(subject)
-      {
-        filename: @avatar.filename,
-        mime_type: @avatar.mime_type
-      }
+      subject.json_builder.merge({
+        url: api_participant_avatar_path(subject.participant, subject)
+        })
     end
 
 end

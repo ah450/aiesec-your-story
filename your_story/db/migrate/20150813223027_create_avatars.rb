@@ -4,7 +4,7 @@ class CreateAvatars < ActiveRecord::Migration
       t.binary :data
       t.string :mime_type
       t.string :filename
-      t.belongs_to :participant, index: true
+      t.belongs_to :participant, index: true, ull: false
 
       t.timestamps null: false
     end

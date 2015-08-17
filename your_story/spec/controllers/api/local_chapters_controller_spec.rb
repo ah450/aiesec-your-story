@@ -17,6 +17,9 @@ describe Api::LocalChaptersController do
         get :index, format: :json, page: 1, page_size: 5
         json = json_response
         expect(json.local_chapters.length).to be <= 5
+        expect(json_response).to include(
+          :local_chapters, :page, :page_size, :total_pages
+          )
       end
 
       it "should have show" do
@@ -35,7 +38,7 @@ describe Api::LocalChaptersController do
         end
 
         it "Should support partial match" do
-          get :index, format: :json, term: local_chapter_one.name[0..4]
+          get :index, format: :json, term: local_chapter_one.name[0..6]
           expect(json_response.length).to be >= 1
           expect(
           json_response.any? { |e|  e.id == local_chapter_one.id }).to be true

@@ -8,6 +8,9 @@ describe Api::StoriesController do
       it "should respond to index action" do
         get :index, format: :json, participant_id: story_one.participant.id
         expect(response).to be_success
+        expect(json_response).to include(
+          :stories, :page, :page_size, :total_pages
+          )
       end
 
       it "should have pagination" do 
@@ -32,6 +35,10 @@ describe Api::StoriesController do
       get :show, id: story.id, participant_id: story.participant.id
       json = json_response
       expect(json.id).to eq story.id
+      expect(json_response).to include(
+        :url, :participant_url, :state_url, :id, :title, :highlight,
+        :state, :date
+        )
     end
     it "responds with 404 if not found" do
       get :show, id: "not_a_real_id_haha", participant_id: story.participant.id
@@ -43,16 +50,6 @@ describe Api::StoriesController do
     end
   end
 
-  describe "destroy" do
-    let(:story) {FactoryGirl.create(:story)}
-    it "Should delete the story" do
-      delete :destroy, id: story.id, participant_id: story.participant_id
-      expect(Story.exists?(story.id)).to be false
-      expect(State.exists?(story.state.id)).to be true
-      expect(Participant.exists?(story.participant.id)).to be true
-    end
-  end
-
   describe "create" do 
     context "with valid attributes" do
       it "creates a new contact" do
@@ -60,14 +57,15 @@ describe Api::StoriesController do
         params[:state_id] = State.first.id
         expect{
           post :create, story: params, participant_id: params.participant.id
-        }.to change(Story,:count).by(1)
+        }.to change(Story, :count).by(1)
       end
     end
+
     context "with invalid attributes" do
       it "doesnt create a new contact" do
        expect{
           post :create, story: {}, participant_id: FactoryGirl.create(:participant).id
-        }.to change(Story,:count).by(0)
+        }.to change(Story, :count).by(0)
       end
     end
   end
