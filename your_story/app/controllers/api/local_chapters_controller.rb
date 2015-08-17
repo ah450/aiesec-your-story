@@ -3,8 +3,7 @@ class Api::LocalChaptersController < ApplicationController
     if params[:term].blank?
       super
     else
-      # Search all the things you crazy bastard!
-      
+      render json: LocalChapter.search(params[:term])
     end
   end
 

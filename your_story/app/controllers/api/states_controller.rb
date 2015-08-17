@@ -3,8 +3,7 @@ class Api::StatesController < ApplicationController
     if params[:term].blank?
       super
     else
-      # Search all the things you crazy bastard!
-      
+      render json: State.custom_search(params[:term])
     end
   end
 
@@ -13,6 +12,7 @@ class Api::StatesController < ApplicationController
       {
         default_name: subject.default_name,
         id: subject.id,
+        country: subject.country,
         url: api_states_path(subject)
       }
     end
