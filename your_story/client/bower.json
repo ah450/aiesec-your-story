@@ -5,14 +5,15 @@
   "homepage": "tbd",
   "license": "MIT",
   "dependencies": {
-    "angular": "~1.4.2",
+    "angular": "~1.4.4",
     "jquery": "~2.1.4",
     "angular-ui-router": "~0.2.15",
     "letteringjs": "~0.7.0",
-    "satellizer": "~0.11.2",
+    "satellizer": "~0.12.1",
     "angular-ui-validate": "~1.1.1",
-    "angular-ui-router-title": "~0.0.3",
+    "angular-ui-router-title": "~0.0.4",
     "angular-utils-pagination": "~0.8.3",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "angular-local-storage": "~0.2.2"
   }
 }
