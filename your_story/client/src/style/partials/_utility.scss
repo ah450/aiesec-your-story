@@ -9,6 +9,51 @@
   overflow: auto;
 }
 
+.wrapper {
+  position: relative;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+// Main purpose is to reset default style
+.btn {
+  outline: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-next {
+
+}
+
+.form-line {
+  display: block;
+  width: 100%;
+}
+
+// Fancy select
+.flat-select {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+    background-color: transparentize($midnight-blue, 0.1);
+    background-repeat: no-repeat;
+    outline: none;
+    border: 0;
+    border-radius: 0.4em 1em 0.4em;
+    padding: 0.5em;
+    transition: background-color 0.5s ease;
+    &:hover{
+      background-color: transparentize($midnight-blue, 0.02);
+    }
+  }
+
+
 
 // Webfont
 

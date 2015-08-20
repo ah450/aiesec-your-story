@@ -1,11 +1,4 @@
 class Api::LocalChaptersController < ApplicationController
-  def index
-    if params[:term].blank?
-      super
-    else
-      render json: LocalChapter.search(params[:term])
-    end
-  end
 
   private
     def json_builder(subject)
