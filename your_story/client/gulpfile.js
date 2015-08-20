@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var fs = require('fs');
-var connect = require('gulp-connect');
 var watch = require('gulp-watch');
 var requireDir = require('require-dir');
 var gzip = require('gulp-gzip');
@@ -9,10 +8,10 @@ requireDir('./gulp-tasks');
 
 
 gulp.task('clean', function() {
-  var dirs = ['./dist', './build', './lib'];
-  rimraf.sync('lib')
+  var dirs = ['dist', 'build', 'lib', 'build/temp', 'build/test', 'compiledSpecs'];
   dirs.forEach(function(dir) {
     try {
+      rimraf.sync(dir);
       fs.mkdirSync(dir);
     } catch(e) {
       if (e.code != 'EEXIST') {
@@ -22,28 +21,24 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('dummy_dev', ['assets', 'scripts', 'css', 'manifest']);
+gulp.task('dummy_dev_helper', ['assets', 'scripts', 'css', 'manifest']);
 
-gulp.task('webserver', ['dummy_dev', 'watch'], function() {
-  connect.server({
-    livereload: true,
-    root: 'build'
-  });
+gulp.task('dummy_dev', ['clean'], function() {
+  return gulp.start('dummy_dev_helper');
 });
+
+
 
 gulp.task('watch', function() {
   watch(['./src/**', './images/**', './polyfills/**'], function() {
-    gulp.start('reload')
+    gulp.start('reload');
   });
 });
 
-gulp.task('reload', ['dummy_dev'], function() {
-  return gulp.src('./build/**/*')
-    .pipe(connect.reload());
-});
+
 
 gulp.task('dev', ['clean'], function() {
-  return gulp.start('webserver');
+  return gulp.start('webserver-watch');
 });
 
 gulp.task('default', ['dev']);
