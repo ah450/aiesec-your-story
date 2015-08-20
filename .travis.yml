@@ -5,10 +5,10 @@ addons:
   postgresql: "9.3"
 
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
   - sudo apt-get upgrade -qq
   - sudo apt-get install -qq google-chrome-stable
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -25,5 +25,4 @@ script:
   - cd your_story
   - bundle exec rake spec
   - cd client
-  - npm run db
   - npm run test
