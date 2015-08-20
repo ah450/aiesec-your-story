@@ -9,15 +9,23 @@ var gutil = require('gulp-util');
 var runSequence = require('run-sequence');
 var karma = require('karma').server;
 
-gulp.task('app-test-src', ['src-coffee', 'src-js', 'bower-install', 'modernizr', 'templates'], function() {
-  var srces = mainBowerFiles({
+
+gulp.task('test-deps', ['bower-install', 'modernizr'], function() {
+  var srcs = mainBowerFiles({
       includeDev: 'inclusive'
     }).filter(function(s) {
       return s.endsWith('.js');
     });
-  srces = srces.concat(['build/temp/modernizr.js', 'build/templates/*.js',
-    'build/temp/app-src.js', 'build/temp/coffee.js']);
-  return gulp.src(srces)
+    srcs = srcs.concat(['build/temp/modernizr.js']);
+    return gulp.src(srcs)
+      .pipe(concat('app-deps.js'))
+      .pipe(gulp.dest('build/test'));
+});
+
+
+gulp.task('app-test-src', ['src-coffee', 'src-js', 'test-deps', 'templates'], function() {
+  return gulp.src(['build/templates/*.js',
+    'build/temp/app-src.js', 'build/temp/coffee.js'])
     .pipe(concat('app-testing.js'))
     .pipe(gulp.dest('build/test'));
 });

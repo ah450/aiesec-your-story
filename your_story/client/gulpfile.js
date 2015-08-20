@@ -8,7 +8,7 @@ requireDir('./gulp-tasks');
 
 
 gulp.task('clean', function() {
-  var dirs = ['dist', 'build', 'lib', 'build/temp', 'build/test', 'compiledSpecs'];
+  var dirs = ['dist', 'build', 'lib', 'build/temp', 'build/test', 'compiledSpecs', 'coverage'];
   dirs.forEach(function(dir) {
     try {
       rimraf.sync(dir);

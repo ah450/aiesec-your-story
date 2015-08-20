@@ -15,6 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      "../build/test/app-deps.js",
       "../build/test/app-testing.js",
       "**/*.spec.js"
     ],
@@ -28,8 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'build/temp/app-src.js': ['coverage'],
-        'build/temp/coffee.js': ['coverage']
+        "../build/test/app-testing.js": ['coverage']
     },
 
 
@@ -39,7 +39,7 @@ module.exports = function(config) {
     reporters: ['progress', 'coverage'],
     coverageReporter: {
       type : 'html',
-      dir : 'coverage/'
+      dir : '../coverage/'
     },
 
 
