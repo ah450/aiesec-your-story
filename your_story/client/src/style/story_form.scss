@@ -1,0 +1,65 @@
+@import 'partials/variables';
+@import 'partials/mixins';
+
+// Styles for the data collection part of the app.
+
+
+#story-form-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;  
+}
+
+
+.story-form {
+  position: relative;
+  margin: auto;
+  background: transparent;
+  width: 20em;
+  padding: 1em;
+  border: 3px solid white;
+  border-radius: 12%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: column nowrap;
+  color: #27ae60;
+  &::before {
+    content: "";
+    position: absolute;
+    border: transparent;
+    border-radius: 10%;
+    z-index: -1;
+    left: -2.5%;
+    top: -2.5%;
+    background-color: rgba(149, 165, 166, 0.3);
+    width: 105%;
+    height: 105%;
+    filter: blur(2px);
+  }
+  fieldset {
+    margin-bottom: 0.5em;
+  }
+  input {
+    position: relative;
+    border-radius: 1em;
+    padding: 0.5em;
+    width: 100%;
+    margin-top: 0.5em;
+    display: inline-block;
+    background: $midnight-blue;
+    &::placeholder {
+      color: inherit;
+      opacity: 0.6;
+    }
+  }
+  button[type="submit"] {
+    color: black;
+  }
+}
+
+

@@ -1,0 +1,26 @@
+<form ng-submit="processForm()" class="story-form" autocomplete="on" name="yourstory">
+  <h1>Who are you?</h1>
+  <fieldset>
+    <div class="form-line">
+    <input type="text" name="first_name" id="first_name" placeholder="First Name">
+    </div>
+    <div class="form-line">
+    <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+    </div>
+  </fieldset>
+  <div class="form-line">
+  <select class="flat-select">
+    <option value="">Local Chapter</option>
+    <option>Lorem</option>
+    <option>Ipsum</option>
+    <option>Dolor</option>
+    <option>Sit</option>
+    <option>Amet</option>
+  </select>
+  </div>
+  <fieldset>
+    <label for="avatar">Your picture</label>
+    <input type="file" id="avatar" name="avatar">
+  </fieldset>
+  <button type="submit" title="proceed" class="btn btn-next"><span class="fa fa-arrow-right fa-lg"></span></button>
+</form>
