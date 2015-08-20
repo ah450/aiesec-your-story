@@ -8,6 +8,10 @@
   },
   "author": "Ahmed H. Ismail",
   "license": "MIT",
+  "scripts": {
+    "test": "gulp test",
+    "db": "gulp setup-db"
+  },
   "bugs": {
     "url": "tbd"
   },
@@ -16,6 +20,7 @@
     "autoprefixer-core": "^5.2.1",
     "bower": "^1.4.1",
     "coffeelint-stylish": "^0.1.2",
+    "connect-modrewrite": "^0.8.2",
     "gulp": "^3.9.0",
     "gulp-bower": "0.0.10",
     "gulp-coffee": "^2.3.1",
@@ -34,12 +39,21 @@
     "gulp-order": "^1.1.1",
     "gulp-postcss": "^5.1.10",
     "gulp-sass": "^2.0.4",
+    "gulp-shell": "^0.4.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.4",
     "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.9.0",
     "require-dir": "^0.3.0",
-    "rimraf": "^2.4.2"
+    "rimraf": "^2.4.2",
+    "run-sequence": "^1.1.2"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-jasmine": "^0.3.6"
   }
 }

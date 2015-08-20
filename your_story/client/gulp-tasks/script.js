@@ -36,15 +36,20 @@ gulp.task('modernizr', function() {
     .pipe(gulp.dest('build/temp'));
 });
 
-
-gulp.task('scripts-no-tempaltes', ['bower', 'src-js', 'src-coffee', 'modernizr'], function() {
-  return gulp.src(['lib/**/*.js', 'build/temp/modernizr.js', 'build/temp/app-src.js', 'build/temp/coffee.js'])
+gulp.task('libs', ['bower'], function() {
+  return gulp.src('lib/**/*.js')
     .pipe(order([
       'lib/jquery/**/*.js',
       'lib/angular/*.js',
       'lib/**/*.js',
-      'build/temp/modernizr.js'
       ], { base: './'}))
+    .pipe(concat('app-dependencies.js'))
+    .pipe(gulp.dest('build/temp'));
+})
+
+gulp.task('scripts-no-tempaltes', ['libs', 'src-js', 'src-coffee', 'modernizr'], function() {
+  return gulp.src(['build/temp/app-dependencies.js', 'build/temp/modernizr.js',
+    'build/temp/app-src.js', 'build/temp/coffee.js'])
     .pipe(concat('app-no-template.js'))
     .pipe(gulp.dest('build/temp'));
 });
