@@ -1,11 +1,9 @@
 language: ruby
+sudo: false
 rvm:
   - 2.2.2
 addons:
   postgresql: "9.3"
-
-before_install:
-  - sudo apt-get update -qq
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
