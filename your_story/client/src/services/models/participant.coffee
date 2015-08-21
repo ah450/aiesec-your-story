@@ -21,8 +21,8 @@ angular.module 'aiesec'
         _Resource
 
       @findById: (id) ->
+        resource = @getResource
         $q (resolve, reject) ->
-          resource = @getResource
           params =
             id: participant.id
           success = (participant) ->
@@ -36,7 +36,7 @@ angular.module 'aiesec'
           resource.get params, success, failure
           return
 
-      @newStory: (story) ->
+      newStory: (story) ->
         story = _.extend(story, {participant_id: @resource.id})
         @stories.push(story)
         return story 
