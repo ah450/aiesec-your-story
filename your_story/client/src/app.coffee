@@ -1,5 +1,5 @@
-angular.module 'aiesec', ['ui.router', 'ui.router.title', 'ui.validate',
-  'aiesec-templates', 'satellizer', 'LocalStorageModule']
+angular.module 'aiesec', ['ngResource', 'ui.router', 'ui.router.title',
+  'ui.validate', 'aiesec-templates', 'satellizer', 'LocalStorageModule']
 
 
 
