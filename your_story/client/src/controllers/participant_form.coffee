@@ -1,5 +1,5 @@
 angular.module 'aiesec'
-  .controller 'YourStoryFormController', ($scope, Participant, states, lcs, pTypes) ->
+  .controller 'ParticipantFormController', ($scope, Participant, states, lcs, pTypes) ->
     $scope.participant = Participant.fromObject {}
     $scope.lcOpts =
       data: lcs

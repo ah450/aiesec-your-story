@@ -17,7 +17,7 @@ angular.module 'aiesec'
       name: 'story_form.participant',
       url: ''
       templateUrl: 'views/participant_form.html'
-      controller: 'YourStoryFormController'
+      controller: 'ParticipantFormController'
 
     $stateProvider
       .state(storyForm)
