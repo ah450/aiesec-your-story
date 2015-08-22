@@ -20,7 +20,7 @@ gulp.task('webserver', ['dummy_dev', 'rails-start'], function() {
   });
 });
 
-gulp.task('reload', ['dummy_dev'], function() {
+gulp.task('reload', ['dummy_dev_helper'], function() {
   return gulp.src('./build/**/*')
     .pipe(connect.reload());
 });

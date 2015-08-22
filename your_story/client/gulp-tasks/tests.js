@@ -22,10 +22,9 @@ gulp.task('test-deps', ['bower-install', 'modernizr'], function() {
       .pipe(gulp.dest('build/test'));
 });
 
-
 gulp.task('app-test-src', ['src-coffee', 'src-js', 'test-deps', 'templates'], function() {
   return gulp.src(['build/templates/*.js',
-    'build/temp/app-src.js', 'build/temp/coffee.js'])
+    'build/temp/app-src.js', 'build/temp/coffee.js', 'build/test/ngMock.js'])
     .pipe(concat('app-testing.js'))
     .pipe(gulp.dest('build/test'));
 });
