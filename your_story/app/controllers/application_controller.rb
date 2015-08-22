@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   # GET /api/{plural_resource_variable}
-  def index  
+  def index
     resources = resource_class.where(query_params)
                               .page(page_params[:page])
                               .per(page_params[:page_size])

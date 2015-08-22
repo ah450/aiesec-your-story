@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :local_chapters, only: [:index, :show]
     resources :configurations, only: [:index]
     resources :tokens, only: [:create]
+    resources :profile_types, only: [:index]
   end
 end

@@ -1,7 +1,7 @@
 class Api::ParticipantsController < ApplicationController
-
-  PROFILE_TYPES = [MemberProfile, TalentProfile, CitizenProfile]
   
+  PROFILE_TYPES = [MemberProfile, TalentProfile, CitizenProfile]
+
   # POST /api/{plural_resource_name}
   def create  
     begin
