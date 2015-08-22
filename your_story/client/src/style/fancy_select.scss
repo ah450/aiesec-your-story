@@ -1,0 +1,61 @@
+@import 'partials/variables';
+
+.fancy-select-panel-wrapper {
+  position: relative;
+  cursor: pointer;
+  font-weight: bold;
+  width: 10em;
+  background-color: $alzarin;
+  padding: 1em;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin-top: 0;
+    top: 1.4em;
+    right: 1em;
+    border-left: 0.4em solid transparent;
+    border-right: 0.4em solid transparent;
+    border-top: 0.4em solid white;
+  }
+}
+.fancy-select-panel-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  font-weight: normal;
+  z-index: 1;
+  height: 0;
+  overflow: auto;
+  transition: all 0.3s ease-in-out;
+  background-color: $alzarin;
+  li {
+    width: 100%;
+    min-width: 3em;
+    height: 2em;
+    font-family: $sans-stack;
+    background-color: $alzarin;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    transition: background 1s ease;
+    @extend .flex-perfect-center-container;
+    div {
+    }
+  }
+}
+
+.active {
+  .fancy-select-panel-dropdown {
+    height: 6em;
+
+    li {
+      &:hover {
+        background-color: blue;
+      }
+    }
+  }
+}

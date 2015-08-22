@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import 'variables';
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -19,12 +20,12 @@ time, mark, audio, video, input, a:link,
 a:visited, a:hover, a:active, button {
   margin: 0;
   padding: 0;
-  border: none;
-  outline: none;
-  font-size: 100%;
+  font-size: 14px;
   vertical-align: baseline;
 }
 * {
+  border: none;
+  outline: none;
   font: inherit;
   color: inherit;
 }
@@ -75,6 +76,7 @@ button:hover {
 h1, h2, h3, h4, h5, h6 {
   display: block;
   font-weight: bold;
+  font-family: $source-serif;
 }
 
 h1 {

@@ -1,0 +1,44 @@
+@import 'partials/variables';
+
+.flip-container {
+  perspective: 1000;
+  position: relative;
+  .flipper {
+    position: relative;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  &.flip .flipper {
+    transform: rotateY(180deg);
+  }
+
+}
+
+.flip-container, .flip-front, .flip-back {
+}
+
+.flip-front, .flip-back {
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;  
+}
+
+.flip-front {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.flip-front {
+  // firefox 31
+  transform: rotateY(0deg);
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}

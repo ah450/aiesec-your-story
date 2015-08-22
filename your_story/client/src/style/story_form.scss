@@ -11,54 +11,80 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: auto;  
 }
 
 
 .story-form {
   position: relative;
   margin: auto;
-  background: transparent;
-  width: 20em;
-  padding: 1em;
-  border: 3px solid white;
-  border-radius: 12%;
+  background: $pumkin;
+  width: auto;
+  max-width: 85vw;
+  max-height: 80vh;
+  padding: 2em;
+  border: 1px solid $pomegrante;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-flow: column nowrap;
-  color: #27ae60;
-  &::before {
-    content: "";
-    position: absolute;
-    border: transparent;
-    border-radius: 10%;
-    z-index: -1;
-    left: -2.5%;
-    top: -2.5%;
-    background-color: rgba(149, 165, 166, 0.3);
-    width: 105%;
-    height: 105%;
-    filter: blur(2px);
+  color: white;
+
+  // .flip-front, .flip-back {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   flex-flow: column nowrap;
+  // }
+
+  // Letteringjs enabled form headers
+  .lettering-container {
+    span {
+      font-weight: inherit;
+      font-size: inherit;
+      transition: margin 0.4s ease-out;
+      &:last-child {
+        margin-left: 0.05em;
+        display: inline-block;
+        transition: transform 0.4s ease;
+      }
+      
+    }
+
+    &:hover {
+      span {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+        &:last-child {
+          transform: rotateZ(-180deg);
+        }
+      }
+    }
   }
+
   fieldset {
     margin-bottom: 0.5em;
   }
+  label {
+    display: inline-block;
+  }
+
   input {
     position: relative;
     border-radius: 1em;
     padding: 0.5em;
-    width: 100%;
     margin-top: 0.5em;
     display: inline-block;
-    background: $midnight-blue;
+    background: $alzarin;
     &::placeholder {
       color: inherit;
       opacity: 0.6;
     }
+    &[type="file"] {
+      margin-left: 1em;
+    }
   }
   button[type="submit"] {
-    color: black;
+    color: inherit;
   }
 }
 
