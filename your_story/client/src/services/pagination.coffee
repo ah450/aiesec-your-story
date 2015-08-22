@@ -1,14 +1,16 @@
 angular.module 'aiesec'
   .factory 'Pagination', ($q) ->
     class Pagination
-      constructor: (@resource, @pluralName, @params={}, @factory=_.identity, @pageSize=10,@data=[], @currentPage=1, @loaded=false,
-        @totalPages=0) ->
+      constructor: (@resource, @pluralName, @pageSize=10,  @params={},
+        @currentPage=1, @totalPages=0,
+        @factory=_.identity, @data=[],
+        @loaded=false) ->
       
       # Access element
       at: (index, page=@currentPage) ->
-        $q (resolve, reject) ->
+        $q (resolve, reject) =>
           if not @loaded or @currentPage != page
-            load page, resolve, reject, index
+            @load page, resolve, reject, index
           else
             resolve data[index]
           return
@@ -46,7 +48,7 @@ angular.module 'aiesec'
         if @currentPage != pageNum
           $q (resolve, reject) ->
             if not @loaded or @currentPage != page
-              load page, resolve, reject
+              @load page, resolve, reject
             else
               resolve data[index]
             return

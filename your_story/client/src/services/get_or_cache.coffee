@@ -6,18 +6,18 @@ angular.module 'aiesec'
       $q (resolve, reject) ->
         value = localStorageService.get(key)
         if value
-          resolve(cities)
+          resolve value
         else
           success = (response) ->
             if unpackWith
               data = response.data[unpackWith]
             else
-              data = response.data[unpackWith]
+              data = response.data
             localStorageService.set(key, data)
-            resolve(data)
+            resolve data
           failure = (response) ->
-            console.log 'Failed to get ', url
-            console.log response
+            console.error 'Failed to get ', url
+            console.error response
             reject rejectValue
           $http.get(url).then(success, failure)
           return

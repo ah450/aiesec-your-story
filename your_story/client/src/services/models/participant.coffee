@@ -1,5 +1,5 @@
 angular.module 'aiesec'
-  .factory 'Participant', ($q, Story, Model) ->
+  .factory 'Participant', ($resource, $q, Story, Model, endpoints) ->
     resourceDefaultParams =
       id: "@id"
     resourceActions =
@@ -13,9 +13,27 @@ angular.module 'aiesec'
     _Resource = $resource endpoints.participants.resourceUrl, 
             resourceDefaultParams, resourceActions
     class Participant extends Model
-      constructor: (resource) ->
+      constructor: (resource, exists=true) ->
         super resource
-        @stories = (new Story story for story in @resource.stories)
+        if exists
+          @stories = (new Story story for story in @resource.stories)
+
+      newStory: (story) ->
+        story = _.extend(story, {participant_id: @resource.id})
+        @stories.push(story)
+        return story
+
+      setLC: (localChapter) ->
+        @resource.local_chapter = localChapter.id
+
+      setLastName: (lname) ->
+        @resource.last_name = lname
+
+      setFirstName: (fname) ->
+        @resource.first_name = fname
+
+      setType: (pType) ->
+        @resource.type = pType
 
       @getResource: () ->
         _Resource
@@ -24,7 +42,7 @@ angular.module 'aiesec'
         resource = @getResource
         $q (resolve, reject) ->
           params =
-            id: participant.id
+            id: id
           success = (participant) ->
             resolve new Participant participant
             return
@@ -34,12 +52,7 @@ angular.module 'aiesec'
             reject response
             return
           resource.get params, success, failure
-          return
-
-      newStory: (story) ->
-        story = _.extend(story, {participant_id: @resource.id})
-        @stories.push(story)
-        return story 
+          return 
 
       @all: () ->
         Model.allHelper {}, @getResource, @pluralName, (resource) ->
@@ -51,7 +64,7 @@ angular.module 'aiesec'
 
       @fromObject: (data) ->
         resource = @getResource()
-        return new Participant(new resource data)
+        return new Participant(new resource(data), false)
 
       @pluralName: 'participants'
 

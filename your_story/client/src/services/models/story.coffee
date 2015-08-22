@@ -22,7 +22,7 @@ angular.module 'aiesec'
         _Resource
 
       @findById: (participant, storyID) ->
-          resource = @getResource()
+        resource = @getResource()
         $q (resolve, reject) ->
           params =
             participant_id: participant.id
