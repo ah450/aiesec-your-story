@@ -48,7 +48,3 @@ angular.module 'aiesec'
 
 
 # Run blocks
-
-angular.module 'aiesec'
-  .run ($rootScope) ->
-    $rootScope.isNavActive = false
