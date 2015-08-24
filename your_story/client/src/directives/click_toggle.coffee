@@ -3,6 +3,6 @@ angular.module 'aiesec'
     directive =
       restrict: 'A'
       link: (scope, element, attrs) ->
-        element.bind 'click', () ->
+        element.click ->
           element.toggleClass attrs.clickToggle
           return false if attrs.preventDefault
