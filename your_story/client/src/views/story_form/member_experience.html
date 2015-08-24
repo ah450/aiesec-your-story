@@ -1,0 +1,26 @@
+<form data-ng-submit="processForm()" class="story-form"
+  autocomplete="off"
+  name="membershipExtra"
+  id="memberShipExtra"
+  novalidate>
+  <h1>What was your membership experience?</h1>
+  <div class="radio-container member-extra">
+    <div class="single-radio"
+    data-ng-repeat="(label, opts) in memberTypes">
+
+      <input type="radio" name="memberType" 
+      data-ng-model="memberShipExperienceFormValues.membershipType"
+      id="{{opts.id}}" data-ng-value="opts.value" required>
+      <label for="{{opts.id}}"><span></span>{{label}}</label>
+
+    </div>
+  </div>
+  <button type="submit" title="next"
+  class="btn btn-next"
+  data-ng-disabled="membershipExtra.$invalid">
+    <div class="btn-slide btn-slide-right">Next</div>
+    <svg viewbox="0 0 100 100">
+      <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
+    </svg> 
+  </button>
+</form>
