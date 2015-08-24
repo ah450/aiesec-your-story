@@ -43,12 +43,10 @@
     margin-bottom: 0.2em;
     transition: background 1s ease;
     @extend .flex-perfect-center-container;
-    div {
-    }
   }
 }
 
-.active {
+.active, .fancy-select-panel-wrapper:focus, .fancy-select-panel-title:focus {
   .fancy-select-panel-dropdown {
     height: 6em;
 
