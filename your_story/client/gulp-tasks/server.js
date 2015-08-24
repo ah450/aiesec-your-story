@@ -5,7 +5,7 @@ var modRewrite = require('connect-modrewrite');
 
 gulp.task('webserver-watch', ['webserver', 'watch']);
 
-gulp.task('webserver', ['dummy_dev', 'rails-start'], function() {
+gulp.task('webserver', ['dummy_dev'], function() {
   connect.server({
     livereload: true,
     root: 'build',

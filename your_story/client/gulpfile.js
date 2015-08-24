@@ -4,6 +4,7 @@ var watch = require('gulp-watch');
 var requireDir = require('require-dir');
 var gzip = require('gulp-gzip');
 var rimraf = require('rimraf');
+var runSequence = require('run-sequence');
 requireDir('./gulp-tasks');
 
 
@@ -23,8 +24,8 @@ gulp.task('clean', function() {
 
 gulp.task('dummy_dev_helper', ['assets', 'scripts', 'css', 'manifest']);
 
-gulp.task('dummy_dev', ['clean'], function() {
-  return gulp.start('dummy_dev_helper');
+gulp.task('dummy_dev', function(done) {
+  return runSequence('clean', 'dummy_dev_helper', done);
 });
 
 
@@ -37,23 +38,25 @@ gulp.task('watch', function() {
 
 
 
-gulp.task('dev', ['clean'], function() {
-  return gulp.start('webserver-watch');
+gulp.task('dev', function(done) {
+  return runSequence('clean', 'webserver-watch', done);
 });
+
+gulp.task('build', ['dummy_dev']);
 
 gulp.task('default', ['dev']);
 
 
-gulp.task('dist', ['clean'], function() {
-  return gulp.start('compress');
+gulp.task('dist', function(done) {
+  return runSequence('clean', 'compress', done);
 });
 
 gulp.task('compress', ['uglify', 'css-min', 'assets', 'manifest-dist'], function() {
-  return gulp.src('dist/**/*.{html,css,js,eot,svg,ttf}')
+  return gulp.src('dist/**/*.{html,css,js,eot,svg,ttf,otf}')
     .pipe(gzip({
       append: true,
       gzipOptions: {
-        level: 6
+        level: 9
       }
     }))
     .pipe(gulp.dest('dist'));

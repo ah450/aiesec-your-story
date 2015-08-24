@@ -61,10 +61,10 @@ gulp.task('scripts', ['scripts-no-tempaltes', 'templates', 'polyfills'], functio
 });
 
 gulp.task('uglify', ['scripts-no-tempaltes', 'templates-min', 'polyfills-min'], function() {
-  return gulp.src(['build/temp/app-no-template.js', 'build/temp/partials.min.js'])
+  return gulp.src(['build/temp/app-no-template.js', 'build/temp/templates.min.js'])
     .pipe(concat('app.js'))
     .pipe(ngAnnotate())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('dist/'));
 });
 

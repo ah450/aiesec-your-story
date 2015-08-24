@@ -20,9 +20,9 @@ gulp.task('move-images', function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('move-fonts', function() {
-  return gulp.src('fonts/*', {base: './'})
-    .pipe(gulp.dest('dist'))
-    .pipe(gulp.dest('build'));
+gulp.task('move-fonts', ['bower'], function() {
+  return gulp.src(['fonts/*', 'lib/font-awesome/fonts/*'])
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe(gulp.dest('build/fonts'));
 });
 

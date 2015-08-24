@@ -45,8 +45,8 @@ gulp.task('testActual', ['app-test-src', 'spec-src'], function() {
 
 });
 
-gulp.task('test', ['clean'], function(done) {
-  return runSequence('webserver', 'testActual', 'rails-kill');
+gulp.task('test', function(done) {
+  return runSequence('clean', 'webserver', 'testActual', 'rails-kill', done);
 });
 
 gulp.task('tdd', function() {
