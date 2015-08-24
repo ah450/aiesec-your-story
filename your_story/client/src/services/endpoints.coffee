@@ -6,12 +6,20 @@ angular.module 'aiesec'
       states:
         index: [apiHost, 'states'].join '/'
       stories:
-        resourceUrl = [apiHost, 'participants',
+        resourceUrl: [apiHost, 'participants',
           ':participant_id', 'stories', ':id'].join '/'
       participants:
-        resourceUrl = [apiHost, 'participants', ':id']. join '/'
+        resourceUrl: [apiHost, 'participants', ':id']. join '/'
+        avatars:
+          show: [apiHost, 'participants', ':participant_id', 'avatars', ':id'].join '/'
       configurations:
         index: [apiHost, 'configurations'].join '/'
       profileTypes:
         index: [apiHost, 'profile_types'].join '/'
+      memberProfileTypes:
+        index: [apiHost, 'member_profile_types'].join '/'
+      builders:
+        participants:
+          avatar: (pid) ->
+            [apiHost, 'participants', pid, 'avatars'].join '/'
       
