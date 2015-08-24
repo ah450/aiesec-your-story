@@ -9,7 +9,8 @@ class Avatar < ActiveRecord::Base
   def json_builder
     {
       filename: filename,
-      mime_type: mime_type
+      mime_type: mime_type,
+      id: id
     }
   end
 end

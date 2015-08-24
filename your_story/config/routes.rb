@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: {format: :json} do 
+  namespace :api do 
     resources :participants, only: [:index, :create, :show] do 
       resources :stories, only: [:index, :create, :show]
       resources :avatars, only: [:create, :show]
@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :configurations, only: [:index]
     resources :tokens, only: [:create]
     resources :profile_types, only: [:index]
+    resources :member_profile_types, only: [:index]
   end
 end

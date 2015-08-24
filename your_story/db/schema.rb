@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813223027) do
+ActiveRecord::Schema.define(version: 20150823145639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150813223027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "issues", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "story_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "issues", ["story_id"], name: "index_issues_on_story_id", using: :btree
 
   create_table "local_chapters", force: :cascade do |t|
     t.string   "name",       null: false

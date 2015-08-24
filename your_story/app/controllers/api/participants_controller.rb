@@ -48,7 +48,7 @@ class Api::ParticipantsController < ApplicationController
         })
       json.merge({
         avatars: json[:avatars].map { |e| e.merge({
-          url: api_participant_avatar_path(e.id)
+          url: api_participant_avatar_path(subject, e)
           })}
         })
     end
