@@ -1,5 +1,6 @@
 angular.module 'aiesec'
-  .controller 'ParticipantFormController', ($scope, $state, states, Participant, currentCreation, states, lcs, pTypes) ->
+  .controller 'ParticipantFormController', ($scope, $state, Participant,
+    currentCreation, states, lcs, pTypes) ->
     $scope.participant = Participant.fromObject {}
     $scope.participant = currentCreation.participant if currentCreation.participant
     if currentCreation.avatar
@@ -61,6 +62,8 @@ angular.module 'aiesec'
       if newValue
         $scope.participant.setType newValue.type, newValue.outgoing
 
+    # Send to memberExperience sibling state if user selected member type
+    # Else send to story subling state
     $scope.processForm = () ->
       currentCreation.selectedLc = $scope.lcOpts.selected
       currentCreation.participant = $scope.participant
