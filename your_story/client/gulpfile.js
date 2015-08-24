@@ -31,7 +31,7 @@ gulp.task('dummy_dev', function(done) {
 
 
 gulp.task('watch', function() {
-  watch(['./src/**', './images/**', './polyfills/**'], function() {
+  watch(['./src/**', './images/**', './polyfills/**', 'bower.json'], function() {
     gulp.start('reload');
   });
 });
