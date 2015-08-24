@@ -25,6 +25,10 @@
   display: none;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .wrapper {
   position: relative;
   width: 100vw;
@@ -43,13 +47,61 @@
   appearance: none;
   border: none;
   background: transparent;
+  display: inline-block;
   &:focus {
     outline: none;
+  }
+
+  &:hover{
+    .btn-slide {
+      width: 3em;
+    }
+  }
+  &:disabled:hover {
+    .btn-slide {
+      width: 0;
+    }
+  }
+}
+
+.btn-prev {
+  position: relative;
+  width: 1em;
+  min-width: 10px;
+  .arrow {
+    fill: white;
   }
 }
 
 .btn-next {
+  position: relative;
+  width: 1em;
+  min-width: 10px;
+  .arrow {
+    fill: white;
+  }
+}
 
+.btn-slide {
+  transition: width 1s ease;
+  position: absolute;
+  width: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  top: 0;
+}
+
+.btn-slide-right {
+  left: 1em;
+}
+
+.btn-slide-left {
+  right: 1em;
+}
+
+.button-container {
+  width: 10em;
+  margin-left: 3em;
 }
 
 .form-line {
@@ -77,8 +129,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center; 
-  align-content: center;
 }
 
 .flex-column-between {
@@ -92,6 +142,10 @@
   justify-content: center;
 }
 
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
 // Webfont
 
