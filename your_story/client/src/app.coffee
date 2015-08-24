@@ -1,5 +1,6 @@
 angular.module 'aiesec', ['ngResource', 'ui.router', 'ui.router.title',
-  'ui.validate', 'aiesec-templates', 'satellizer', 'LocalStorageModule']
+  'ui.validate', 'aiesec-templates', 'satellizer', 'LocalStorageModule',
+  'ngFileUpload', 'ngAnimate', 'fontToFit']
 
 
 
@@ -33,9 +34,6 @@ angular.module 'aiesec'
     $authProvider.baseUrl = apiHost
     $authProvider.signupUrl = 'users'
     $authProvider.loginUrl = 'tokens'
-    
-
-
 
 angular.module 'aiesec'
   .config ($urlMatcherFactoryProvider) ->
