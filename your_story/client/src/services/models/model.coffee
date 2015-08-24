@@ -20,7 +20,7 @@ angular.module 'aiesec'
           success = (res) ->
             resolve _.map res, (item) ->
               new klass item
-          return
+            return
           failure = (res) ->
             console.log 'failed to fetch all without pagination', 
               pluralName, resource, res
@@ -29,4 +29,14 @@ angular.module 'aiesec'
           return
 
       save: () ->
-        @resource.$save()
+        $q (resolve, reject) =>
+          success = (res) =>
+            @exists = true
+            resolve @
+            return
+          failure = (res) =>
+            console.log 'failed to save mode'
+            console.log res, that
+            reject res
+          @resource.$save success, failure
+          return
