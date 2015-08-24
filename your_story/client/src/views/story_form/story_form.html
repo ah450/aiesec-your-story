@@ -1,0 +1,27 @@
+<form data-ng-submit="processForm()"
+  id="storyForm" name="storyForm"
+  class="story-form"
+  novalidate
+  autocomplete="off">
+
+  <h1></h1>
+  <fieldset>
+    <label for="title">One liner description</label>
+    <input type="text" class="" name="title" id="title" placeholder="Lost in translation, butterfly effect, etc.."
+    data-ng-model="storyFormData.title"
+    required
+    >
+  </fieldset>
+
+  <fieldset>
+    <label for="location">Location</label>
+    <input id="location" data-auto-complete
+    data-ac-render="stateRender"
+    data-ng-model="stateName"
+    >
+  </fieldset>
+
+  <button type="submit" class="btn btn-submit"
+  data-ng-disabled="storyForm.$invalid"
+  ></button>
+</form>
