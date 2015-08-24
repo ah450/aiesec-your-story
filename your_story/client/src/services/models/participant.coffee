@@ -1,5 +1,6 @@
 angular.module 'aiesec'
-  .factory 'Participant', ($resource, $q, Story, Model, endpoints) ->
+  .factory 'Participant', ($resource, $q, Upload, 
+    Story, Avatar, Model, endpoints) ->
     resourceDefaultParams =
       id: "@id"
     resourceActions =
@@ -32,8 +33,35 @@ angular.module 'aiesec'
       setFirstName: (fname) ->
         @resource.first_name = fname
 
-      setType: (pType) ->
+      setType: (pType, outgoing=null) ->
+        @resource.profile_attributes = {}
+        @resource.profile_attributes.outgoing = outgoing if outgoing != null
         @resource.type = pType
+
+      setMemberType: (memberType) ->
+        @resource.profile_attributes.membership_typ = memberValue
+
+      getType: ()->
+        @resource.type
+
+      createAvatar: (file, progress) ->
+        $q (resolve, reject) =>
+          config =
+            url: endpoints.builders.participants.avatar @resource.id
+            method: 'POST'
+            file: file
+            fileFormDataName: 'avatar[data]'
+          promise = Upload.upload config
+          promise.progress progress if progress
+          promise.then (data)->
+            resolve Avatar.fromObject data
+          promise.error (data, status, headers, config)->
+            info = 
+              data: data
+              status: status
+              headers: headers
+              config: config
+            reject info
 
       @getResource: () ->
         _Resource
