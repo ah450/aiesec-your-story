@@ -3,4 +3,9 @@ angular.module 'aiesec'
     directive =
       restrict: 'A'
       link: (scope, element, attrs) ->
-        element.mCustomScrollbar()
+        config = {}
+        if attrs.mcsTheme
+          config.theme = attrs.mcsTheme
+        if attrs.mcsAxis
+          config.axis = attrs.mcsAxis
+        element.mCustomScrollbar config
