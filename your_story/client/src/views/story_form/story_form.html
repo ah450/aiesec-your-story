@@ -2,26 +2,67 @@
   id="storyForm" name="storyForm"
   class="story-form"
   novalidate
-  autocomplete="off">
+  autocomplete="off"
+  >
 
   <h1></h1>
   <fieldset>
     <label for="title">One liner description</label>
-    <input type="text" class="" name="title" id="title" placeholder="Lost in translation, butterfly effect, etc.."
+    <input type="text" class=""
+    name="title" id="title" 
+    placeholder="Lost in translation, butterfly effect, etc.."
     data-ng-model="storyFormData.title"
+    spellcheck="true"
     required
     >
   </fieldset>
 
   <fieldset>
-    <label for="location">Location</label>
-    <input id="location" data-auto-complete
+    <legend>Highlight your {{experienceType()}} experience in 50-100words</legend>
+    <p>Talk about the journey you wnet through, highlight the project you worked on and how your personality developed.</p>
+    <textarea placeholder="What's your take away" spellcheck="true"
+    data-custom-scrollbar
+    data-mcs-axis="y"
+    data-mcs-theme="minimal-dark"
+    data-ng-model="storyFormData.highlight"
+    name="highlight"
+    data-ng-trim="true"
+    data-minwords="50"
+    data-maxwords="100"
+    required
+    ></textarea>
+    <span data-ng-class="{hidden: !storyForm.highlight.$error.required}"
+    class="fa fa-asterisk required-icon"></span>
+    <span
+    data-ng-class="{hidden: !storyForm.highlight.$error.minwords}"
+    class="form-validation-error-text">Must be at least 50 words</span>
+    <span data-ng-class="{hidden: !storyForm.highlight.$error.maxwords"
+    class="form-validation-error-text">Must be at most 100 words</span>
+  </fieldset>
+
+  <fieldset>
+    <legend>Location of experience?</legend>
+    <input id="location" 
+    data-auto-complete
     data-ac-render="stateRender"
-    data-ng-model="stateName"
+    data-ac-select="stateSelect"
+    data-ac-sources="locations"
+    data-ng-model="storyFormData.state.name"
+    required
     >
   </fieldset>
 
-  <button type="submit" class="btn btn-submit"
+  <fieldset>
+    <legend>When was it? (doesn't have to be exact)</legend>
+    <input type="text" data-ui-datepicker
+    data-ng-model="storyFormData.date"
+    name="date"
+    required
+    >
+  </fieldset>
+
+  <button type="submit"
+  class="btn btn-submit"
   data-ng-disabled="storyForm.$invalid"
   ></button>
 </form>
