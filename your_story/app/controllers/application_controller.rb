@@ -87,7 +87,9 @@ class ApplicationController < ActionController::Base
     end
 
     def render_single(status=:ok)
-      render json: json_builder(get_resource), status: status
+      json = {}
+      json[resource_name] = json_builder(get_resource)
+      render json: json , status: status
     end
 
     # The resource class based on the controller

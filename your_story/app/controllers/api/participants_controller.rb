@@ -6,7 +6,7 @@ class Api::ParticipantsController < ApplicationController
   def create  
     begin
       # Detect clas based on type param
-      profile_klass = PROFILE_TYPES.detect {|p| participant_params[:type].to_s.classify.constantize == p}
+      profile_klass = PROFILE_TYPES.detect {|p| participant_params[:profile_type].to_s.classify.constantize == p}
     ensure
       unless profile_klass
         render json: {message: "Could not detect profile class"}, status: :bad_request
@@ -16,7 +16,7 @@ class Api::ParticipantsController < ApplicationController
     profile_params = participant_params.delete :profile_attributes 
     # Initialize participant, minus profile_attributes
     @participant = Participant.new participant_params.except(
-      :profile_attributes).reject {|e| ["type", "local_chapter"].include? e}
+      :profile_attributes, :profile_type).reject {|e| ["type", "local_chapter"].include? e}
     # Initialize profile
     @participant.profile = profile_klass.new profile_params
     @participant.profile.participant = @participant
@@ -38,7 +38,7 @@ class Api::ParticipantsController < ApplicationController
       citizen_attrs = CitizenProfile.attribute_names.reject{|e| [:participant].include? e}
       profile_attributes = [profile_attributes: member_attrs | talent_attrs | citizen_attrs]
       attributes.concat(profile_attributes)
-      params.require(:participant).permit(attributes | [:type])
+      params.require(:participant).permit(attributes)
     end
 
     def json_builder(subject)

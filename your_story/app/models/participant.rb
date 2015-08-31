@@ -12,6 +12,7 @@ class Participant < ActiveRecord::Base
       except: [:profile_id, :local_chapter_id],
       include: [:profile]
       )
+    json['profile_type'] = json['profile_type'].underscore
     json.merge({
       local_chapter: local_chapter.json_builder,
       stories: stories.map { |e| e.json_builder  },

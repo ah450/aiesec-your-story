@@ -8,7 +8,8 @@ class State < ActiveRecord::Base
     {
       default_name: default_name,
       id: id,
-      country: country
+      country: country,
+      names: names
     }
   end
 end

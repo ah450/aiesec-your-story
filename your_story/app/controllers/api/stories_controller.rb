@@ -16,7 +16,9 @@ class Api::StoriesController < ParticipantAssocController
     def story_params
       attributes = model_attributes
       issueAttrs = [issue: [:name]]
-      params.require(:story).permit(attributes | issueAttrs)
+      companyAttrs = [company: [:name]]
+      nestedAttrs = issueAttrs | companyAttrs
+      params.require(:story).permit(attributes | nestedAttrs)
     end
     
     def json_builder(subject)

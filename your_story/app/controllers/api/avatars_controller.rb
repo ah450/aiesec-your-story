@@ -1,12 +1,12 @@
 class Api::AvatarsController < ParticipantAssocController
   
   def show
-    send_data get_resorce.data, type: get_resource.mime_type, disposition: 'inline'
+    send_data get_resource.data, type: get_resource.mime_type, disposition: 'inline'
   end
 
   def create
     filename = "#{Avatar.gen_name}#{Rack::Mime::MIME_TYPES.invert[resource_params.data.content_type]}"
-    @avatar = Avatar.new(data: resource_params.data,
+    @avatar = Avatar.new(data: resource_params.data.read,
       filename: filename,
       mime_type: resource_params.data.content_type,
       participant: @parent
