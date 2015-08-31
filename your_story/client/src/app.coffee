@@ -1,6 +1,8 @@
+angular.module 'aiesecValidations', []
+
 angular.module 'aiesec', ['ngResource', 'ui.router', 'ui.router.title',
-  'ui.validate', 'aiesec-templates', 'satellizer', 'LocalStorageModule',
-  'ngFileUpload', 'ngAnimate', 'fontToFit']
+  'aiesecTemplates', 'satellizer', 'LocalStorageModule',
+  'ngFileUpload', 'ngAnimate', 'fontToFit', 'aiesecValidations']
 
 
 
