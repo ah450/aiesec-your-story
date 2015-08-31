@@ -10,7 +10,8 @@
   "license": "MIT",
   "scripts": {
     "test": "gulp test",
-    "db": "gulp setup-db"
+    "db": "gulp setup-db",
+    "dev": "gulp dev"
   },
   "bugs": {
     "url": "tbd"
@@ -18,7 +19,7 @@
   "homepage": "",
   "dependencies": {
     "autoprefixer-core": "^5.2.1",
-    "bower": "^1.4.1",
+    "bower": "^1.5.2",
     "coffeelint-stylish": "^0.1.2",
     "connect-modrewrite": "^0.8.2",
     "gulp": "^3.9.0",
@@ -32,21 +33,21 @@
     "gulp-gzip": "^1.2.0",
     "gulp-jshint": "^1.11.2",
     "gulp-manifest": "0.0.8",
-    "gulp-minify-css": "^1.2.0",
+    "gulp-minify-css": "^1.2.1",
     "gulp-minify-html": "^1.0.4",
     "gulp-modernizr": "1.0.0-alpha",
-    "gulp-ng-annotate": "^1.0.0",
+    "gulp-ng-annotate": "^1.1.0",
     "gulp-order": "^1.1.1",
     "gulp-postcss": "^6.0.0",
     "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.4.2",
-    "gulp-uglify": "^1.2.0",
+    "gulp-uglify": "^1.3.0",
     "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.3.4",
+    "gulp-watch": "^4.3.5",
     "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.9.0",
     "require-dir": "^0.3.0",
-    "rimraf": "^2.4.2",
+    "rimraf": "^2.4.3",
     "run-sequence": "^1.1.2",
     "gulp-angular-templatecache": "^1.7.0"
   },
