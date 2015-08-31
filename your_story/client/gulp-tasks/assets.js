@@ -20,8 +20,8 @@ gulp.task('move-images', function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('move-fonts', ['bower'], function() {
-  return gulp.src(['fonts/*', 'lib/font-awesome/fonts/*'])
+gulp.task('move-fonts', function() {
+  return gulp.src(['fonts/*'])
     .pipe(gulp.dest('dist/fonts'))
     .pipe(gulp.dest('build/fonts'));
 });

@@ -16,7 +16,7 @@ gulp.task('manifest', ['scripts', 'assets', 'css'], function() {
 });
 
 gulp.task('manifest-dist', ['uglify', 'assets', 'css-min'], function() {
-  return gulp.src(['dist/**'])
+  return gulp.src(['dist/**', '!dist/polyfills/**/*'])
     .pipe(manifest(manifestOptions))
     .pipe(gulp.dest('./dist'));
 });

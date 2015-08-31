@@ -6,7 +6,7 @@ var minifyHtml = require('gulp-minify-html');
 
 var templateOptions = {
    standalone: true,
-   module: 'aiesec-templates'
+   module: 'aiesecTemplates'
 };
 
 gulp.task('templates', function() {

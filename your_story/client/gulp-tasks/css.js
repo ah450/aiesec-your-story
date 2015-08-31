@@ -18,22 +18,18 @@ gulp.task('css-min', ['css'], function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('sass-lib', ['bower'], function() {
-  return gulp.src('lib/font-awesome/scss/font-awesome.scss')
-    .pipe(sass())
-    .pipe(urlAdjuster({
-      replace: ['../fonts', 'fonts']
-    }))
-    .pipe(gulp.dest('build/font-awesome'))
-});
 
-gulp.task('css',['sass', 'bower', 'sass-lib'], function() {
-  return gulp.src(['lib/**/*.css', 'build/font-awesome/*.css', 'build/css/*.css'])
+
+gulp.task('css',['sass', 'bower'], function() {
+  return gulp.src(['lib/**/*.css', 'build/css/*.css'])
     .pipe(order([
       'lib/**/*.css',
       'build/css/*.css'
       ]))
-    .pipe(concatCss('main.css'))
+    .pipe(concatCss('main.css', {
+      rebaseUrls: false,
+      inlineImports: false
+    }))
     .pipe(postcss([autoprefixer({browsers: ['last 5 version']})]))
     .pipe(gulp.dest('./build/'));
 });
