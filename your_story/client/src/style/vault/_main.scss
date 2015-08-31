@@ -1,0 +1,32 @@
+@import 'footer';
+@import 'floaty_buttons';
+@import 'sheet';
+@import 'illustrations';
+@import 'form';
+@import 'raised_buttons';
+@import 'fab_buttons';
+@import 'radio_buttons';
+.story-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  overflow: hidden;
+  &::before {
+    // Browser topbar shadow
+    position: absolute;
+    top: -1em;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.8);
+    z-index: 5;
+  }
+}
+

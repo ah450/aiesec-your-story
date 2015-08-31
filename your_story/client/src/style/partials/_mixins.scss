@@ -3,8 +3,8 @@
   column-gap: $col_gap;
 }
 
-@mixin noise {
-  background: url('images/noisy-texture-50x50-o4-d10-c-f34379-t1.png');
+@mixin noise($background-color:"") {
+  background: url('images/noisy-texture-50x50-o4-d10-c-f34379-t1.png'), unquote($background-color);
   content: "";
   position: absolute;
   top: 0;

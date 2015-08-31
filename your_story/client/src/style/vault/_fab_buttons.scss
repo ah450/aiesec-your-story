@@ -1,0 +1,16 @@
+.btn-fab {
+  display: block;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  box-sizing: border-box;
+  background-color: $md-clr-light-blue-500;
+  color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  transition: transform .2s ease-in, box-shadow .2s ease-in;
+}
+
+.btn-fab:hover, .btn-fab:active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.7);
+}

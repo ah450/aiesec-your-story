@@ -1,0 +1,58 @@
+@import 'form_text';
+@import 'form_select';
+@import 'form_image_preview';
+
+.story-box #formContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .blocky-form {
+    width: 48rem;
+    height: 40rem;
+    max-width: 90vw;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.blocky-form {
+  box-shadow: .2em .2em .7em .1em rgba(0, 0, 0, 0.8);
+  background: $md-clr-grey-50;
+}
+
+.blocky-form {
+  h1 {
+    user-select: none;
+    cursor: default;
+  }
+  .form-line {
+    position: relative; // create context for absolute
+    width: 60%;
+    margin: 2em auto;
+  }
+  .form-line:last-child {
+    margin-bottom: 0.5em;
+  }
+
+  fieldset {
+    position: relative;
+  }
+
+}
+
+
+.blocky-form .btn-fab {
+  display: inline-block;
+}
+
+
+
+.blocky-form .aiesec-span {
+  color: $md-clr-light-blue-500;
+}

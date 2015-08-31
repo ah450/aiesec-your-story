@@ -1,0 +1,25 @@
+.btn-raised {
+  position: relative;
+  display: block;
+  color: white;
+  background-color: $md-clr-light-blue-600;
+  padding: 1em;
+  border-radius: 5%;
+  font-size: 1.4rem;
+  font-weight: $normal-weight;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.8);
+  font-weight: $bold-weight;
+  transition: background-color .3s ease,
+    box-shadow .3s ease-out, color .3s ease;
+}
+
+.btn-raised[disabled] {
+  cursor: not-allowed;
+  box-shadow: none;
+  background-color: $md-clr-grey-500;
+  color: $md-clr-grey-700;
+}
+

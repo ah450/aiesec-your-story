@@ -1,69 +1,188 @@
-<form data-ng-submit="processForm()"
-  id="storyForm" name="storyForm"
-  class="story-form"
-  novalidate
-  autocomplete="off"
-  >
+<div class="flip-container" id="storyFormFlipper">
+  <div class="flipper" data-ng-class="{submitting: submitting}">
+    <div class="flip-front" id="storyFrontFlip">
+      <form data-ng-submit="processForm()"
+        id="storyForm" name="storyForm"
+        class="story-form"
+        novalidate
+        autocomplete="off"
+        >
+        <fieldset>
+          <div class="flex-perfect-center-container flex-column">
+            <legend>One Liner</legend>
+            <div class="flex-row-center max-width">
+              <input type="text" class=""
+              name="title" id="title" 
+              placeholder="Lost in translation, butterfly effect, etc.."
+              data-ng-model="storyFormData.title"
+              spellcheck="true"
+              required
+              >
+              <span
+              data-ng-class="{hidden: !storyForm.title.$error.required}"
+              class="fa fa-asterisk required-icon margin-auto"></span>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="flex-perfect-center-container flex-column">
+            <legend>Highlight your <span class="aiesec-span" data-ng-if="isMember()">AIESEC</span>{{experienceType()}} experience</legend>
+            <div class="detail-wrapper max-width">
+              <p class="detail">Talk about the journey you went through.</p>
+              <p class="detail">Your work and how the journey developed your personality.</p>
+            </div>
+          </div>
+          <div class="flex-column-center max-width">
+            <div class="flex-row-center max-width">
+              <textarea placeholder="What's your take away" spellcheck="true"
 
-  <h1></h1>
-  <fieldset>
-    <label for="title">One liner description</label>
-    <input type="text" class=""
-    name="title" id="title" 
-    placeholder="Lost in translation, butterfly effect, etc.."
-    data-ng-model="storyFormData.title"
-    spellcheck="true"
-    required
-    >
-  </fieldset>
+              data-ng-model="storyFormData.highlight"
+              name="highlight"
+              data-ng-trim="true"
+              data-minwords="50"
+              data-maxwords="100"
+              data-custom-scrollbar
+              data-mcs-axis="y"
+              data-mcs-theme="light"
+              required
+              ></textarea>
+              <span data-ng-class="{hidden: !storyForm.highlight.$error.required}"
+                class="fa fa-asterisk required-icon"></span>
+            </div>
 
-  <fieldset>
-    <legend>Highlight your {{experienceType()}} experience in 50-100words</legend>
-    <p>Talk about the journey you wnet through, highlight the project you worked on and how your personality developed.</p>
-    <textarea placeholder="What's your take away" spellcheck="true"
-    data-custom-scrollbar
-    data-mcs-axis="y"
-    data-mcs-theme="minimal-dark"
-    data-ng-model="storyFormData.highlight"
-    name="highlight"
-    data-ng-trim="true"
-    data-minwords="50"
-    data-maxwords="100"
-    required
-    ></textarea>
-    <span data-ng-class="{hidden: !storyForm.highlight.$error.required}"
-    class="fa fa-asterisk required-icon"></span>
-    <span
-    data-ng-class="{hidden: !storyForm.highlight.$error.minwords}"
-    class="form-validation-error-text">Must be at least 50 words</span>
-    <span
-    data-ng-class="{hidden: !storyForm.highlight.$error.maxwords"
-    class="form-validation-error-text">Must be at most 100 words</span>
-  </fieldset>
+            <div class="highlight-validations-text">       
+              <span
+              data-ng-show="storyForm.highlight.$error.minwords"
+              class="form-validation-error-text">Must be at least 50 words</span>
+              <span
+              data-ng-show="storyForm.highlight.$error.maxwords"
+              class="form-validation-error-text">Must be at most 100 words</span>
+            </div>
+          </div>
+        </fieldset>
 
-  <fieldset>
-    <legend>Location of experience?</legend>
-    <input id="location" 
-    data-auto-complete
-    data-ac-render="stateRender"
-    data-ac-select="stateSelect"
-    data-ac-sources="locations"
-    data-ng-model="storyFormData.state.name"
-    required
-    >
-  </fieldset>
+        <fieldset>
+          <div class="flex-perfect-center-container flex-column">
+          <legend>Location of experience? (City)</legend>
+          <div class="flex-row-center max-width">
+              <input id="location" 
+              data-auto-complete
+              data-ac-render="stateRender"
+              data-ac-select="stateSelect"
+              data-ac-sources="locations"
+              name="dummyLocation"
+              data-ng-model="storyFormData.dummyLocation"
+              required
+              >
+              <span
+              data-ng-class="{hidden: !storyForm.dummyLocation.$error.required}"
+              class="fa fa-asterisk required-icon margin-auto"></span>
+          </div>
+          </div>
+        </fieldset>
 
-  <fieldset>
-    <legend>When was it? (doesn't have to be exact)</legend>
-    <input type="text" data-ui-datepicker
-    data-ng-model="storyFormData.date"
-    name="date"
-    required
-    >
-  </fieldset>
+        <fieldset>
+        <div class="flex-perfect-center-container flex-column">
+          <legend>When was it? (doesn't have to be exact)</legend>
+            <div class="flex-row-center max-width">
+            <input type="text" data-ui-datepicker
+            data-ng-model="storyFormData.date"
+            name="date"
+            required
+            >
+            <span
+            data-ng-class="{hidden: !storyForm.date.$error.required}"
+            class="fa fa-asterisk required-icon margin-auto"></span>
+          </div>
+        </div>
+        </fieldset>
 
-  <button type="submit"
-  class="btn btn-submit"
-  data-ng-disabled="storyForm.$invalid"
-  ></button>
-</form>
+        <div class="flex-perfect-center-container flex-column">
+          <button type="submit"
+          class="btn btn-submit"
+          data-ng-disabled="storyForm.$invalid"
+          data-ng-if="!(issueApplicable() || companyApplicable())"
+          >
+              <svg viewbox="0 0 100 100">
+                 <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
+               </svg>
+          </button>
+
+          <button 
+          data-flip="#storyFormFlipper" type="button" title="next" class="btn btn-next"
+          data-ng-if="issueApplicable() || companyApplicable()" 
+          data-ng-disabled="storyForm.$invalid"
+          >
+              <svg viewbox="0 0 100 100">
+                 <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
+               </svg>
+          </button>
+        </div>
+        <!-- End button container -->
+      </form>
+    </div>
+    <!-- End flip Front -->
+    <div class="flip-back" data-copy-size="#storyFrontFlip">
+      <form
+      data-ng-submit="processForm()"
+      class="story-form"
+      autocomplete="off"
+      name="storyBack"
+      id="storyBack"
+      novalidate
+      >
+      <fieldset data-ng-if="issueApplicable()" id="issuesField" class="flex-column-center">
+      <legend>What Issue did you work on?</legend>
+        <div class="radio-container flex-column-between fancy-radio  select-none">
+          <div class="single-radio" data-ng-repeat="issue in issues">
+            <input type="radio"
+              name="issue"
+              id="radio{{$index}}"
+              data-ng-model="storyFormData.issue"
+              data-ng-value="{{issue}}"
+              required>
+            <label for="radio{{$index}}"><span></span>{{issue}}</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset id="companyFieldSet" data-ng-if="companyApplicable()" class="flex-column-center">
+        <legend>What company did you work at?</legend>
+        <div class="flex-row-center max-width">
+          <input type="text"
+          name="company"
+          id="company"
+          data-ng-model="storyFormData.company"
+          required
+          >
+          <span data-ng-class="{hidden: !storyBack.company.$error.required}"
+          class="fa fa-asterisk required-icon margin-auto"></span>
+        </div>
+      </fieldset>
+      <div class="flex-perfect-center-container flex-column">
+        <div class="button-container flex-row-between">
+          <button data-flip="#storyFormFlipper" type="button" title="back" class="btn btn-prev">
+              <svg viewbox="0 0 100 100">
+                <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+              </svg>
+          </button>
+          <button type="submit" title="next"
+          class="btn btn-next"
+          data-ng-disabled="storyBack.$invalid">
+              <svg viewbox="0 0 100 100">
+                <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
+               </svg>       
+            </button>
+        </div>
+      </div>
+      </form>
+    </div>
+    <!-- End flip back -->
+  </div>
+  <!-- End flipper -->
+</div>
+<!-- End flip container -->
+
+<footer id="storyFormFooter" class="flex-row-center">
+  <p>Thank you for participating {{fullname}}</p>
+</footer>

@@ -6,7 +6,7 @@ angular.module 'aiesec'
 
       # params is passed to Pagination instance
       # factory is passed to Pagination
-      # Usually it's a function that constructs instances of 
+      # Usually it's a function that constructs instances of
       # a model subclass
       # Returns a pagination instance
       @allHelper: (params, resource, pluralName, factory) ->
@@ -22,7 +22,7 @@ angular.module 'aiesec'
               new klass item
             return
           failure = (res) ->
-            console.log 'failed to fetch all without pagination', 
+            console.log 'failed to fetch all without pagination',
               pluralName, resource, res
             reject res
           resource.query params, success, failure
@@ -35,8 +35,8 @@ angular.module 'aiesec'
             resolve @
             return
           failure = (res) =>
-            console.log 'failed to save mode'
-            console.log res, that
+            console.log 'failed to save model'
+            console.log res, @
             reject res
           @resource.$save success, failure
           return

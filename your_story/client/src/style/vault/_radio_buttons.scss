@@ -1,0 +1,47 @@
+
+#experienceType .fancy-radio {
+  height: 48%;
+  margin: auto;
+  width: 50%;
+  margin-top: 5%;
+  font-size: 1.8rem;
+}
+
+.blocky-form .fancy-radio {
+  
+  input[type="radio"] {
+    display: none;
+    outline: none;
+    & + label {
+      cursor: pointer;
+      span {
+        border-radius: 50%;
+        background-color: transparent;
+        border: 0.2em solid $md-clr-grey-500;
+        width: 1em;
+        height: 1em;
+        padding: 0.2em;
+        background-clip: content-box;
+        display: inline-block;
+        vertical-align: middle;
+        transition: background-color .5s ease-out,
+          border-color .5s ease-out;
+        margin: -1px 4px 0 0;
+      }
+    }
+
+    &:checked + label {
+      span {
+        background-color: $md-clr-blue-500;
+        border-color: $md-clr-blue-500;
+      }
+    }
+  }
+}
+
+#experienceType .button-container {
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}

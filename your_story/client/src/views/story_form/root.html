@@ -1,2 +1,22 @@
-<!-- Prent view for all form views -->
-<div id="story-form-content" data-ui-view></div>
+<div class="story-box" id="storyBox">
+  <div class="upper sheet center-pseudo z-index-2">
+    <header class="center-pseudo">
+      <h1><span>SPREAD</span><span>THE</span><span>WORD</span></h1>
+    </header>
+  </div>
+  <div class="lower sheet z-index-2">
+    <img src="/images/megaphone.png" class="megaphone-image">
+  </div>
+  <button class="floaty-aiesec-logo z-index-2" data-click-toggle="open" data-click-toggle-target="#storyBox">
+  <span class="logo"></span>
+  </button>
+  <!-- Parent view for all form views -->
+  <div id="formContent" class="z-index-1" data-ui-view="formContent"></div>
+  <a href="http://aiesec.org.eg" target="_blank">
+  <footer class="z-index-2">
+    <div class="logo-pre"></div>
+    <img src="/images/aiesec_light_blue_600.png" class="logo-image">
+  </footer>
+  </a>
+</div>
+

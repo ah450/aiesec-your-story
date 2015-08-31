@@ -1,0 +1,34 @@
+.story-box .sheet {
+  background-color: $md-clr-grey-50;
+}
+
+.story-box .upper.sheet {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1px solid $md-clr-grey-800;
+  @media (max-resolution: 1dppx) and (min-height: 700px) {
+    border-width: 2px;
+  }
+  header > h1 {
+    display: block;
+    font-family: $roboto-condensed;
+    font-weight: $light-weight;
+    font-size: 13vh;
+    color: $md-clr-light-blue-600;
+    width: 80vw;
+    span {
+      display: block;
+    }
+  }
+}
+
+.story-box .lower.sheet {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+}

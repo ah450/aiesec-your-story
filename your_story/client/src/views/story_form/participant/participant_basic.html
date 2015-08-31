@@ -1,0 +1,66 @@
+<form
+data-ng-submit=""
+class="blocky-form"
+id="participantBasic"
+autocomplete="on"
+name="participantBasic"
+novalidate
+>
+
+<div class="max-width center-pseudo">
+  <h1 class="roboto-condensed light-weight">ABOUT YOU</h1>
+</div>
+
+<fieldset>
+<!-- First and last name -->
+    <div class="form-line" data-ripple-effect>
+      <input type="text" id="fname" name="fname"
+      data-ng-model="participantFormData.fname"
+      autocapitalize="words"
+      required>
+      <label for="fname">First Name</label>
+      <span class="error-required" data-ng-class="{hidden: !participantBasic.fname.$error.required}">This field is required.</span>
+    </div>
+
+    <div class="form-line" data-ripple-effect>
+      <input type="text" id="lname" name="lname"
+      data-ng-model="participantFormData.lname"
+      autocapitalize="words"
+      required>
+      <label for="lname">Last Name</label>
+      <span class="error-required" data-ng-class="{hidden: !participantBasic.lname.$error.required}">This field is required.</span>
+    </div>
+</fieldset>
+
+<fieldset class="max-width">
+<!-- Local chapter select -->
+  <div class="select-container"
+  data-ui-view="selectPanel"></div>
+  <input type="hidden" id="select-input" class="display-none" data-ng-model="lcOpts.selected" required>
+  <span class="error-required" data-ng-class="{hidden: !lcOpts.required()}">This field is required.</span>
+</fieldset>
+
+<fieldset class="form-line flex-row-between">
+    <!-- Picture selection -->
+    <button class="btn-fab"
+    data-ripple-effect
+    data-ngf-select
+    data-ng-model="participantFormData.avatar"
+    accept="image/*"
+    required
+    >
+    <i class="material-icons">&#xE2C6;</i>
+    </button>
+    <img id="avatarPreview" ngf-src="participantFormData.avatar || ''">
+</fieldset>
+
+<div class="max-width center-pseudo">
+<div class="center-pseudo">
+  <button class="btn-raised"
+    data-flip="#storyFormFlipper" type="submit"
+    data-ng-disabled="participantBasic.$invalid"
+    data-ripple-effect
+  >NEXT</button>
+</div>
+</div>
+</form>

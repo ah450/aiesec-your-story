@@ -1,17 +1,17 @@
 angular.module 'aiesec'
   .factory 'Story', ($resource, $q, endpoints, Model) ->
     resourceDefaultParams =
-      participant_id: "@participant_id"
-      id: "@id"
+      participant_id: "@story.participant_id"
+      id: "@story.id"
     resourceActions =
-      get: 
+      get:
         method: 'GET'
         cache: true
       query:
         method: 'GET'
         cache: true
-        isArray: true  
-    _Resource = $resource endpoints.stories.resourceUrl, 
+        isArray: true
+    _Resource = $resource endpoints.stories.resourceUrl,
             resourceDefaultParams, resourceActions
     class Story extends Model
       # resource must be an initialized instance of $resource
@@ -37,16 +37,51 @@ angular.module 'aiesec'
             return
           resource.get params, success, failure
           return
+
+      setResourceProperty: (name, value) ->
+        if not @resource.story
+          @resource.story = {}
+        @resource.story[name] = value
+
+      getResourceProperty: (name) ->
+        if not @resource.story
+          @resource.story = {}
+        @resource.story[name]
+
+      setDate: (value) ->
+        @setResourceProperty 'date', value
+
+      setHighlight: (value) ->
+        @setResourceProperty 'highlight', value
+
+      setTitle: (value) ->
+        @setResourceProperty 'title', value
+
+      setStateID: (value) ->
+        @setResourceProperty 'state_id', value
+
+      setCompanyName: (value) ->
+        company =
+          name: value
+        @setResourceProperty 'company', company
+
+      setParticipantID: (value) ->
+        @setResourceProperty 'participant_id', value
+
+      setIssueName: (value) ->
+        issue =
+          name: value
+        @setResourceProperty 'issue', issue
       
       # Returns a new pagination instance
       @all: (participant) ->
-        params = 
+        params =
           participant_id: participant.id
         Model.allHelper params, @getResource(), @pluralName, (resource)->
           new Story resource
 
       @allNoPagination: (participant) ->
-        params = 
+        params =
           participant_id: participant.id
         Model.allNoPaginationHelper params, @getResource(),
           @pluralName, Story

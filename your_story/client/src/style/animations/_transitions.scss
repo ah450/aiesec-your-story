@@ -1,0 +1,26 @@
+
+// utility transition classes
+
+.hover-lettering {
+  span {
+    font-weight: inherit;
+    font-size: inherit;
+    transition: margin 0.4s ease-out;
+    
+    &:last-child {
+      margin-left: 0.05em;
+      display: inline-block;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover {
+      span {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+        &:last-child {
+          transform: rotateZ(-180deg);
+        }
+      }
+    }
+  }
+}

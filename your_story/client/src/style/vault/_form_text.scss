@@ -1,0 +1,64 @@
+// text input styling
+.blocky-form input[type="text"] {
+  display: block;
+  position: relative;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 2;
+  font-family: $roboto;
+  font-weight: $normal-weight;
+  font-size: 1.6rem;
+  border-bottom: 1px solid $md-clr-grey-500;
+  transition: border-bottom-color .3s ease-in;
+// Floaty™ label effect
+  & ~ label {
+    display: block;
+    color: $md-clr-grey-500;
+    position: absolute;
+    z-index: 1;
+    top: 0.3rem; // compensate for font-size difference between label and input
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    font-family: $roboto;
+    font-weight: $normal-weight;
+    font-size: 1.2rem;
+    transition: top .3s cubic-bezier(.73,.39,.38,.79),
+      color .3s cubic-bezier(.73,.39,.38,.79),
+      font-size .1s cubic-bezier(.73,.39,.38,.79);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  // If user filled it in, they don't need a label, right?
+  &.ng-valid-required ~ label {
+    top: -1em;
+    font-size: 1.5em;
+    transition: none;
+  }
+
+  &:focus {
+    border-bottom-color: $md-clr-light-blue-500;
+  }
+
+  // on focus move up
+  &:focus ~ label {
+    top: -1em;
+    color: $md-clr-light-blue-500;
+    font-size: 1.5em;
+  }
+
+  // Error messages
+  & ~.error-required {
+    margin-top: 0.3em;
+    display: inline-block;
+  }
+
+  &.ng-dirty ~ .error-required {
+    color: red;
+  }
+
+  &.ng-pristine ~ .error-required {
+    visibility: hidden;
+  }
+}

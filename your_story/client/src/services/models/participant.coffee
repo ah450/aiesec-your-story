@@ -1,8 +1,8 @@
 angular.module 'aiesec'
-  .factory 'Participant', ($resource, $q, Upload, 
+  .factory 'Participant', ($resource, $q, Upload,
     Story, Avatar, Model, endpoints) ->
     resourceDefaultParams =
-      id: "@id"
+      id: "@participant.id"
     resourceActions =
       get:
         method: 'GET'
@@ -11,52 +11,79 @@ angular.module 'aiesec'
         method: 'GET'
         cache: true
         isArray: true
-    _Resource = $resource endpoints.participants.resourceUrl, 
+    _Resource = $resource endpoints.participants.resourceUrl,
             resourceDefaultParams, resourceActions
     class Participant extends Model
       constructor: (resource, exists=true) ->
         super resource
         if exists
           @stories = (new Story story for story in @resource.stories)
+        else
+          @stories = []
 
-      newStory: (story) ->
-        story = _.extend(story, {participant_id: @resource.id})
+      newStory: () ->
+        story = Story.fromObject {}
+        story.setParticipantID @getID
         @stories.push(story)
         return story
 
+      setResourceProperty: (name, value) ->
+        if not @resource.participant
+          @resource.participant = {}
+        @resource.participant[name] = value
+
+      getResourceProperty: (name) ->
+        if not @resource.participant
+          @resource.participant = {}
+        @resource.participant[name]
+
+      getID: () ->
+        @getResourceProperty 'id'
+
       setLC: (localChapter) ->
-        @resource.local_chapter = localChapter.id
+        @setResourceProperty 'local_chapter', localChapter.id
 
       setLastName: (lname) ->
-        @resource.last_name = lname
+        @setResourceProperty 'last_name', lname
 
       setFirstName: (fname) ->
-        @resource.first_name = fname
+        @setResourceProperty 'first_name', fname
+
+      getLastName: ->
+        @getResourceProperty 'last_name'
+
+      getFirstName: ->
+        @getResourceProperty 'first_name'
+
+      getFullName: ->
+        [@getFirstName(), @getLastName()].join ' '
 
       setType: (pType, outgoing=null) ->
-        @resource.profile_attributes = {}
-        @resource.profile_attributes.outgoing = outgoing if outgoing != null
-        @resource.type = pType
+        profile_attributes = {}
+        profile_attributes.outgoing = outgoing if outgoing != null
+        @setResourceProperty 'profile_attributes', profile_attributes
+        @setResourceProperty 'profile_type', pType
 
       setMemberType: (memberType) ->
-        @resource.profile_attributes.membership_typ = memberValue
+        attrs = @getResourceProperty 'profile_attributes'
+        attrs.membership_typ = memberType
 
       getType: ()->
-        @resource.type
+        @getResourceProperty 'profile_type'
 
       createAvatar: (file, progress) ->
         $q (resolve, reject) =>
           config =
-            url: endpoints.builders.participants.avatar @resource.id
+            url: endpoints.builders.participants.avatar @resource.participant.id
             method: 'POST'
             file: file
             fileFormDataName: 'avatar[data]'
           promise = Upload.upload config
           promise.progress progress if progress
           promise.then (data)->
-            resolve Avatar.fromObject data
+            resolve new Avatar data
           promise.error (data, status, headers, config)->
-            info = 
+            info =
               data: data
               status: status
               headers: headers
@@ -80,7 +107,7 @@ angular.module 'aiesec'
             reject response
             return
           resource.get params, success, failure
-          return 
+          return
 
       @all: () ->
         Model.allHelper {}, @getResource, @pluralName, (resource) ->
@@ -92,7 +119,9 @@ angular.module 'aiesec'
 
       @fromObject: (data) ->
         resource = @getResource()
-        return new Participant(new resource(data), false)
+        namespacedData =
+          participant: data
+        return new Participant(new resource(namespacedData), false)
 
       @pluralName: 'participants'
 

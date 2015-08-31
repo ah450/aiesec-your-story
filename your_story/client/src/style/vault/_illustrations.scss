@@ -1,0 +1,27 @@
+.story-box .megaphone-image {
+  position: absolute;
+  left: -1vh;
+  bottom: -2vh;
+  height: 20vh;
+  width: auto;
+}
+
+
+.story-box .cartoon-people {
+  position: absolute;
+  bottom: 0;
+  height: 10vh;
+  width: auto;
+}
+
+.story-box .cartoon-people.right-people {
+  right: 0;
+}
+
+.story-box .world {
+  position: relative;
+  bottom: -5vh;
+  height: 45vh;
+  margin: 0 auto;
+  display: block;
+}

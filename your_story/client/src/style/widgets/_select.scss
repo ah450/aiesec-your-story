@@ -1,0 +1,87 @@
+.select-panel {
+  position: relative; // create a context of the list
+  display: inline-block;
+  cursor: pointer;
+  color: $md-clr-grey-400;
+  border-bottom: 1px solid $md-clr-grey-400;
+  transition: border-bottom-color .3s ease-in,
+    color .3s ease-in;
+  width: 100%;
+  z-index: 2;
+  .option-list {
+    position: absolute; // outside normal document flow
+    top: -4em; //center over
+    right: -1em; // align
+    max-height: 0;
+    min-width: 120%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .option {
+    transition: color .3s ease-out;
+    margin-top: 0.2em;
+    &:hover {
+      color: $md-clr-light-blue-900;
+    }
+    &:last-child {
+      margin-bottom: 0.2em;
+    }
+  }
+
+  .value {
+    // Do not change parent width
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &::after {
+    content: "▼";
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 2rem;
+    padding-left: 4em;
+    padding-top: 0.05em;
+    text-align: center;
+    background-color: transparent;
+    color: $md-clr-grey-400;
+    transition: color .3s ease-in;
+  }
+}
+
+.select-panel:focus {
+  border-bottom-color: $md-clr-light-blue-800;
+  color: inherit;
+  &::after {
+    color: inherit;
+  }
+  
+}
+
+.select-panel.active {
+  .option-list {
+    color: black;
+    max-height: 12em;
+    overflow-y: auto;
+    background-color: $md-clr-grey-50;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5), 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+
+  &::after {
+    visibility: hidden;
+  }
+}
+
+
+.select-panel.selected {
+  color: inherit;
+  &::after {
+    color: inherit;
+  }
+}

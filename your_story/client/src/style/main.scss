@@ -1,27 +1,47 @@
 /*
  * Main Layout
  */
-@import 'vendor/jquery-ui';
+@import 'vendor/include-media';
+@import 'vendor/material-color-prefixed';
+@import 'partials/variables';
 @import 'partials/reset';
 @import 'partials/mixins';
-@import 'partials/variables';
-@import 'partials/animations';
-@import 'partials/utility';
 
 body {
   background-color: $main-background;
-  font-family: $sans-stack;
+  font-family: $roboto;
+  font-weight: $normal-weight;
 }
 
 form {
   font-family: $roboto;
 }
 
-
-ul {
-  list-style: none;
+h1, h2, h3, h4, h5, h6 {
+  font-family: $roboto;
+  font-weight: $bold-weight;
 }
 
-@import 'story_form';
-@import 'fancy_select';
-@import 'flip';
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+// Webfont
+
+.wf-loading {
+  visibility: hidden;
+}
+
+.wf-active {
+  visibility: visible;
+}
+
+
+@import 'widgets/main';
+@import 'vault/main';
+@import 'animations/main';
+@import 'utility/main.scss';

@@ -13,7 +13,6 @@ angular.module 'aiesec'
           # set dimensions
           dimension = Math.max element.innerWidth(), element.innerHeight()
           rippler.css {height: dimension, width: dimension}
-          console.log dimension
           # click coordinates
           x = event.pageX - element.offset().left - rippler.width()/2
           y = event.pageY - element.offset().top - rippler.height()/2

@@ -11,7 +11,8 @@ angular.module 'aiesec'
       participants:
         resourceUrl: [apiHost, 'participants', ':id']. join '/'
         avatars:
-          show: [apiHost, 'participants', ':participant_id', 'avatars', ':id'].join '/'
+          show: [apiHost, 'participants', ':participant_id',
+            'avatars', ':id'].join '/'
       configurations:
         index: [apiHost, 'configurations'].join '/'
       profileTypes:

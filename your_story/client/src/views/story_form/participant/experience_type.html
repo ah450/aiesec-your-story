@@ -1,0 +1,35 @@
+<form
+class="blocky-form"
+id="experienceType"
+autocompelte="off"
+name="experienceType"
+data-ng-submit="processForm()"
+novalidate
+>
+
+<header class="max-width center-pseudo">
+  <h1 class="select-none roboto-condensed light-weight">
+  <span class="block aiesec-span">AIESEC</span>
+  <span class="block">EXPERIENCE?</span></h1>
+</header>
+
+  <div class="fancy-radio flex-column-between roboto">
+    <div class="single-radio" data-ng-repeat="(label, opts) in profileTypeOpts">
+      <input type="radio" name="profileType"
+      data-ng-model="profileData.profileOpts"
+      data-ng-value="{{opts}}"
+      id="{{opts.id}}"
+      required
+      >
+      <label for="{{opts.id}}"><span></span>{{label}}</label>
+    </div>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <div class="button-container">
+    <button data-flip="#storyFormFlipper"
+    type="button" class="btn-raised">BACK</button>
+    <button type="submit" class="btn-raised"
+    data-ng-disabled="experienceType.$invalid">NEXT</button>
+  </div>
+</form>

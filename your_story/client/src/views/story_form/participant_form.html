@@ -1,94 +1,14 @@
 <div class="flip-container" id="storyFormFlipper">
   <div class="flipper">
-    <div class="flip-front">
-      <form data-ng-submit="" class="story-form" autocomplete="on" 
-      name="yourStoryFront" id="yourStoryFront" novalidate>
-        <!-- Basic participant information -->
-        <h1 data-lettering>Who are you?</h1>
-        <fieldset>
-          <div class="form-line">
-            <input type="text" name="fname" id="fname" placeholder="First Name" data-ng-model="participantFormData.fname"
-            required>
-            <span data-ng-class="{hidden: !yourStoryFront.fname.$error.required}"
-            class="fa fa-asterisk required-icon"></span>
-          </div>
-            <div class="form-line">
-              <input type="text" name="lname" id="lname"
-              placeholder="Last Name"
-              data-ng-model="participantFormData.lname"
-              required>
-              <span data-ng-class="{hidden: !yourStoryFront.lname.$error.required}"
-              class="fa fa-asterisk required-icon"></span>
-            </div>
-        </fieldset>
-
-        <fieldset class="max-width">
-          <span id="select-required" data-ng-class="{hidden: lcOpts.selected }" class="fa fa-asterisk required-icon right"></span>
-          <div class="right" data-ng-include="'partials/fancy_select_panel.html'"
-          data-onload="options = lcOpts"></div>
-          <input type="hidden" class="display-none" data-ng-model="lcOpts.selected" required>
-        </fieldset>
-
-        <fieldset>
-          <div class="form-line flex-row-between flex-perfect-center-container max-width">
-            <label for="avatar" ><span class="fa fa-user fa-lg"></span></label>
-            <input type="file" data-ngf-select
-            data-ng-model="avatar" id="avatar" name="avatar" accept="image/*" required>
-            <span 
-            data-ng-class="{hidden: !yourStoryFront.avatar.$error.required}"
-            class="fa fa-asterisk required-icon"></span>
-          </div>
-        </fieldset>
-
-        <button data-flip="#storyFormFlipper" type="submit" title="next" class="btn btn-next" 
-        data-ng-disabled="yourStoryFront.$invalid"
-        >
-          <div class="btn-slide btn-slide-right">Next</div>
-          <svg viewbox="0 0 100 100">
-             <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
-           </svg>
-        </button>
-      </form>      
+    <div class="flip-front"
+      data-ui-view="participantBasic">
     </div>
     <!-- End Front side -->
-    <div class="flip-back">
-      <form data-ng-submit="processForm()"
-        class="story-form" autocomplete="on" 
-        name="yourStoryBack" id="yourStoryBack"
-        data-copy-size="#yourStoryFront" novalidate
-        >
-        <!-- Experience type -->
-        <h1>What was your <span class="aiesec-span">AIESEC</span>experience?</h1>
-        <div class="radio-container flex-column-between">
-          <div class="single-radio" data-ng-repeat="(label, opts) in profileTypeOpts">
-            
-            <input type="radio" name="profileType" id="{{opts.id}}"
-            data-ng-model="profileData.profileOpts"
-            data-ng-value="{{opts}}" required>
-            <label for="{{opts.id}}"><span></span>{{label}}</label>
-
-          </div>
-        </div>
-        <div class="button-container flex-row-between">
-          <button data-flip="#storyFormFlipper" type="button" title="back" class="btn btn-prev">
-          <div class="btn-slide btn-slide-left">Back</div>
-            <svg viewbox="0 0 100 100">
-              <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
-            </svg>
-          </button>
-          <button type="submit" title="next"
-          class="btn btn-next"
-          data-ng-disabled="yourStoryBack.profileType.$invalid">
-          <div class="btn-slide btn-slide-right">Next</div>
-            <svg viewbox="0 0 100 100">
-              <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z "transform="translate(85,100) rotate(180) ">
-             </svg>        
-          </button>
-        <div>
-      </form>
+    <div class="flip-back"
+    data-ui-view="experienceType">
     </div>
     <!-- end Back side -->
-  </div> 
+  </div>
   <!-- end flipper -->
 </div>
 <!-- end flip container -->
