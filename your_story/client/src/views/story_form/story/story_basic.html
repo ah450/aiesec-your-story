@@ -27,22 +27,17 @@
         spellcheck="true"
         data-ng-model="storyFormData.highlight"
         name="highlight"
-        data-ng-trim="true"
+        data-ng-trim="false"
         data-minwords="50"
         data-maxwords="100"
+        data-ng-model-options = "{allowInvalid: true}"
         required
         ></textarea>
-        <span data-ng-class="{hidden: !storyForm.highlight.$error.required}"
-          class="fa fa-asterisk required-icon"></span>
       </div>
 
     <div class="highlight-validations-text">
       <span
-      data-ng-show="storyForm.highlight.$error.minwords"
-      class="form-validation-error-text">Must be at least 50 words</span>
-      <span
-      data-ng-show="storyForm.highlight.$error.maxwords"
-      class="form-validation-error-text">Must be at most 100 words</span>
+      class="num-words" data-ng-class="{'color-red': storyForm.highlight.$invalid}">{{storyFormData.highlight|wordCounter}}/{{currentMax()}}</span>
     </div>
   </fieldset>
 

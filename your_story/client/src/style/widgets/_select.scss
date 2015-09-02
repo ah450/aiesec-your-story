@@ -2,8 +2,8 @@
   position: relative; // create a context of the list
   display: inline-block;
   cursor: pointer;
-  color: $md-clr-grey-400;
-  border-bottom: 1px solid $md-clr-grey-400;
+  color: $md-clr-grey-500;
+  border-bottom: 1px solid $md-clr-grey-500;
   transition: border-bottom-color .3s ease-in,
     color .3s ease-in;
   width: 100%;

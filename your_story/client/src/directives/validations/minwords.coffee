@@ -1,8 +1,9 @@
 angular.module 'aiesecValidations'
   .directive 'minwords', ->
     directive =
-      require: 'ngModel'
+      require: 'ngModel',
       link: (scope, element, attrs, ctrl) ->
+        minwords = parseInt attrs.minwords
         ctrl.$validators.minwords = (modelValue, viewValue) ->
           return true if ctrl.$isEmpty(modelValue)
-          return viewValue.split(/\s+/).length >= attrs.minwords
+          return viewValue.trim().split(/\s+/).length >= minwords

@@ -59,11 +59,11 @@
 }
 
 .blocky-form .btn-fab .rippler.animate {
-  animation: ripple-effect-larger 0.5s linear;
+  animation: ripple-effect-larger 0.3s linear;
 }
 
 .rippler.animate {
-  animation: ripple-effect 0.5s linear;
+  animation: ripple-effect 0.3s linear;
 }
 
 @keyframes ripple-effect {
@@ -101,7 +101,7 @@
 
 $form-width: 20rem, 25rem, 32rem, 48rem;
 $form-height: 25rem, 30, 35rem, 35rem, 40rem;
-$animation-duration: 4s;
+$animation-duration: 1.5s;
 
 #formContent #participantBasic{
   width: nth($form-width, 1);
