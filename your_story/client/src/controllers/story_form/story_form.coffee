@@ -76,7 +76,6 @@ angular.module 'aiesec'
         else ''
 
     $scope.numWords = ->
-      console.log $scope.storyFormData.highlight
       if $scope.storyFormData.highlight && $scope.storyFormData.highlight.length > 1
         $scope.storyFormData.highlight.trim().split(/\s+/).length
       else
@@ -87,11 +86,7 @@ angular.module 'aiesec'
         100
       else
         50
-
-    $scope.wordError = ->
-      numWords = $scope.numWords()
-      numWords < 50 || numWords > 100
-
+        
     $scope.processForm = ->
       # Create Story
       story = currentCreation.participant.newStory()
