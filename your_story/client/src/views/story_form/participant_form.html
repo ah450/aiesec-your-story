@@ -1,4 +1,4 @@
-<div class="flip-container" id="storyFormFlipper">
+<div class="flip-container" id="storyFormFlipper" data-ng-if="!submitting">
   <div class="flipper">
     <div class="flip-front"
       data-ui-view="participantBasic">
@@ -13,3 +13,13 @@
 </div>
 <!-- end flip container -->
 
+<section class="blocky-form flex-perfect-center-container flex-column-center" data-ng-if="submitting">
+  
+  <div class="refresh-spinner">
+    <i class="material-icons">&#xE5D5;</i>
+  </div>
+
+  <p class="stand-by">
+  Please wait
+  </p>
+</section>

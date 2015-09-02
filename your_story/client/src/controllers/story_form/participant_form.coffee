@@ -18,6 +18,7 @@ angular.module 'aiesec'
         this.dirty && angular.isUndefined this.selected
     
     $scope.selectPanelOptions = $scope.lcOpts
+    $scope.submitting = false
 
     if currentCreation.selectedLc
       $scope.lcOpts.selected = currentCreation.selectedLc
@@ -70,6 +71,7 @@ angular.module 'aiesec'
     # Send to memberExperience sibling state if user selected member type
     # Else send to story subling state
     $scope.processForm = () ->
+      $scope.submitting = true
       $ 'body'
         .addClass 'animate-view'
       currentCreation.selectedLc = $scope.lcOpts.selected
