@@ -1,54 +1,73 @@
 angular.module 'aiesec'
   .controller 'MemberExperienceController', ($scope, currentCreation, $state,
     mpTypes) ->
-    $scope.memberTypes = {}
-    $scope.memberTypes["Member (Function, OC, R&S, etc..)"] =
-      value: mpTypes.member
-      id: "member"
-    $scope.memberTypes["Team Leader (Function, OC, R&S, etc..)"] =
-      value: mpTypes.team_leader
-      id: "team_leader"
-    $scope.memberTypes["LCVP"] =
-      value: mpTypes.lcvp
-      id: "lcvp"
-    $scope.memberTypes["LCP"] =
-      value: mpTypes.lcp
-      id: "lcp"
-    $scope.memberTypes["MCVP"] =
-      value: mpTypes.mcvp
-      id: "mcvp"
-    $scope.memberTypes["MCP"] =
-      value: mpTypes.mcp
-      id: 'mcp'
-    $scope.memberTypes["AI"] =
-      value: mpTypes.ai
-      id: 'ai'
-    $scope.memberTypes["Facilitator"] =
-      value: mpTypes.facilitator
-      id: 'facilitator'
-    $scope.memberTypes["Chair"] =
-      value: mpTypes.chair
-      id: 'chair'
-    $scope.memberTypes["CEEDer"] =
-      value: mpTypes.ceeder
-      id: 'ceeder'
-    $scope.memberTypes["Congress Comittee"] =
-      value: mpTypes.congress_comittee
-      id: 'congress_comittee'
-    $scope.memberTypes["NST"] =
-      value: mpTypes.nst
-      id: 'nst'
+
+    $scope.memberTypes = [
+      {
+        value: 'nst',
+        label: 'NST'
+      },
+      {
+        value: 'congress_comittee',
+        label: 'Congress Comittee'
+      },
+      {
+        value: 'ceeder',
+        label: 'CEEDer'
+      },
+      {
+        value: 'chair',
+        label: 'Chair'
+      },
+      {
+        value: 'facilitator',
+        label: 'Facilitator'
+      },
+      {
+        value: 'ai',
+        label: 'AI'
+      },
+      {
+        value: 'mcp',
+        label: 'MCP'
+      },
+      {
+        value: 'mcvp',
+        label: 'MCVP'
+      },
+      {
+        value: 'lcp',
+        label: 'LCP'
+      },
+      {
+        value: 'lcvp',
+        label: 'LCVP'
+      },
+      {
+        value: 'team_leader',
+        label: 'Team Leader (Function, OC, R&S, etc..)'
+      },
+      {
+        value: 'member',
+        label: 'Member (Function, OC, R&S, etc..)'
+      }
+    ]
+
+    $scope.expOpts =
+      data: $scope.memberTypes
+      dirty: false
+      required: ->
+        this.dirty && angular.isUndefined this.selected
+      dataDisplay: (item) ->
+        item.label if item
+      title: 'Experience type'
+
+    $scope.selectPanelOptions = $scope.expOpts
     
-    if currentCreation.memberShipExperienceFormValues
-      $scope.memberShipExperienceFormValues =
-        currentCreation.memberShipExperienceFormValues
-    else
-      $scope.memberShipExperienceFormValues =
-        currentCreation.memberShipExperienceFormValues = {}
 
     $scope.processForm = () ->
       currentCreation.participant.setMemberType(
-        $scope.memberShipExperienceFormValues.membershipType)
+        $scope.expOpts.selected.value)
       currentCreation.createParticipant()
       $state.go '^.story'
 

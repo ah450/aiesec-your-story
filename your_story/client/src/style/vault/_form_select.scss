@@ -15,6 +15,26 @@
     width: 17em;
     float: right;
     margin-top: 2.3em;
+    
   }
 
+}
+
+#memberShipExtra .select-container {
+  position: relative;
+  width: 25em;
+  right: 0px;
+  margin: 30% auto 0 auto;
+  .select-panel {
+    @media (min-height: 600px) {
+      font-size: 2em;
+    }
+  }
+  & ~.error-required {
+    margin-top: 0.3em;
+    margin-left: 10%;
+    @media (min-height: 600px) {
+      font-size: 2em;
+    }
+  }
 }

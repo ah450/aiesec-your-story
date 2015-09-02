@@ -1,0 +1,101 @@
+<form data-ng-submit="processForm()"
+  id="storyForm" name="storyForm"
+  class="blocky-form"
+  novalidate
+  autocomplete="off"
+  >
+
+  <fieldset>
+    <div class="form-line" data-ripple-effect>
+        <input type="text"
+        name="title" id="title"
+        data-ng-model="storyFormData.title"
+        spellcheck="true"
+        required
+        >
+        <label for="title">One line description</label>
+        <span class="error-required" data-ng-class="{hidden: !storyForm.title.$error.required}">This field is required.</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <header class="max-width center-pseudo select-none">
+      <h2 class="roboto-condensed light-weight">Highlight your {{experienceType()}} experience</h2>
+    </header>
+      <div data-ripple-effect class="text-container">
+        <textarea placeholder="Talk about the journey you went through"
+        spellcheck="true"
+        data-ng-model="storyFormData.highlight"
+        name="highlight"
+        data-ng-trim="true"
+        data-minwords="50"
+        data-maxwords="100"
+        required
+        ></textarea>
+        <span data-ng-class="{hidden: !storyForm.highlight.$error.required}"
+          class="fa fa-asterisk required-icon"></span>
+      </div>
+
+    <div class="highlight-validations-text">
+      <span
+      data-ng-show="storyForm.highlight.$error.minwords"
+      class="form-validation-error-text">Must be at least 50 words</span>
+      <span
+      data-ng-show="storyForm.highlight.$error.maxwords"
+      class="form-validation-error-text">Must be at most 100 words</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-line" data-ripple-effect>
+      <angucomplete-alt id="location"
+      data-pause="250"
+      data-local-data="locations"
+      data-search-fields="search"
+      data-title-field="name"
+      data-minlength="2"
+      data-field-required="true"
+      data-focus-in="autoCompleteFocusIn()"
+      data-focus-out="autoCompleteFocusOut()"
+      data-selected-object="autoCompleteObjectSelected"
+      class="autocomplete pristine"
+      ></angucomplete-alt>
+      <label for="location">Location of experience (City)</label>
+      <span
+      class="error-required">This field is required</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-line" data-ripple-effect>
+      <datepicker date-format="mediumDate">
+        <input type="text"
+        data-ng-model="storyFormData.date"
+        name="date"
+        id="storyDate"
+        required
+        >
+        <label for="storyDate">Date of experience</label>
+        <span class="error-required"
+        data-ng-class="{hidden: !storyForm.date.$error.required}"
+        >This field is required.</span>
+      </div>
+    </datepicker>
+  </fieldset>
+
+  <div class="max-width center-pseudo">
+    <div class="center-pseudo">
+      <button type="submit"
+      class="btn-raised"
+      data-ng-disabled="storyForm.$invalid"
+      data-ng-if="!(issueApplicable() || companyApplicable())"
+      >NEXT</button>
+      <button
+      data-flip="#storyFormFlipper" type="button" title="next" class="btn-raised"
+      data-ng-if="issueApplicable() || companyApplicable()"
+      data-ng-disabled="storyForm.$invalid"
+      >NEXT</button>
+    </div>
+  </div>
+
+</form>

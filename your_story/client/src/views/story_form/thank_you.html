@@ -1,5 +1,18 @@
-<section id="storyFormThanks">
-<h1>Thank you!!</h1>
-<p>We will be using your experience to help bring awareness to impact
-AIESEC has had on Egypt</p>
+<section class="blocky-form flex-column-center" data-ng-if="done">
+<header class="center-pseudo">
+  <h1 class="roboto-condensed light-weight">Thank you {{firstName}}</h1>
+</header>
+<p class="thank-you">We will be using your experience to help bring awareness to impact
+<span class="aiesec-span">AIESEC</span> has had on Egypt.</p>
+</section>
+
+<section class="blocky-form flex-perfect-center-container flex-column-center" data-ng-if="!done">
+  
+  <div class="refresh-spinner">
+    <i class="material-icons">&#xE5D5;</i>
+  </div>
+
+  <p class="stand-by">
+  Please wait - Don't close this tab
+  </p>
 </section>

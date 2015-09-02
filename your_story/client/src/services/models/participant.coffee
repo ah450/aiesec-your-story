@@ -23,7 +23,7 @@ angular.module 'aiesec'
 
       newStory: () ->
         story = Story.fromObject {}
-        story.setParticipantID @getID
+        story.setParticipantID @getID()
         @stories.push(story)
         return story
 

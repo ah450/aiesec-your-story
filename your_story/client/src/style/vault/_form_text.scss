@@ -13,6 +13,7 @@
   transition: border-bottom-color .3s ease-in;
 // Floaty™ label effect
   & ~ label {
+    user-select: none;
     display: block;
     color: $md-clr-grey-500;
     position: absolute;
@@ -59,6 +60,64 @@
   }
 
   &.ng-pristine ~ .error-required {
+    visibility: hidden;
+  }
+}
+
+.autocomplete {
+  // Floaty™ label effect
+  & ~ label {
+    user-select: none;
+    display: block;
+    color: $md-clr-grey-500;
+    position: absolute;
+    z-index: 1;
+    top: 0.3rem; // compensate for font-size difference between label and input
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    font-family: $roboto;
+    font-weight: $normal-weight;
+    font-size: 1.2rem;
+    transition: top .3s cubic-bezier(.73,.39,.38,.79),
+      color .3s cubic-bezier(.73,.39,.38,.79),
+      font-size .1s cubic-bezier(.73,.39,.38,.79);
+    transform: translate3d(0, 0, 0);
+  }
+
+  // on focus move up
+  &.focused ~ label {
+    top: -1em;
+    color: $md-clr-light-blue-500;
+    font-size: 1.5em;
+    @media(max-height: 500px) {
+      font-size: 1em;
+      top: -1.5em;
+    }
+  }
+
+  // If user filled it in, they don't need a label, right?
+  &.valid ~ label {
+    top: -1em;
+    font-size: 1.5em;
+    transition: none;
+    @media(max-height: 500px) {
+      font-size: 1em;
+      top: -1.5em;
+    }
+  }
+  &.valid ~ .error-required {
+    visibility: hidden;
+  }
+
+  // Error messages
+  & ~.error-required {
+    margin-top: 0.3em;
+    display: inline-block;
+    color: red;
+  }
+
+  &.pristine ~ .error-required {
     visibility: hidden;
   }
 }

@@ -1,3 +1,4 @@
+// Various animations for the vaul layout
 
 #storyBox {
   .upper.sheet {
@@ -11,6 +12,25 @@
   #formContent {
   }
 
+}
+
+
+#formContent.ng-leave {
+  animation: swipe-right 1s ease-in;
+  transform-style: preserve-3d;
+}
+
+
+@keyframes swipe-right {
+  40% {
+    opacity: 1;
+    transform: scale3d(.45, .45, .45) translate3d(-42px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(.1) translate3d(2000px, 0, 0);
+    transform-origin: right center;
+  }
 }
 
 #storyBox.open {
@@ -57,5 +77,81 @@
   100% {
     opacity: 0;
     transform: scale(1.4);
+  }
+}
+
+
+.animate-view {
+  #formContent.ng-enter {
+    animation: slide-in-left 1s ease-out;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+$form-width: 20rem, 25rem, 32rem, 48rem;
+$form-height: 25rem, 30, 35rem, 35rem, 40rem;
+$animation-duration: 4s;
+
+#formContent #participantBasic{
+  width: nth($form-width, 1);
+  height: nth($form-height, 1);
+}
+
+
+.open #participantBasic {
+  animation: expand-form $animation-duration forwards;
+}
+
+@keyframes expand-form {
+  0% {
+    width: nth($form-width, 1);
+    height: nth($form-height, 1);
+  }
+
+  20% {
+    height: nth($form-height, 2);
+    width: nth($form-width, 1);
+  }
+
+  30% {
+    width: nth($form-width, 2);
+    height: nth($form-height, 3);
+  }
+
+  50% {
+    width: nth($form-width, 3);
+    height: nth($form-height, 4)
+  }
+
+  75%, 100% {
+    width: nth($form-width, 4);
+    height: nth($form-height, 5);
+  }
+
+}
+
+
+.refresh-spinner .material-icons {
+  animation: spin 1s linear 0s infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
   }
 }

@@ -5,12 +5,14 @@
   "homepage": "tbd",
   "license": "MIT",
   "dependencies": {
+    "angucomplete-alt": "~1.1.0",
     "angular": "~1.4.4",
     "angular-animate": "~1.4.4",
     "angular-local-storage": "~0.2.2",
     "angular-resource": "~1.4.4",
     "angular-ui-router": "~0.2.15",
     "angular-ui-router-title": "~0.0.4",
+    "angularjs-datepicker": "~0.2.9",
     "font-to-fit": "~0.0.4",
     "jquery": "~2.1.4",
     "keykodesjs": "~0.0.2",
@@ -18,5 +20,15 @@
     "satellizer": "~0.12.2",
     "underscore": "~1.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "~1.4.4"
+  },
+  "overrides": {
+    "angularjs-datepicker": {
+      "main": [
+        "src/js/angular-datepicker.js"
+      ]
+    }
+  }
 }

@@ -1,0 +1,47 @@
+<form
+data-ng-submit="processForm()"
+class="blocky-form"
+autocomplete="off"
+name="storyBack"
+id="storyBack"
+novalidate
+>
+<div data-ng-if="issueApplicable()" class="max-width">
+<header class="max-width center-pseudo">
+  <h2 class="select-none roboto-condensed light-weight">What Issue did you work on?</h2>
+</header>
+
+  <div class="select-none fancy-radio flex-column-between roboto">
+    <div class="single-radio" data-ng-repeat="issue in issues">
+      <input type="radio"
+        name="issue"
+        id="radio{{$index}}"
+        data-ng-model="storyFormData.issue"
+        data-ng-value="issue"
+        required>
+      <label for="radio{{$index}}"><span></span>{{issue}}</label>
+    </div>
+  </div>
+</div>
+
+<fieldset data-ng-if="companyApplicable()">
+  <div class="form-line" data-ripple-effect>
+    <input type="text"
+    id="company"
+    name="company"
+    data-ng-model="storyFormData.company"
+    required>
+    <label for="company">Company you worked at</label>
+    <span class="error-required"
+    data-ng-class="{hidden: !storyBack.company.$error.required}"
+    >This field is required.</span>
+  </div>
+</fieldset>
+
+<div class="button-container">
+    <button data-flip="#storyFormFlipper" type="button" title="back" class="btn-raised">BACK</button>
+    <button type="submit" title="next"
+    class="btn-raised"
+    data-ng-disabled="storyBack.$invalid">Next</button>
+</div>
+</form>

@@ -34,14 +34,27 @@ angular.module 'aiesec'
     storyMemberExtraForm =
       name: 'storyForm.memberExperience'
       url: '/experience'
-      templateUrl: 'story_form/member_experience.html'
-      controller: 'MemberExperienceController'
+      views: {
+        "formContent@storyForm":
+          templateUrl: 'story_form/member_experience.html'
+          controller: 'MemberExperienceController'
+        "selectPanel@storyForm.memberExperience":
+          templateUrl: 'widgets/select_panel.html'
+          controller: 'SelectPanel'
+      }
 
     storyFormStory =
       name: 'storyForm.story'
       url: '/story'
-      templateUrl: 'story_form/story_form.html'
-      controller: 'StoryFormController'
+      views: {
+        "formContent@storyForm":
+          templateUrl: 'story_form/story_form.html'
+          controller: 'StoryFormController'
+        "storyBasic@storyForm.story":
+          templateUrl: 'story_form/story/story_basic.html'
+        "storyExtra@storyForm.story":
+          templateUrl: 'story_form/story/story_extra.html'
+      }
       resolve:
         locations: (states) ->
           states
@@ -51,10 +64,18 @@ angular.module 'aiesec'
     storyFormThankYou =
       name: 'storyForm.thankYou'
       url: '/thanks'
-      templateUrl: 'story_form/thank_you.html'
+      views: {
+        "formContent@storyForm":
+          templateUrl: 'story_form/thank_you.html'
+          controller: 'ThankYouController'
+      }
       resolve:
         $title: ->
           'Thank You!'
+        firstName: (currentCreation) ->
+          currentCreation.participant.getFirstName()
+        lastName: (currentCreation) ->
+          currentCreation.participant.getLastName()
 
     $stateProvider
       .state(storyForm)

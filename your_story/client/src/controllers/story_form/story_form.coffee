@@ -1,7 +1,8 @@
 angular.module 'aiesec'
-  .controller 'StoryFormController', ($scope, $state, $q
+  .controller 'StoryFormController', ($scope, $state, $q, $filter
     currentCreation, pTypes, locations) ->
-     
+    
+    # Format search data
     names = _.map locations, (item, index) ->
             otherNames = _.map item.names, (other) ->
               other.name
@@ -10,24 +11,38 @@ angular.module 'aiesec'
     $scope.locations = _.map names, (name, index) ->
       searchObject=
         value: index
-        label: name
+        search: name
+        name: name.split('~~~~')[0]
 
-    $scope.submitting = false
-
+    # Prepare form data objects
     $scope.storyFormData = {}
-    $scope.storyFormData.state = {}
 
-    $scope.fullname = currentCreation.participant.getFullName
-    # Callbacks for autocomplete plugin
-    $scope.stateRender = (state) ->
-      state.label.split('~~~~')[0]
-
-    $scope.stateSelect = (state) ->
-      if angular.isDefined(state.value)
-        $scope.storyFormData.state = locations[state.value]
+    $scope.autoCompleteObjectSelected = (state)->
+      if angular.isDefined state && state != null
+        $ '#location'
+          .addClass 'valid'
+        $scope.storyFormData.state = locations[state.originalObject.value]
       else
+        $ '#location'
+          .removeClass 'valid'
         $scope.storyFormData.state = null
-      state.label.split('~~~~')[0]
+
+    $scope.autocompleteOk = ->
+      state = $scope.storyFormData.state
+      angular.isDefined(state) && state != null
+
+    $scope.autoCompleteFocusIn = ->
+      $ '#location'
+      .addClass 'focused'
+      return
+
+    $scope.autoCompleteFocusOut = ->
+      $ '#location'
+        .removeClass 'focused'
+        .removeClass 'pristine'
+      if angular.isUndefined($scope.storyFormData.state) || $scope.storyFormData.state == null
+        $scope.$broadcast 'angucomplete-alt:clearInput', 'location'
+      return
 
     $scope.isMember = ->
       currentCreation.participant.getType() == "member_profile"
@@ -39,14 +54,18 @@ angular.module 'aiesec'
       else
         return false
 
+    # Only global talent has a company field
     $scope.companyApplicable = ->
       currentCreation.participant.getType() == 'talent_profile'
 
+    #  Define issues if applicable
     if $scope.issueApplicable()
       if currentCreation.participant.getType() == "citizen_profile"
         $scope.issues = ["Teaching", "Empowerment", "Awareness", "Volunteer"]
       else if currentCreation.participant.getType() == "talent_profile"
         $scope.issues = ["Teaching", "Management", "IT"]
+    else
+      $scope.issues = []
        
 
     $scope.experienceType = ->
@@ -58,19 +77,18 @@ angular.module 'aiesec'
 
     $scope.processForm = ->
       # Create Story
-      $scope.submitting = true
-      console.log $scope, currentCreation
       story = currentCreation.participant.newStory()
       if $scope.issueApplicable()
         story.setIssueName $scope.storyFormData.issue
       if $scope.companyApplicable()
         story.setCompanyName $scope.storyFormData.company
-      story.setDate $scope.storyFormData.date
+      story.setDate $filter('date')( $scope.storyFormData.date,
+        'dd/mm/yyyy')
       story.setTitle $scope.storyFormData.title
       story.setHighlight $scope.storyFormData.highlight
       story.setStateID $scope.storyFormData.state.id
-      console.log story
-      # $state.go '^.thankYou'
+      currentCreation.storyPromise = story.save()
+      $state.go '^.thankYou'
 
 
 
