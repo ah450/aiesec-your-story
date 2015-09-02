@@ -2,6 +2,7 @@ class Api::StoriesController < ParticipantAssocController
   before_filter :parent_set
 
   def create
+    puts story_params
     @story = Story.new story_params
     @story.participant = @parent
     @story.state = State.find(@story.state_id)
@@ -15,8 +16,8 @@ class Api::StoriesController < ParticipantAssocController
   private
     def story_params
       attributes = model_attributes
-      issueAttrs = [issue: [:name]]
-      companyAttrs = [company: [:name]]
+      issueAttrs = [issue_attributes: [:name]]
+      companyAttrs = [company_attributes: [:name]]
       nestedAttrs = issueAttrs | companyAttrs
       params.require(:story).permit(attributes | nestedAttrs)
     end
