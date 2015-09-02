@@ -1,8 +1,6 @@
 // select panel
 .blocky-form .select-container {
-  position: absolute;
-  right: 2em;
-  width: 15em;
+  position: relative;
   background-color: $md-clr-grey-50;
   .select-panel {
     font-family: $roboto;
@@ -37,4 +35,8 @@
       font-size: 2em;
     }
   }
+}
+
+#participantBasic fieldset.form-line {
+  margin: 0 auto -1em auto;
 }

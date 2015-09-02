@@ -31,12 +31,17 @@
   height: 50%;
   bottom: 0;
   left: 0;
+  header {
+    margin-top: 25vh;
+    @media (max-height: 750px) {
+      margin-top: 15vh;
+    }
+  }
   header > h1 {
     display: block;
     font-family: $roboto-condensed;
     font-weight: $light-weight;
     font-size: 5em;
     color: $md-clr-light-blue-600;
-    margin-top: 15%;
   }
 }
