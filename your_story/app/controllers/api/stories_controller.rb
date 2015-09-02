@@ -2,7 +2,6 @@ class Api::StoriesController < ParticipantAssocController
   before_filter :parent_set
 
   def create
-    puts story_params
     @story = Story.new story_params
     @story.participant = @parent
     @story.state = State.find(@story.state_id)

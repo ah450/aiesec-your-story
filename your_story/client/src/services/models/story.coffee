@@ -63,7 +63,7 @@ angular.module 'aiesec'
       setCompanyName: (value) ->
         company =
           name: value
-        @setResourceProperty 'company', company
+        @setResourceProperty 'company_attributes', company
 
       setParticipantID: (value) ->
         @setResourceProperty 'participant_id', value
@@ -71,7 +71,7 @@ angular.module 'aiesec'
       setIssueName: (value) ->
         issue =
           name: value
-        @setResourceProperty 'issue', issue
+        @setResourceProperty 'issue_attributes', issue
       
       # Returns a new pagination instance
       @all: (participant) ->
