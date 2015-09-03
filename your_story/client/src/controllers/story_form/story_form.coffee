@@ -103,7 +103,8 @@ angular.module 'aiesec'
       story.setHighlight $scope.storyFormData.highlight
       story.setStateID $scope.storyFormData.state.id
       currentCreation.storyPromise = story.save()
-      $state.go '^.thankYou'
+      currentCreation.storyPromise.then () ->
+        $state.go '^.thankYou'
 
 
 
