@@ -1,7 +1,7 @@
 {
 	"folders":
 	[
-		{ 
+		{
       "folder_exclude_patterns":
       [
         "your_story/client/build",

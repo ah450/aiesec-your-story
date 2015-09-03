@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
 
   # POST /api/{plural_resource_name}
-  def create  
+  def create
     set_resource(resource_class.new(resource_params))
     if get_resource.save
       render_single :created
@@ -30,24 +30,24 @@ class ApplicationController < ActionController::Base
   end
 
   # DELETE /api/{plural_resource_name}/1
-  def destroy  
+  def destroy
     get_resource.destroy
     head :no_content
   end
 
   # GET /api/{plural_resource_name}/1
-  def show  
+  def show
    render_single
   end
 
   # PATCH/PUT /api/{plural_resource_name}/1
-  def update  
+  def update
     if get_resource.update(resource_params)
       render_single
     else
       render json: get_resource.errors, status: :unprocessable_entity
     end
-  end 
+  end
 
   private
 
@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
 
     def render_array
       resources = instance_variable_get(plural_resource_variable)
-       json =  { 
+       json =  {
         page: resources.current_page,
         total_pages:  resources.total_pages,
         page_size: resources.size

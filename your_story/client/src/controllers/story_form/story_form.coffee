@@ -86,8 +86,11 @@ angular.module 'aiesec'
         100
       else
         50
-        
+     
+    $scope.submitting = false
     $scope.processForm = ->
+      return if $scope.submitting
+      $scope.submitting = true
       # Create Story
       story = currentCreation.participant.newStory()
       if $scope.issueApplicable()

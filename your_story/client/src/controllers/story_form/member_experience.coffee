@@ -63,9 +63,11 @@ angular.module 'aiesec'
       title: 'Experience type'
 
     $scope.selectPanelOptions = $scope.expOpts
-    
+    $scope.submitting = false
 
     $scope.processForm = () ->
+      return if $scope.submitting
+      $scope.submitting = true
       currentCreation.participant.setMemberType(
         $scope.expOpts.selected.value)
       currentCreation.createParticipant()

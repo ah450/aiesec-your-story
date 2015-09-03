@@ -68,9 +68,11 @@ angular.module 'aiesec'
         $scope.participant.setType newValue.type, newValue.outgoing
 
 
+
     # Send to memberExperience sibling state if user selected member type
     # Else send to story subling state
     $scope.processForm = () ->
+      return if $scope.submitting
       $scope.submitting = true
       $ 'body'
         .addClass 'animate-view'
