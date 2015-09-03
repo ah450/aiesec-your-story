@@ -29,6 +29,18 @@ gulp.task('src-routes', function() {
     .pipe(gulp.dest('./build/temp'));
 });
 
+gulp.task('src-routes-min', function() {
+  return gulp.src(['src/routes/**/*.coffee'])
+    .pipe(coffeelint())
+    .pipe(coffeelint.reporter(stylishCoffee))
+    .pipe(coffee().on('error', gutil.log))
+    .pipe(uglify({
+      mangle: false,
+    }))
+    .pipe(concat('routes-min.js'))
+    .pipe(gulp.dest('./build/temp'));
+});
+
 gulp.task('src-coffee', function() {
   return gulp.src(['src/**/*.coffee', '!src/routes/**/*'])
     .pipe(coffeelint())
@@ -71,8 +83,8 @@ gulp.task('scripts', ['scripts-no-templates', 'templates', 'polyfills', 'src-rou
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('uglify', ['uglify-helper', 'src-routes'], function () {
-  return gulp.src(['build/temp/app.min.js', 'build/temp/routes.js'])
+gulp.task('uglify', ['uglify-helper', 'src-routes-min'], function () {
+  return gulp.src(['build/temp/app.min.js', 'build/temp/routes-min.js'])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist'));
 });
