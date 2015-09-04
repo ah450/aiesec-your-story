@@ -22,7 +22,7 @@ class Participant < ActiveRecord::Base
 
   def self.profile_types_json
     {
-      member_profile: :member_profile, 
+      member_profile: :member_profile,
       talent_profile: :talent_profile,
       citizen_profile: :citizen_profile
     }

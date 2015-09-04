@@ -4,10 +4,9 @@
 # and create avatar
 angular.module 'aiesec'
   .controller 'ParticipantFormController', ($scope, $state, Participant,
-    currentCreation, states, lcs, pTypes) ->
+    currentCreation, lcs, pTypes, profileTypeOpts) ->
     $scope.participant = Participant.fromObject {}
     $scope.participantFormData = {}
-    currentCreation.participantFormData = $scope.participantFormData
     $scope.lcOpts =
       data: lcs
       dataDisplay: (item) ->
@@ -23,34 +22,7 @@ angular.module 'aiesec'
     if currentCreation.selectedLc
       $scope.lcOpts.selected = currentCreation.selectedLc
     
-    $scope.profileTypeOpts = {}
-    $scope.profileTypeOpts["AIESEC Member"] =
-      type: pTypes.member_profile
-      id: "aiesecMemberOpt"
-
-    $scope.profileTypeOpts["Volunteering Abroad"] =
-      type: pTypes.citizen_profile
-      outgoing: true
-      group: 'Global Citizen'
-      id: "globalCitizenOutOpt"
-
-    $scope.profileTypeOpts["Volunteering in Egypt"] =
-      type: pTypes.citizen_profile
-      outgoing: false
-      group: 'Global Citizen'
-      id: "globalCitizenInOpt"
-
-    $scope.profileTypeOpts['Internship Abroad'] =
-      type: pTypes.talent_profile
-      outgoing: true
-      group: 'Global Talent'
-      id: "globalTalentOutOpt"
-
-    $scope.profileTypeOpts['Internship in Egypt'] =
-      type: pTypes.talent_profile
-      outgoing: false
-      group: 'Global Talent'
-      id: "globalTalenInOpt"
+    $scope.profileTypeOpts = profileTypeOpts
 
     $scope.profileData = {}
 
@@ -67,10 +39,8 @@ angular.module 'aiesec'
       if newValue
         $scope.participant.setType newValue.type, newValue.outgoing
 
-
-
     # Send to memberExperience sibling state if user selected member type
-    # Else send to story subling state
+    # Else send to story sibling state
     $scope.processForm = () ->
       return if $scope.submitting
       $scope.submitting = true

@@ -49,3 +49,7 @@ angular.module 'aiesec'
 
 
 # Run blocks
+
+angular.module 'aiesec'
+  .run (states, localChapters, memberProfileTypes, profileTypes) ->
+    # Prefetch resources

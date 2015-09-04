@@ -1,57 +1,10 @@
+# Controller for member experience view.
+# Trigerred if user selects AIESEC member as profile type
+# Purpose is to establish sub profile type
 angular.module 'aiesec'
-  .controller 'MemberExperienceController', ($scope, currentCreation, $state,
-    mpTypes) ->
+  .controller 'MemberExperienceController', ($scope, currentCreation, $state, memberProfileTypes) ->
 
-    $scope.memberTypes = [
-      {
-        value: 'nst',
-        label: 'NST'
-      },
-      {
-        value: 'congress_comittee',
-        label: 'Congress Comittee'
-      },
-      {
-        value: 'ceeder',
-        label: 'CEEDer'
-      },
-      {
-        value: 'chair',
-        label: 'Chair'
-      },
-      {
-        value: 'facilitator',
-        label: 'Facilitator'
-      },
-      {
-        value: 'ai',
-        label: 'AI'
-      },
-      {
-        value: 'mcp',
-        label: 'MCP'
-      },
-      {
-        value: 'mcvp',
-        label: 'MCVP'
-      },
-      {
-        value: 'lcp',
-        label: 'LCP'
-      },
-      {
-        value: 'lcvp',
-        label: 'LCVP'
-      },
-      {
-        value: 'team_leader',
-        label: 'Team Leader (Function, OC, R&S, etc..)'
-      },
-      {
-        value: 'member',
-        label: 'Member (Function, OC, R&S, etc..)'
-      }
-    ]
+    $scope.memberTypes = memberProfileTypes
 
     $scope.expOpts =
       data: $scope.memberTypes

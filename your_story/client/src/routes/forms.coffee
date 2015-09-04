@@ -10,8 +10,8 @@ angular.module 'aiesec'
           localChapters
         pTypes: (profileTypes) ->
           profileTypes
-        mpTypes: (memberProfileTypes) ->
-          memberProfileTypes
+        profileTypeOpts: (profileTypeOptions) ->
+          profileTypeOptions
         $title: ->
           'AIESEC | Your Story'
 
@@ -58,8 +58,6 @@ angular.module 'aiesec'
       resolve:
         locations: (states) ->
           states
-        participantPromise: (currentCreation) ->
-          currentCreation.participantPromise
 
     storyFormThankYou =
       name: 'storyForm.thankYou'

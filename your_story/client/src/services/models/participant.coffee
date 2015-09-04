@@ -61,6 +61,7 @@ angular.module 'aiesec'
       setType: (pType, outgoing=null) ->
         profile_attributes = {}
         profile_attributes.outgoing = outgoing if outgoing != null
+        @setResourceProperty 'profile', profile_attributes
         @setResourceProperty 'profile_attributes', profile_attributes
         @setResourceProperty 'profile_type', pType
 
@@ -70,6 +71,9 @@ angular.module 'aiesec'
 
       getType: ()->
         @getResourceProperty 'profile_type'
+
+      getProfile: () ->
+        @getResourceProperty 'profile'
 
       createAvatar: (file, progress) ->
         $q (resolve, reject) =>

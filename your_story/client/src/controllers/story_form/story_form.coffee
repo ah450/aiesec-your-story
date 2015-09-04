@@ -1,7 +1,6 @@
 angular.module 'aiesec'
   .controller 'StoryFormController', ($scope, $state, $q, $filter
     currentCreation, pTypes, locations) ->
-    
     # Format search data
     names = _.map locations, (item, index) ->
             otherNames = _.map item.names, (other) ->
@@ -12,7 +11,7 @@ angular.module 'aiesec'
       searchObject=
         value: index
         search: name
-        name: name.split('~~~~')[0]
+        name: locations[index].default_name
 
     # Prepare form data objects
     $scope.storyFormData = {}
@@ -49,7 +48,7 @@ angular.module 'aiesec'
 
     $scope.issueApplicable = ->
       if not $scope.isMember()
-        currentCreation.participant.getResourceProperty("profile").outgoing or
+        currentCreation.participant.getProfile().outgoing or
           currentCreation.participant.getType() == "talent_profile"
       else
         return false
@@ -91,20 +90,21 @@ angular.module 'aiesec'
     $scope.processForm = ->
       return if $scope.submitting
       $scope.submitting = true
-      # Create Story
-      story = currentCreation.participant.newStory()
-      if $scope.issueApplicable()
-        story.setIssueName $scope.storyFormData.issue
-      if $scope.companyApplicable()
-        story.setCompanyName $scope.storyFormData.company
-      story.setDate $filter('date')( $scope.storyFormData.date,
-        'dd/mm/yyyy')
-      story.setTitle $scope.storyFormData.title
-      story.setHighlight $scope.storyFormData.highlight
-      story.setStateID $scope.storyFormData.state.id
-      currentCreation.storyPromise = story.save()
-      currentCreation.storyPromise.then () ->
-        $state.go '^.thankYou'
+      # Wait on participant then create story
+      currentCreation.participantPromise.then () ->
+        story = currentCreation.participant.newStory()
+        if $scope.issueApplicable()
+          story.setIssueName $scope.storyFormData.issue
+        if $scope.companyApplicable()
+          story.setCompanyName $scope.storyFormData.company
+        story.setDate $filter('date')( $scope.storyFormData.date,
+          'dd/mm/yyyy')
+        story.setTitle $scope.storyFormData.title
+        story.setHighlight $scope.storyFormData.highlight
+        story.setStateID $scope.storyFormData.state.id
+        currentCreation.storyPromise = story.save()
+        currentCreation.storyPromise.then () ->
+          $state.go '^.thankYou'
 
 
 

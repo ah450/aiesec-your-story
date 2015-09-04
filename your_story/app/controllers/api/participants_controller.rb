@@ -3,9 +3,9 @@ class Api::ParticipantsController < ApplicationController
   PROFILE_TYPES = [MemberProfile, TalentProfile, CitizenProfile]
 
   # POST /api/{plural_resource_name}
-  def create  
+  def create
     begin
-      # Detect clas based on type param
+      # Detect class based on type param
       profile_klass = PROFILE_TYPES.detect {|p| participant_params[:profile_type].to_s.classify.constantize == p}
     ensure
       unless profile_klass
@@ -13,7 +13,7 @@ class Api::ParticipantsController < ApplicationController
       end
     end
     # Extract profile specific attributes
-    profile_params = participant_params.delete :profile_attributes 
+    profile_params = participant_params.delete :profile_attributes
     # Initialize participant, minus profile_attributes
     @participant = Participant.new participant_params.except(
       :profile_attributes, :profile_type).reject {|e| ["type", "local_chapter"].include? e}
