@@ -12,7 +12,7 @@ if not (Modernizr.input.placeholder and Modernizr.input.autofocus)
       $.autofocus() if not Modernizr.input.autofocus
 
 
-if not Modernizr.csstransforms
+if  not (Modernizr.csstransforms and Modernizr.csstransforms3d)
   $.getScript('polyfills/transform/sylvester.js').done ->
     $.getScript('polyfills/transform/transformie.js')
 
