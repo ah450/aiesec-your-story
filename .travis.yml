@@ -26,5 +26,3 @@ before_script:
 script:
   - cd your_story
   - bundle exec rake spec
-  - cd client
-  - npm run test
