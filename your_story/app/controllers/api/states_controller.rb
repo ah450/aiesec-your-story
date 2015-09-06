@@ -4,9 +4,7 @@ class Api::StatesController < ApplicationController
     if params[:query]
       query = params[:query].downcase
       @states = State.where('lower(name) LIKE ?', "#{query}%").sort do |a, b|
-        distanceA = Levenshtein.normalized_distance a.name.downcase, query
-        distanceB = Levenshtein.normalized_distance b.name.downcase, query
-        distanceA <=> distanceB
+        a.name.length <=> b.name.length
       end
       render json: @states.map { |state| json_builder(state) }
     else

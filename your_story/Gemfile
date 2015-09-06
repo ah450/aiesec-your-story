@@ -31,7 +31,6 @@ gem 'listen'
 # gem 'unicorn'
 gem 'kaminari'
 gem 'jwt'
-gem 'levenshtein'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
