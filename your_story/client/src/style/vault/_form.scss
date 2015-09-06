@@ -8,9 +8,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include display-flex();
+  @include justify-content(center);
+  @include align-items(center);
 
   .blocky-form {
     max-width: 90vw;
@@ -60,15 +60,15 @@
 
 #experienceType .button-container {
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  @include display-flex();
+  @include justify-content(space-between);
   width: 70%;
 }
 
 #storyBack .button-container {
   margin: 2em auto;
-  display: flex;
-  justify-content: space-between;
+  @include display-flex();
+  @include justify-content(space-between);
   width: 70%;
 }
 
@@ -93,9 +93,6 @@
   margin-top: 2em;
 }
 
-#storyBack fieldset {
-  margin-top: 2em;
-}
 
 .highlight-validations-text {
   color: black;

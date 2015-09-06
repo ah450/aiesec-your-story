@@ -13,8 +13,8 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video, input, a:link,
 a:visited, a:hover, a:active, button, button:active
 :focus {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   vertical-align: baseline;
   border: none;
   outline: none;
@@ -24,18 +24,18 @@ a:visited, a:hover, a:active, button, button:active
   // Apparently these don't get overriden
   // by the presense of standard margin and padding values
   // on all version of Chrome. So maybe also FF?
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
-  -webkit-margin-after: 0;
-  -webkit-margin-before: 0;
-  -webkit-padding-before: 0;
-  -webkit-padding-after: 0;
-  -webkit-padding-start: 0;
-  -webkit-padding-end: 0;
-  -moz-margin-start: 0;
-  -moz-margin-end: 0;
-  -moz-padding-start: 0;
-  -moz-padding-end: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-before: 0px;
+  -webkit-padding-before: 0px;
+  -webkit-padding-after: 0px;
+  -webkit-padding-start: 0px;
+  -webkit-padding-end: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -51,13 +51,13 @@ input:matches([type="button"], [type="submit"], [type="reset"]) {
 ::-moz-focus-inner {
   outline: none;
   border: none;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+footer, header, hgroup, menu, nav, section, main {
   display: block;
 }
 
