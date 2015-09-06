@@ -1,1 +1,12 @@
 // story form specific overrides
+
+#storyForm {
+  ._720kb-datepicker-calendar._720kb-datepicker-open {
+    position: absolute;
+    top: -8em;
+    font-size: 1.5em;
+    ._720kb-datepicker-calendar-body {
+      font-size: 1em;
+    }
+  }
+}

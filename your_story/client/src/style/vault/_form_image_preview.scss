@@ -1,11 +1,13 @@
 .blocky-form #avatarPreview {
   width: 10em;
-  height: 10em;
+  height: 8em;
   max-width: 10em;
-  max-height: 10em;
-  position: relative;
-  top: -2em;
-  display: inline-block;
+  max-height: 8em;
   float: right;
+  display: inline-block;
   box-sizing: border-box;
+}
+
+#participantAvatar button {
+  margin-top: 2em;
 }

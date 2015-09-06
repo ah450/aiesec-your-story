@@ -1,4 +1,4 @@
-// Various animations for the vaul layout
+// Various animations for the vault layout
 
 #storyBox {
   .upper.sheet {
@@ -14,14 +14,21 @@
 
 }
 
+// Form transition animations
 
 #formContent.ng-leave {
-  animation: swipe-right 1s ease-in;
+  animation: slide-out-right 1s ease-in;
   transform-style: preserve-3d;
 }
 
+.animate-view {
+  #formContent.ng-enter {
+    animation: slide-in-left 1s ease-out;
+    transform-style: preserve-3d;
+  }
+}
 
-@keyframes swipe-right {
+@keyframes slide-out-right {
   40% {
     opacity: 1;
     transform: scale3d(.45, .45, .45) translate3d(-42px, 0, 0);
@@ -30,6 +37,20 @@
     opacity: 0;
     transform: scale(.1) translate3d(2000px, 0, 0);
     transform-origin: right center;
+  }
+}
+
+
+
+@keyframes slide-in-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
 
@@ -80,25 +101,6 @@
   }
 }
 
-
-.animate-view {
-  #formContent.ng-enter {
-    animation: slide-in-left 1s ease-out;
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    transform: translate3d(-100%, 0, 0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
 $form-width: 20rem, 25rem, 32rem, 48rem;
 $form-height: 25rem, 30rem, 35rem, 35rem, 40rem;
 $first-form-animation-duration: 0.8s;
@@ -114,12 +116,15 @@ $first-form-animation-duration: 0.8s;
 @keyframes zoom-in {
   from {
     transform: scale(0.3);
+    opacity: 0;
   }
   to {
+    opacity: 1;
     transform: scale(1);
   }
 }
 
+// Spinner animation
 
 .refresh-spinner .material-icons {
   animation: spin 1s linear 0s infinite;
@@ -132,5 +137,24 @@ $first-form-animation-duration: 0.8s;
   }
   to {
     transform: rotateZ(360deg);
+  }
+}
+
+
+// Datepicker animations
+#storyForm {
+  ._720kb-datepicker-calendar._720kb-datepicker-open {
+    animation: datepicker-open 0.3s ease-out forwards;
+  }
+}
+@keyframes datepicker-open {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 2.3em rgba(0, 0, 0, 0.5);
+    transform: scale(1);
   }
 }
