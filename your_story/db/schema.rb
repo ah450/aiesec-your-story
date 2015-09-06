@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825052635) do
+ActiveRecord::Schema.define(version: 20150905105706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,23 +76,13 @@ ActiveRecord::Schema.define(version: 20150825052635) do
   add_index "participants", ["local_chapter_id"], name: "index_participants_on_local_chapter_id", using: :btree
   add_index "participants", ["profile_type", "profile_id"], name: "index_participants_on_profile_type_and_profile_id", using: :btree
 
-  create_table "state_names", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "state_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "state_names", ["name"], name: "index_state_names_on_name", using: :btree
-  add_index "state_names", ["state_id"], name: "index_state_names_on_state_id", using: :btree
-
   create_table "states", force: :cascade do |t|
-    t.string   "country",                               null: false
-    t.string   "default_name",                          null: false
-    t.decimal  "lat",          precision: 10, scale: 6
-    t.decimal  "lng",          precision: 10, scale: 6
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "country",                             null: false
+    t.string   "name",                                null: false
+    t.decimal  "lat",        precision: 10, scale: 6
+    t.decimal  "lng",        precision: 10, scale: 6
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "states", ["country"], name: "index_states_on_country", using: :btree
@@ -123,7 +113,6 @@ ActiveRecord::Schema.define(version: 20150825052635) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "state_names", "states"
   add_foreign_key "stories", "participants"
   add_foreign_key "stories", "states"
 end

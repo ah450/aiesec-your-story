@@ -6,6 +6,7 @@
 @import 'raised_buttons';
 @import 'fab_buttons';
 @import 'radio_buttons';
+@import 'story_form';
 .story-box {
   position: absolute;
   width: 100%;
@@ -34,7 +35,7 @@
 
 p.thank-you {
   font-size: 2em;
-  margin: 2em 1em;
+  margin: 2em 1.5em;
 }
 
 .blocky-form .refresh-spinner .material-icons {

@@ -5,6 +5,7 @@ angular.module 'aiesec'
         index: [apiHost, 'local_chapters'].join '/'
       states:
         index: [apiHost, 'states'].join '/'
+        search: [apiHost, 'states'].join('/') + '?query='
       stories:
         resourceUrl: [apiHost, 'participants',
           ':participant_id', 'stories', ':id'].join '/'

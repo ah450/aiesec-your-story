@@ -51,5 +51,9 @@ angular.module 'aiesec'
 # Run blocks
 
 angular.module 'aiesec'
-  .run (states, localChapters, memberProfileTypes, profileTypes) ->
-    # Prefetch resources
+  .run (localStorageService, $injector) ->
+    if localStorageService.get('version') != '1.1'
+      localStorageService.clearAll()
+      localStorageService.set('version', '1.1')
+    $injector.invoke (localChapters, memberProfileTypes, profileTypes) ->
+      # prefetch resources

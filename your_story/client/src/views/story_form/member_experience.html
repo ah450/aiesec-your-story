@@ -16,13 +16,16 @@
     <span class="error-required" data-ng-class="{hidden: !expOpts.required()}">This field is required.</span>
   </fieldset>
 
-  <div class="max-width center-pseudo button-container">
-    <div class="center-pseudo">
-      <button type="submit" title="NEXT"
-      class="btn-raised"
-      data-ng-disabled="membershipExtra.$invalid">
-        NEXT
-      </button>
+<!-- Button wrapper for positioning across all forms -->
+  <div class="button-wrapper">
+    <div class="max-width center-pseudo button-container">
+      <div class="center-pseudo">
+        <button type="submit" title="NEXT"
+        class="btn-raised"
+        data-ng-disabled="membershipExtra.$invalid">
+          NEXT
+        </button>
+      </div>
     </div>
   </div>
 </form>

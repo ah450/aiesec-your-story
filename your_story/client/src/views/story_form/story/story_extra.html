@@ -38,10 +38,13 @@ novalidate
   </div>
 </fieldset>
 
-<div class="button-container">
-    <button data-flip="#storyFormFlipper" type="button" title="back" class="btn-raised">BACK</button>
-    <button type="submit" title="next"
-    class="btn-raised"
-    data-ng-disabled="storyBack.$invalid">Next</button>
+<!-- Button wrapper for positioning across all forms -->
+<div class="button-wrapper">
+  <div class="button-container">
+      <button data-flip="#storyFormFlipper" type="button" title="back" class="btn-raised">BACK</button>
+      <button type="submit" title="next"
+      class="btn-raised"
+      data-ng-disabled="storyBack.$invalid">Next</button>
+  </div>
 </div>
 </form>

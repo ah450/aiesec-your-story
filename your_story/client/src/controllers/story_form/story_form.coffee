@@ -1,26 +1,15 @@
 angular.module 'aiesec'
   .controller 'StoryFormController', ($scope, $state, $q, $filter
-    currentCreation, pTypes, locations) ->
-    # Format search data
-    names = _.map locations, (item, index) ->
-            otherNames = _.map item.names, (other) ->
-              other.name
-            _.flatten([item.default_name, otherNames]).join '~~~~'
-      
-    $scope.locations = _.map names, (name, index) ->
-      searchObject=
-        value: index
-        search: name
-        name: locations[index].default_name
-
+    currentCreation, pTypes, endpoints) ->
     # Prepare form data objects
     $scope.storyFormData = {}
+    $scope.statesSearchUrl = endpoints.states.search
 
     $scope.autoCompleteObjectSelected = (state)->
       if angular.isDefined state && state != null
         $ '#location'
           .addClass 'valid'
-        $scope.storyFormData.state = locations[state.originalObject.value]
+        $scope.storyFormData.state = state.originalObject
       else
         $ '#location'
           .removeClass 'valid'

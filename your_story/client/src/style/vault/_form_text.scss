@@ -29,6 +29,9 @@
       color .3s cubic-bezier(.73,.39,.38,.79),
       font-size .1s cubic-bezier(.73,.39,.38,.79);
     transform: translate3d(0, 0, 0);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   
   // If user filled it in, they don't need a label, right?
@@ -83,27 +86,28 @@
       color .3s cubic-bezier(.73,.39,.38,.79),
       font-size .1s cubic-bezier(.73,.39,.38,.79);
     transform: translate3d(0, 0, 0);
+    max-width: 100%;
   }
 
   // on focus move up
   &.focused ~ label {
     top: -1em;
     color: $md-clr-light-blue-500;
-    font-size: 1.5em;
-    @media(max-height: 500px) {
-      font-size: 1em;
-      top: -1.5em;
+    font-size: 1.5rem;
+    @media(max-width: 400px) {
+      font-size: 1rem;
+      top: -2em;
     }
   }
 
   // If user filled it in, they don't need a label, right?
   &.valid ~ label {
     top: -1em;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     transition: none;
-    @media(max-height: 500px) {
-      font-size: 1em;
-      top: -1.5em;
+    @media(max-width: 400px) {
+      font-size: 1rem;
+      top: -2em;
     }
   }
   &.valid ~ .error-required {

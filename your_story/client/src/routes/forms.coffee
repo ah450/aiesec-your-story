@@ -55,9 +55,6 @@ angular.module 'aiesec'
         "storyExtra@storyForm.story":
           templateUrl: 'story_form/story/story_extra.html'
       }
-      resolve:
-        locations: (states) ->
-          states
 
     storyFormThankYou =
       name: 'storyForm.thankYou'

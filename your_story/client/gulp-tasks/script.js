@@ -42,7 +42,7 @@ gulp.task('src-routes-min', function() {
 });
 
 gulp.task('src-coffee', function() {
-  return gulp.src(['src/**/*.coffee', '!src/routes/**/*'])
+  return gulp.src(['src/**/*.coffee', '!src/routes/**/*', '!src/modernize.coffee'])
     .pipe(coffeelint())
     .pipe(coffeelint.reporter(stylishCoffee))
     .pipe(coffee().on('error', gutil.log))
@@ -50,14 +50,25 @@ gulp.task('src-coffee', function() {
     .pipe(gulp.dest('./build/temp'));
 });
 
-gulp.task('modernizr', function() {
+gulp.task('modernizr-build', function() {
   return gulp.src('src/modernize.coffee')
     .pipe(coffeelint())
     .pipe(coffeelint.reporter(stylishCoffee))
     .pipe(coffee().on('error', gutil.log))
     .pipe(modernizr())
-    .pipe(gulp.dest('build/temp'));
+    .pipe(gulp.dest('build/modernize'));
 });
+
+gulp.task('modernize-tests', function() {
+  return gulp.src('src/modernize.coffee')
+    .pipe(coffeelint())
+    .pipe(coffeelint.reporter(stylishCoffee))
+    .pipe(coffee().on('error', gutil.log))
+    .pipe(gulp.dest('build/modernize'));
+});
+
+gulp.task('modernizr', ['modernize-tests', 'modernizr-build']);
+
 
 gulp.task('libs', ['bower'], function() {
   return gulp.src('lib/**/*.js')
@@ -71,7 +82,7 @@ gulp.task('libs', ['bower'], function() {
 })
 
 gulp.task('scripts-no-templates', ['libs', 'src-js', 'src-coffee', 'modernizr'], function() {
-  return gulp.src(['build/temp/app-dependencies.js', 'build/temp/modernizr.js',
+  return gulp.src(['build/temp/app-dependencies.js', 'build/modernize/modernizr.js', 'build/modernize/modernize.js',
     'build/temp/app-src.js', 'build/temp/coffee.js'])
     .pipe(concat('app-no-template.js'))
     .pipe(gulp.dest('build/temp'));

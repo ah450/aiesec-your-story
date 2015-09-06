@@ -53,17 +53,17 @@
   pointer-events: none;
   border-radius: 50%;
   transform: scale(0);
-  background: black;
-  opacity: 0.8;
+  background: $md-clr-grey-700;
+  opacity: 0.6;
 
 }
 
 .blocky-form .btn-fab .rippler.animate {
-  animation: ripple-effect-larger 0.3s linear;
+  animation: ripple-effect-larger 0.3s ease-out;
 }
 
 .rippler.animate {
-  animation: ripple-effect 0.3s linear;
+  animation: ripple-effect 0.3s ease-out;
 }
 
 @keyframes ripple-effect {
@@ -100,45 +100,24 @@
 }
 
 $form-width: 20rem, 25rem, 32rem, 48rem;
-$form-height: 25rem, 30, 35rem, 35rem, 40rem;
-$animation-duration: 1.5s;
+$form-height: 25rem, 30rem, 35rem, 35rem, 40rem;
+$first-form-animation-duration: 0.8s;
 
-#formContent #participantBasic{
-  width: nth($form-width, 1);
-  height: nth($form-height, 1);
-}
 
 
 .open #participantBasic {
-  animation: expand-form $animation-duration forwards;
+  animation: zoom-in $first-form-animation-duration ease-out forwards;
+  transform-style: preserve-3d;
 }
 
-@keyframes expand-form {
-  0% {
-    width: nth($form-width, 1);
-    height: nth($form-height, 1);
-  }
 
-  20% {
-    height: nth($form-height, 2);
-    width: nth($form-width, 1);
+@keyframes zoom-in {
+  from {
+    transform: scale(0.3);
   }
-
-  30% {
-    width: nth($form-width, 2);
-    height: nth($form-height, 3);
+  to {
+    transform: scale(1);
   }
-
-  50% {
-    width: nth($form-width, 3);
-    height: nth($form-height, 4)
-  }
-
-  75%, 100% {
-    width: nth($form-width, 4);
-    height: nth($form-height, 5);
-  }
-
 }
 
 

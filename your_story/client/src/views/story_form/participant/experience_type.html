@@ -26,10 +26,13 @@ novalidate
   </div>
 
   <!-- Next and previous buttons -->
-  <div class="button-container">
-    <button data-flip="#storyFormFlipper"
-    type="button" class="btn-raised">BACK</button>
-    <button type="submit" class="btn-raised"
-    data-ng-disabled="experienceType.$invalid">NEXT</button>
+  <!-- Button wrapper for positioning across all forms -->
+  <div class="button-wrapper">
+    <div class="button-container">
+      <button data-flip="#storyFormFlipper"
+      type="button" class="btn-raised">BACK</button>
+      <button type="submit" class="btn-raised"
+      data-ng-disabled="experienceType.$invalid">NEXT</button>
+    </div>
   </div>
 </form>

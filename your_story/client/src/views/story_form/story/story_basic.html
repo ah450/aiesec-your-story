@@ -45,10 +45,12 @@
     <div class="form-line" data-ripple-effect>
       <angucomplete-alt id="location"
       data-pause="250"
-      data-local-data="locations"
-      data-search-fields="search"
+      data-remote-url="{{statesSearchUrl}}"
       data-title-field="name"
-      data-minlength="2"
+      data-description-field="country"
+      data-match-class="match-highlight"
+      data-minlength="3"
+      data-auto-match="true"
       data-field-required="true"
       data-focus-in="autoCompleteFocusIn()"
       data-focus-out="autoCompleteFocusOut()"
@@ -78,19 +80,21 @@
     </datepicker>
   </fieldset>
 
-  <div class="max-width center-pseudo">
-    <div class="center-pseudo">
-      <button type="submit"
-      class="btn-raised"
-      data-ng-disabled="storyForm.$invalid"
-      data-ng-if="!(issueApplicable() || companyApplicable())"
-      >NEXT</button>
-      <button
-      data-flip="#storyFormFlipper" type="button" title="next" class="btn-raised"
-      data-ng-if="issueApplicable() || companyApplicable()"
-      data-ng-disabled="storyForm.$invalid"
-      >NEXT</button>
+<!-- Button wrapper for positioning across all forms -->
+  <div class="button-wrapper">
+    <div class="max-width center-pseudo">
+      <div class="center-pseudo">
+        <button type="submit"
+        class="btn-raised"
+        data-ng-disabled="storyForm.$invalid"
+        data-ng-if="!(issueApplicable() || companyApplicable())"
+        >NEXT</button>
+        <button
+        data-flip="#storyFormFlipper" type="button" title="next" class="btn-raised"
+        data-ng-if="issueApplicable() || companyApplicable()"
+        data-ng-disabled="storyForm.$invalid"
+        >NEXT</button>
+      </div>
     </div>
   </div>
-
 </form>

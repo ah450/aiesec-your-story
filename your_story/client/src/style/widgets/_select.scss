@@ -32,7 +32,8 @@
   .value {
     // Do not change parent width
     max-width: 100%;
-    display: inline-block;
+    padding-bottom: 0.1em;
+    display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
