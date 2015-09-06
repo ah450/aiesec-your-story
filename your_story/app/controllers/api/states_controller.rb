@@ -3,7 +3,11 @@ class Api::StatesController < ApplicationController
   def index
     if params[:query]
       query = params[:query].downcase
-      @states = State.where('lower(name) LIKE ?', "#{query}%")
+      @states = State.where('lower(name) LIKE ?', "#{query}%").sort do |a, b|
+        distanceA = Levenshtein.normalized_distance a.name.downcase, query
+        distanceB = Levenshtein.normalized_distance b.name.downcase, query
+        distanceA <=> distanceB
+      end
       render json: @states.map { |state| json_builder(state) }
     else
       super
