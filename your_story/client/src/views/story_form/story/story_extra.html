@@ -6,6 +6,9 @@ name="storyBack"
 id="storyBack"
 novalidate
 >
+
+<div id="storyBackWrapper" class="max-width flex-column-center">
+
 <div data-ng-if="issueApplicable()" class="max-width">
 <header class="max-width center-pseudo">
   <h2 class="select-none roboto-condensed light-weight">What Issue did you work on?</h2>
@@ -38,6 +41,21 @@ novalidate
   </div>
 </fieldset>
 
+<fieldset id="participantAvatar" class="form-line flex-row-between">
+    <!-- Picture selection -->
+    <legend class="flow-text">A picture describing your experience with <span class="aiesec-span">AIESEC</span></legend>
+    <button class="btn-fab"
+    data-ripple-effect
+    data-ngf-select
+    data-ng-model="storyFormData.avatar"
+    accept="image/*"
+    required
+    >
+    <i class="material-icons">&#xE403;</i>
+    </button>
+    <img id="avatarPreview" ngf-src="storyFormData.avatar || '/images/50-50-transparent.png'">
+</fieldset>
+</div>
 <!-- Button wrapper for positioning across all forms -->
 <div class="button-wrapper">
   <div class="button-container">

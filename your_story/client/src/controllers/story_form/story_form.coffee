@@ -76,24 +76,40 @@ angular.module 'aiesec'
         50
      
     $scope.submitting = false
+
     $scope.processForm = ->
       return if $scope.submitting
       $scope.submitting = true
       # Wait on participant then create story
       currentCreation.participantPromise.then () ->
-        story = currentCreation.participant.newStory()
-        if $scope.issueApplicable()
-          story.setIssueName $scope.storyFormData.issue
-        if $scope.companyApplicable()
-          story.setCompanyName $scope.storyFormData.company
-        story.setDate $filter('date')( $scope.storyFormData.date,
-          'dd/mm/yyyy')
-        story.setTitle $scope.storyFormData.title
-        story.setHighlight $scope.storyFormData.highlight
-        story.setStateID $scope.storyFormData.state.id
-        currentCreation.storyPromise = story.save()
-        currentCreation.storyPromise.then () ->
-          $state.go '^.thankYou'
+        promises = []
+        promises.push $scope.createStory()
+        promises.push $scope.createAvatar()
+        $q.all promises
+          .then () ->
+            currentCreation.storyPromise.then () ->
+              $state.go '^.thankYou'
+
+    # Creates a story
+    # and returns a promise
+    $scope.createStory = ->
+      story = currentCreation.participant.newStory()
+      if $scope.issueApplicable()
+        story.setIssueName $scope.storyFormData.issue
+      if $scope.companyApplicable()
+        story.setCompanyName $scope.storyFormData.company
+      story.setDate $filter('date')( $scope.storyFormData.date,
+        'dd/mm/yyyy')
+      story.setTitle $scope.storyFormData.title
+      story.setHighlight $scope.storyFormData.highlight
+      story.setStateID $scope.storyFormData.state.id
+      currentCreation.storyPromise = story.save()
+
+    # Creates an avatar
+    # returna promise
+    $scope.createAvatar = ->
+      currentCreation.avatar = $scope.storyFormData.avatar
+      currentCreation.createAvatar()
 
 
 

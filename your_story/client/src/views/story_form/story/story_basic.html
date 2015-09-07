@@ -50,7 +50,6 @@
       data-description-field="country"
       data-match-class="match-highlight"
       data-minlength="3"
-      data-auto-match="true"
       data-field-required="true"
       data-focus-in="autoCompleteFocusIn()"
       data-focus-out="autoCompleteFocusOut()"
@@ -84,14 +83,8 @@
   <div class="button-wrapper">
     <div class="max-width center-pseudo">
       <div class="center-pseudo">
-        <button type="submit"
-        class="btn-raised"
-        data-ng-disabled="storyForm.$invalid"
-        data-ng-if="!(issueApplicable() || companyApplicable())"
-        >NEXT</button>
         <button
         data-flip="#storyFormFlipper" type="button" title="next" class="btn-raised"
-        data-ng-if="issueApplicable() || companyApplicable()"
         data-ng-disabled="storyForm.$invalid"
         >NEXT</button>
       </div>

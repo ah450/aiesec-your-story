@@ -1,7 +1,6 @@
 # Main controller for first participant form
 # Job is to create a participant, establish profile type
 # (member, talent, citizen)
-# and create avatar
 angular.module 'aiesec'
   .controller 'ParticipantFormController', ($scope, $state, Participant,
     currentCreation, lcs, pTypes, profileTypeOpts) ->
@@ -48,7 +47,6 @@ angular.module 'aiesec'
         .addClass 'animate-view'
       currentCreation.selectedLc = $scope.lcOpts.selected
       currentCreation.participant = $scope.participant
-      currentCreation.avatar = $scope.participantFormData.avatar
       if $scope.participant.getType() == pTypes.member_profile
         $state.go '^.memberExperience'
       else
