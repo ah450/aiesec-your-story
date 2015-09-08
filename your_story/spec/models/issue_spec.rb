@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Issue, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Issue do
+  let(:factory) {FactoryGirl.create(:issue)}
+  it "should have a valid factory" do
+    expect(factory).to be_valid
+  end
 end

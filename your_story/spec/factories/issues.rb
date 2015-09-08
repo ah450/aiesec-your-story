@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :issue do
-    name "MyString"
-story ""
+    name Faker::Name.name
+    story {FactoryGirl.create :story}
   end
-
 end

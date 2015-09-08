@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :company do
-    story ""
+    name Faker::Company.name
+    story {FactoryGirl.create :story}
   end
-
 end
