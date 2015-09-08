@@ -6,8 +6,8 @@ describe Api::AvatarsController do
   it "should upload a file" do
     post :create, avatar: {data: file} , participant_id: participant.id
     expect(response.status).to eq 201
-    expect(json_response).to include(
-      :url, :filename, :mime_type
+    expect(json_response.avatar).to include(
+      :url, :filename, :mime_type, :id
       )
   end
 end

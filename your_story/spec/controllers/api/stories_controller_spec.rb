@@ -13,7 +13,7 @@ describe Api::StoriesController do
           )
       end
 
-      it "should have pagination" do 
+      it "should have pagination" do
         get :index, format: :json, page: 1, page_size: 5, participant_id: story_one.participant.id
         json = json_response
         expect(json.length).to be <= 5
@@ -34,8 +34,8 @@ describe Api::StoriesController do
     it "shows the correct participant" do
       get :show, id: story.id, participant_id: story.participant.id
       json = json_response
-      expect(json.id).to eq story.id
-      expect(json_response).to include(
+      expect(json.story.id).to eq story.id
+      expect(json_response.story).to include(
         :url, :participant_url, :state_url, :id, :title, :highlight,
         :state, :date
         )
@@ -50,7 +50,7 @@ describe Api::StoriesController do
     end
   end
 
-  describe "create" do 
+  describe "create" do
     context "with valid attributes" do
       it "creates a new contact" do
         params = FactoryGirl.attributes_for(:story)

@@ -10,7 +10,7 @@ describe Api::ParticipantsController do
         expect(response).to be_success
       end
 
-      it "should have pagination" do 
+      it "should have pagination" do
         get :index, format: :json, page: 1, page_size: 5
         json = json_response
         expect(json.length).to be <= 5
@@ -33,8 +33,8 @@ describe Api::ParticipantsController do
     it "shows the correct participant" do
       get :show, id: participant.id
       json = json_response
-      expect(json.id).to eq participant.id
-      expect(json).to include(
+      expect(json.participant.id).to eq participant.id
+      expect(json.participant).to include(
         :id, :profile_type, :last_name, :first_name,
         :url, :profile, :local_chapter, :stories_url, :stories,
         :avatars
@@ -46,11 +46,11 @@ describe Api::ParticipantsController do
     end
   end
 
-  describe "create" do 
+  describe "create" do
     context "with valid attributes" do
       it "creates a new contact" do
         params = FactoryGirl.attributes_for(:participant)
-        params[:type] = :member_profile
+        params[:profile_type] = :member_profile
         params[:local_chapter] = params[:local_chapter].id
         params[:profile_attributes] = {
           membership_typ: :team_leader
@@ -63,7 +63,7 @@ describe Api::ParticipantsController do
     context "with invalid attributes" do
       it "doesnt create a new contact" do
         params = FactoryGirl.attributes_for(:participant)
-        params[:type] = :member_profile
+        params[:profile_type] = :member_profile
         params[:profile_attributes] = {
           membership_typ: :wtf
         }

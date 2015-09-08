@@ -16,8 +16,8 @@ describe Api::StatesController do
 
       it "should have show" do
         get :show, format: :json, id: state_one.id
-        expect(json_response).to include(
-          :id, :default_name, :country, :url
+        expect(json_response.state).to include(
+          :id, :name, :country, :url
         )
       end
     end

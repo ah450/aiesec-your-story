@@ -15,7 +15,7 @@ describe Api::LocalChaptersController do
       
       it "should have show" do
         get :show, format: :json, id: local_chapter_one.id
-        expect(json_response).to include(
+        expect(json_response.local_chapter).to include(
           :id, :name, :url
         )
       end
@@ -27,6 +27,6 @@ describe Api::LocalChaptersController do
         get :index, format: :html
         expect(response.header['Content-Type']).to include 'application/json'
       end
-    end 
+    end
   end
 end
