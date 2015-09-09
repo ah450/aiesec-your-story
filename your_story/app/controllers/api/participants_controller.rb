@@ -23,7 +23,7 @@ class Api::ParticipantsController < ApplicationController
     # Set local chapter
     @participant.local_chapter = LocalChapter.find(participant_params[:local_chapter])
     if @participant.save
-      render_single
+      render_single :created
     else
       render json: @participant.errors, status: :unprocessable_entity
     end

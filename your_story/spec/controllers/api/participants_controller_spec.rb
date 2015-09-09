@@ -58,6 +58,7 @@ describe Api::ParticipantsController do
         expect{
           post :create, format: :json, participant: params
         }.to change(Participant,:count).by(1)
+        expect(response.status).to eq 201
       end
     end
     context "with invalid attributes" do
