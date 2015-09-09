@@ -63,9 +63,28 @@ describe Api::StoriesController do
 
     context "with invalid attributes" do
       it "doesnt create a new contact" do
-       expect{
+       expect {
           post :create, story: {}, participant_id: FactoryGirl.create(:participant).id
         }.to change(Story, :count).by(0)
+      end
+    end
+
+    context "with nested params" do
+      it "Should accept issue nested params" do
+        params = FactoryGirl.attributes_for(:story)
+        params[:state_id] = State.first.id
+        params[:issue_attributes] = {name: 'IT'}
+        expect {
+          post :create, story: params, participant_id: FactoryGirl.create(:participant).id
+        }.to change(Story, :count).by(1).and change(Issue, :count).by(1)
+      end
+      it "should accept company nested params" do
+        params = FactoryGirl.attributes_for(:story)
+        params[:state_id] = State.first.id
+        params[:company_attributes] = {name: 'AIESEC'}
+        expect {
+          post :create, story: params, participant_id: FactoryGirl.create(:participant).id
+        }.to change(Story, :count).by(1).and change(Company, :count).by(1)
       end
     end
   end
