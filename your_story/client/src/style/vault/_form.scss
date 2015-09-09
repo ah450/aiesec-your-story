@@ -11,7 +11,7 @@
   @include display-flex();
   @include justify-content(center);
   @include align-items(center);
-
+  overflow: auto;
   .blocky-form {
     max-width: 90vw;
     overflow: hidden;
@@ -106,4 +106,13 @@
 // wrapper for story back form's fieldsets
 #storyBackWrapper {
   height: 90%;
+}
+
+.blocky-form .angucomplete-holder #location_dropdown.angucomplete-dropdown {
+  overflow: auto;
+  left: 20%;
+  max-height: 8em;
+  font-size: 1.5em;
+  position: fixed;
+  box-shadow: 0.5em 0.5em 1rem rgba(0, 0, 0, 0.6);
 }

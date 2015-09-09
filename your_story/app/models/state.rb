@@ -7,7 +7,8 @@ class State < ActiveRecord::Base
     {
       name: name,
       id: id,
-      country: country
+      country: country,
+      full_name: "#{name}, #{country}"
     }
   end
 end

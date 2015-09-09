@@ -35,6 +35,8 @@ angular.module 'aiesec'
     $scope.isMember = ->
       currentCreation.participant.getType() == "member_profile"
 
+
+
     $scope.issueApplicable = ->
       if not $scope.isMember()
         currentCreation.participant.getProfile().outgoing or
@@ -54,7 +56,15 @@ angular.module 'aiesec'
         $scope.issues = ["Teaching", "Management", "IT"]
     else
       $scope.issues = []
-       
+
+    $scope.issueOpts =
+      data: $scope.issues
+      dataDisplay: (issue) ->
+        issue
+      dirty: false
+      title: 'Issue...'
+      required: ->
+        @dirty && angular.isUndefined @selected
 
     $scope.experienceType = ->
       switch currentCreation.participant.getType()
@@ -95,7 +105,7 @@ angular.module 'aiesec'
     $scope.createStory = ->
       story = currentCreation.participant.newStory()
       if $scope.issueApplicable()
-        story.setIssueName $scope.storyFormData.issue
+        story.setIssueName $scope.issueOpts.selected
       if $scope.companyApplicable()
         story.setCompanyName $scope.storyFormData.company
       story.setDate $filter('date')( $scope.storyFormData.date,

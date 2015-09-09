@@ -38,9 +38,13 @@
 }
 
 #experienceType .select-container {
-  width: 40%;
-  margin: 33% auto 0px auto;
-  min-width: 15em;
+  margin: 25% auto 0px auto;
+  width: 25em;
+  .select-panel {
+    @media (min-height: 600px) {
+      font-size: 2em;
+    }
+  }
   & ~.error-required {
     position: absolute;
     left: 0px;
@@ -49,9 +53,20 @@
     margin: 0.3em auto 0px auto;
     right: 0px;
     float: none;
+    @media (min-height: 600px) {
+      font-size: 2em;
+    }
   }
 }
 
 #participantBasic fieldset.form-line {
   margin: 0 auto -1em auto;
+}
+
+#storyBack .select-container {
+
+  & ~.error-required {
+    float: none;
+    margin: 0.3em auto 0px auto;
+  }
 }
