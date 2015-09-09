@@ -8,7 +8,7 @@ var runSequence = require('run-sequence');
 requireDir('./gulp-tasks');
 
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
   var dirs = ['dist', 'build', 'lib', 'build/temp', 'build/test', 'compiledSpecs', 'coverage'];
   dirs.forEach(function(dir) {
     try {

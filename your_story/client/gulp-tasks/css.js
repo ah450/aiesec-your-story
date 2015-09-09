@@ -5,7 +5,7 @@ var concatCss = require('gulp-concat-css');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer-core');
+var autoprefixer = require('autoprefixer');
 var order = require('gulp-order');
 var urlAdjuster = require('gulp-css-url-adjuster');
 
