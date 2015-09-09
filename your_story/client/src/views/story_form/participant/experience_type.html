@@ -6,24 +6,20 @@ name="experienceType"
 data-ng-submit="processForm()"
 novalidate
 >
+<!-- This form is for selecting the EXPERIENCE type -->
+<!-- Member, talent or citizen -->
+  <header class="max-width center-pseudo">
+    <h1 class="select-none roboto-condensed light-weight">
+    <span class="block aiesec-span">AIESEC</span>
+    <span class="block">EXPERIENCE?</span></h1>
+  </header>
 
-<header class="max-width center-pseudo">
-  <h1 class="select-none roboto-condensed light-weight">
-  <span class="block aiesec-span">AIESEC</span>
-  <span class="block">EXPERIENCE?</span></h1>
-</header>
-
-  <div class="select-none fancy-radio flex-column-between roboto">
-    <div class="single-radio" data-ng-repeat="(label, opts) in profileTypeOpts">
-      <input type="radio" name="profileType"
-      data-ng-model="profileData.profileOpts"
-      data-ng-value="{{opts}}"
-      id="{{opts.id}}"
-      required
-      >
-      <label for="{{opts.id}}"><span></span>{{label}}</label>
-    </div>
-  </div>
+  <fieldset class="max-width">
+    <div class="select-container" data-material-select data-options='profileOpts'></div>
+    <input type="hidden" id="expTypeSelectModel" class="display-none"
+    data-ng-model="profileOpts.selected" required>
+    <span class="error-required" data-ng-class="{hidden: !profileOpts.required()}">This field is required.</span>
+  </fieldset>
 
   <!-- Next and previous buttons -->
   <!-- Button wrapper for positioning across all forms -->
@@ -35,4 +31,6 @@ novalidate
       data-ng-disabled="experienceType.$invalid">NEXT</button>
     </div>
   </div>
+
+
 </form>

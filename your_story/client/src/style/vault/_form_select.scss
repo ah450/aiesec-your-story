@@ -37,6 +37,21 @@
   }
 }
 
+#experienceType .select-container {
+  width: 40%;
+  margin: 33% auto 0px auto;
+  min-width: 15em;
+  & ~.error-required {
+    position: absolute;
+    left: 0px;
+    display: block;
+    width: 40%;
+    margin: 0.3em auto 0px auto;
+    right: 0px;
+    float: none;
+  }
+}
+
 #participantBasic fieldset.form-line {
   margin: 0 auto -1em auto;
 }

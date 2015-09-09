@@ -39,8 +39,7 @@ novalidate
   <fieldset class="max-width">
   <!-- Local chapter select -->
     <div class="form-line">
-      <div class="select-container"
-      data-ui-view="selectPanel"></div>
+      <div class="select-container" data-material-select data-options='lcOpts'></div>
       <input type="hidden" id="select-input" class="display-none" data-ng-model="lcOpts.selected" required>
       <span class="error-required" data-ng-class="{hidden: !lcOpts.required()}">This field is required.</span>
     </div>

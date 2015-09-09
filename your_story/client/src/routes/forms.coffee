@@ -19,9 +19,6 @@ angular.module 'aiesec'
       name: 'storyForm.participant',
       url: '/info'
       views: {
-        "selectPanel@storyForm.participant":
-          templateUrl: 'widgets/select_panel.html'
-          controller: 'SelectPanel'
         "formContent@storyForm":
           templateUrl: 'story_form/participant_form.html'
           controller: 'ParticipantFormController'
@@ -38,9 +35,6 @@ angular.module 'aiesec'
         "formContent@storyForm":
           templateUrl: 'story_form/member_experience.html'
           controller: 'MemberExperienceController'
-        "selectPanel@storyForm.memberExperience":
-          templateUrl: 'widgets/select_panel.html'
-          controller: 'SelectPanel'
       }
 
     storyFormStory =

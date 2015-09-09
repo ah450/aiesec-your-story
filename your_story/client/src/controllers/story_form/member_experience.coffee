@@ -10,7 +10,7 @@ angular.module 'aiesec'
       data: $scope.memberTypes
       dirty: false
       required: ->
-        this.dirty && angular.isUndefined this.selected
+        @dirty && angular.isUndefined @selected
       dataDisplay: (item) ->
         item.label if item
       title: 'Experience type'

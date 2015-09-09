@@ -4,8 +4,11 @@
 angular.module 'aiesec'
   .controller 'ParticipantFormController', ($scope, $state, Participant,
     currentCreation, lcs, pTypes, profileTypeOpts) ->
+    # Create an empty Participant entry and prepare form data fields
     $scope.participant = Participant.fromObject {}
     $scope.participantFormData = {}
+    $scope.submitting = false
+    # Options for local chapter select
     $scope.lcOpts =
       data: lcs
       dataDisplay: (item) ->
@@ -13,30 +16,39 @@ angular.module 'aiesec'
       title: 'Home LC in Egypt'
       dirty: false
       required: ->
-        this.dirty && angular.isUndefined this.selected
-    
-    $scope.selectPanelOptions = $scope.lcOpts
-    $scope.submitting = false
+        @dirty && angular.isUndefined @selected
 
+    # Options for AIESEC experience type select
+    $scope.profileOpts =
+      data: profileTypeOpts
+      dataDisplay: (item) ->
+        item.label if item
+      title: 'Select Experience'
+      dirty: false
+      required: ->
+        @dirty && angular.isUndefined @selected
+
+    # Preserve some state
     if currentCreation.selectedLc
       $scope.lcOpts.selected = currentCreation.selectedLc
     
-    $scope.profileTypeOpts = profileTypeOpts
-
-    $scope.profileData = {}
+    # Watch selected values
 
     $scope.$watch 'lcOpts.selected', (newValue) ->
       $scope.participant.setLC newValue if newValue
 
+    $scope.$watch 'profileOpts.selected', (newValue) ->
+      if newValue
+        $scope.participant.setType newValue.type, newValue.outgoing
+
+    # Watch input fields
+    # keep participant up to date
     $scope.$watch 'participantFormData.fname', (newValue) ->
       $scope.participant.setFirstName newValue if newValue
 
     $scope.$watch 'participantFormData.lname', (newValue) ->
       $scope.participant.setLastName newValue if newValue
 
-    $scope.$watch 'profileData.profileOpts', (newValue) ->
-      if newValue
-        $scope.participant.setType newValue.type, newValue.outgoing
 
     # Send to memberExperience sibling state if user selected member type
     # Else send to story sibling state

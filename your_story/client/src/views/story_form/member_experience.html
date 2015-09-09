@@ -3,14 +3,15 @@
   name="membershipExtra"
   id="memberShipExtra"
   novalidate>
+
+  <!-- This form is for selecting the specific AIESEC member experience the user had -->
   <header class="max-width select-none center-pseudo">
     <h1 class="roboto-condensed light-weight">MEMBER EXPERIENCE?</h1>
   </header>
 
 
   <fieldset class="max-width">
-    <div class="select-container"
-    data-ui-view="selectPanel"></div>
+    <div class="select-container" data-material-select data-options='expOpts'></div>
     <input type="hidden" id="memExptSelectInpu" class="display-none"
     data-ng-model="expOpts.selected" required>
     <span class="error-required" data-ng-class="{hidden: !expOpts.required()}">This field is required.</span>
