@@ -30,7 +30,7 @@
         data-ng-trim="false"
         data-minwords="50"
         data-maxwords="100"
-        data-ng-model-options = "{allowInvalid: true}"
+        data-ng-model-options="{allowInvalid: true}"
         required
         ></textarea>
       </div>
@@ -64,12 +64,40 @@
 
   <fieldset class="max-width" data-ripple-effect>
     <div class="date-wrapper flex-row-between">
+      <!-- Day -->
+      <div class="year-field">
+        <input type="text"
+        id="year"
+        name="year"
+        data-ng-model="storyFormData.year"
+        autocapitalize="false"
+        data-range
+        data-range-max="3000"
+        data-range-min="1900"
+        data-ng-model-options="{allowInvalid: true}"
+        required
+        >
+        <label for="year">YEAR (YYYY)</label>
+        <span class="error-required display-block"
+        data-ng-class='{hidden: storyForm.day.$valid}'
+        >
+          <span ng-show="storyForm.year.$error.required">
+          This field is required.
+          </span>
+          <span ng-show="storyForm.year.$error.range">
+          Enter a number i.e 2015.
+          </span>
+        </span>
+      </div>
       <!-- Month -->
       <div class="month-field">
         <input type="text" id="month" name="month"
         data-ng-model="storyFormData.month"
         autocapitalize="false"
-        data-ng-pattern="integerval"
+        data-range
+        data-range-min="1"
+        data-range-max="12"
+        data-ng-model-options="{allowInvalid: true}"
         required>
         <label for="month">Month (MM)</label>
         <span class="error-required display-block"
@@ -78,30 +106,8 @@
           <span ng-show="storyForm.month.$error.required">
           This field is required.
           </span>
-          <span ng-show="storyForm.month.$error.pattern">
-          Enter a number i.e 01 for January.
-          </span>
-        </span>
-      </div>
-      <!-- Day -->
-      <div class="year-field">
-        <input type="text"
-        id="year"
-        name="year"
-        data-ng-model="storyFormData.year"
-        autocapitalize="false"
-        data-ng-pattern="integerval"
-        required
-        >
-        <label for="year">YEAR (YYYY)</label>
-        <span class="error-required display-block"
-        data-ng-class='{hidden: storyForm.day.$valid}'
-        >
-          <span ng-show="storyForm.day.$error.required">
-          This field is required.
-          </span>
-          <span ng-show="storyForm.day.$error.pattern">
-          Enter a number i.e 2015.
+          <span ng-show="storyForm.month.$error.range">
+          Enter a number between 1 and 12.
           </span>
         </span>
       </div>
