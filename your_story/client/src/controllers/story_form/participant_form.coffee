@@ -62,7 +62,6 @@ angular.module 'aiesec'
       if $scope.participant.getType() == pTypes.member_profile
         $state.go '^.memberExperience'
       else
-        currentCreation.createParticipant()
         $state.go '^.story'
       
 

@@ -23,7 +23,6 @@ angular.module 'aiesec'
       $scope.submitting = true
       currentCreation.participant.setMemberType(
         $scope.expOpts.selected.value)
-      currentCreation.createParticipant()
       $state.go '^.story'
 
 

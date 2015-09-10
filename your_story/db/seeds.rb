@@ -9,7 +9,7 @@ end
 
 local_chapter_names = ["6th of October", "AAST  Alexandria", "AAST in Cairo",
   "GUC", "AinShams University", "Alexandria", "AUC", "Cairo University",
-  "Assiout", "Mansoura", "Damietta", "Fayoum", "Menoufia", "Minya",
+  "Assiut", "Mansoura", "Damietta", "Fayoum", "Menoufia", "Minya",
   "Sohag", "Suez", "Tanta", "Zagazig"]
 
 local_chapter_names.each { |n| LocalChapter.create name: n }

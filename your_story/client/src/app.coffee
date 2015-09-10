@@ -3,9 +3,7 @@ angular.module 'aiesecValidations', []
 angular.module 'aiesec', ['ngResource', 'ui.router', 'ui.router.title',
   'aiesecTemplates', 'satellizer', 'LocalStorageModule',
   'ngFileUpload', 'ngAnimate', 'fontToFit', 'aiesecValidations',
-  'angucomplete-alt', '720kb.datepicker']
-
-
+  'angucomplete-alt']
 
 # Configuration blocks.
 

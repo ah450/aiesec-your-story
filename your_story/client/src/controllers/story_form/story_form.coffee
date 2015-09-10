@@ -2,6 +2,7 @@ angular.module 'aiesec'
   .controller 'StoryFormController', ($scope, $state, $q, $filter
     currentCreation, pTypes, endpoints) ->
     # Prepare form data objects
+    $scope.integerval = /^\d*$/
     $scope.storyFormData = {}
     $scope.statesSearchUrl = endpoints.states.search
 
@@ -34,8 +35,6 @@ angular.module 'aiesec'
 
     $scope.isMember = ->
       currentCreation.participant.getType() == "member_profile"
-
-
 
     $scope.issueApplicable = ->
       if not $scope.isMember()
@@ -91,6 +90,7 @@ angular.module 'aiesec'
       return if $scope.submitting
       $scope.submitting = true
       # Wait on participant then create story
+      currentCreation.createParticipant()
       currentCreation.participantPromise.then () ->
         promises = []
         promises.push $scope.createStory()
@@ -108,8 +108,8 @@ angular.module 'aiesec'
         story.setIssueName $scope.issueOpts.selected
       if $scope.companyApplicable()
         story.setCompanyName $scope.storyFormData.company
-      story.setDate $filter('date')( $scope.storyFormData.date,
-        'dd/mm/yyyy')
+      date = new Date $scope.storyFormData.year, $scope.storyFormData.month - 1
+      story.setDate date.toDateString()
       story.setTitle $scope.storyFormData.title
       story.setHighlight $scope.storyFormData.highlight
       story.setStateID $scope.storyFormData.state.id

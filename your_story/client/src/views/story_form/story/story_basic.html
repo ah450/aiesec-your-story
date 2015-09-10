@@ -62,22 +62,53 @@
     </div>
   </fieldset>
 
-  <fieldset>
-    <div class="form-line" data-ripple-effect>
-      <datepicker date-format="mediumDate">
+  <fieldset class="max-width" data-ripple-effect>
+    <div class="date-wrapper flex-row-between">
+      <!-- Month -->
+      <div class="month-field">
+        <input type="text" id="month" name="month"
+        data-ng-model="storyFormData.month"
+        autocapitalize="false"
+        data-ng-pattern="integerval"
+        required>
+        <label for="month">Month (MM)</label>
+        <span class="error-required display-block"
+        data-ng-class='{hidden: storyForm.month.$valid}'
+        >
+          <span ng-show="storyForm.month.$error.required">
+          This field is required.
+          </span>
+          <span ng-show="storyForm.month.$error.pattern">
+          Enter a number i.e 01 for January.
+          </span>
+        </span>
+      </div>
+      <!-- Day -->
+      <div class="year-field">
         <input type="text"
-        data-ng-model="storyFormData.date"
-        name="date"
-        id="storyDate"
+        id="year"
+        name="year"
+        data-ng-model="storyFormData.year"
+        autocapitalize="false"
+        data-ng-pattern="integerval"
         required
         >
-        <label for="storyDate">Date of experience</label>
-        <span class="error-required"
-        data-ng-class="{hidden: !storyForm.date.$error.required}"
-        >This field is required.</span>
+        <label for="year">YEAR (YYYY)</label>
+        <span class="error-required display-block"
+        data-ng-class='{hidden: storyForm.day.$valid}'
+        >
+          <span ng-show="storyForm.day.$error.required">
+          This field is required.
+          </span>
+          <span ng-show="storyForm.day.$error.pattern">
+          Enter a number i.e 2015.
+          </span>
+        </span>
       </div>
-    </datepicker>
+    </div>
   </fieldset>
+
+
 
 <!-- Button wrapper for positioning across all forms -->
   <div class="button-wrapper">
