@@ -11,13 +11,13 @@
   width: 6em;
   height: 6em;
   overflow: hidden;
-  box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.05), 0 0 2em rgba(0, 0, 0, 0.2), inset 0 0.75em 1em rgba(0, 0, 0, 0.1), 0 0.75em 1em rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.6), 0 0 1em rgba(0, 0, 0, 0.7);
   background-color: $md-clr-grey-50;
   transition: all 0.2s ease;
   &:hover {
     width: 7em;
     height: 7em;
-    box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.05), 0 0 2em rgba(0, 0, 0, 0.23), inset 0 0.75em 2em rgba(0, 0, 0, 0.2), 0 0.75em 2em rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.7), 0 0 1.5em 0.5em rgba(0, 0, 0, 0.8);
     cursor: pointer;
   }
   .logo {
@@ -51,5 +51,29 @@
       transform: rotateZ(-56deg);
     }
 
+  }
+}
+
+.story-box .floaty-circle {
+  position: absolute;
+  width: 14em;
+  height: 14em;
+  background-color: $md-clr-light-blue-600;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    background-color: $md-clr-orange-600;
+    height: 10em;
+    width: 10em;
+    top: 2em;
+    left: 2em;
+    z-index: 3;
   }
 }

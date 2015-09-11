@@ -3,16 +3,42 @@
 #storyBox {
   .upper.sheet {
     transition: transform .5s cubic-bezier(.25,.96,.46,.7);
+    transform-style: preserve-3d;
   }
 
   .lower.sheet {
     transition: transform .5s cubic-bezier(.25,.96,.46,.7);
+    transform-style: preserve-3d;
   }
 
   #formContent {
+    transform-style: preserve-3d;
   }
 
+  .floaty-aiesec-logo {
+    animation: pulse 0.5s infinite;
+    transform-style: preserve-3d;
+    &:hover {
+      animation: none;
+    }
+  }
 }
+
+#storyBox.open {
+  .upper.sheet {
+    transform: translateY(-100%);
+  }
+  .lower.sheet {
+    transform: translateY(110%);
+  }
+
+  .floaty-aiesec-logo {
+    transition: all .3s ease-in;
+    transform: scale(0);
+    animation: none;
+  }
+}
+
 
 // Form transition animations
 
@@ -28,101 +54,11 @@
   }
 }
 
-@keyframes slide-out-right {
-  40% {
-    opacity: 1;
-    transform: scale3d(.45, .45, .45) translate3d(-42px, 0, 0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(.1) translate3d(2000px, 0, 0);
-    transform-origin: right center;
-  }
-}
-
-
-
-@keyframes slide-in-left {
-  from {
-    transform: translate3d(-100%, 0, 0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-#storyBox.open {
-  .upper.sheet {
-    transform: translateY(-100%);
-  }
-  .lower.sheet {
-    transform: translateY(110%);
-  }
-
-  .floaty-aiesec-logo {
-    transition: all .3s ease-in;
-    transform: scale(0);
-  }
-}
-
-.rippler {
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  border-radius: 50%;
-  transform: scale(0);
-  background: $md-clr-grey-700;
-  opacity: 0.6;
-
-}
-
-.blocky-form .btn-fab .rippler.animate {
-  animation: ripple-effect-larger 0.3s ease-out;
-}
-
-.rippler.animate {
-  animation: ripple-effect 0.3s ease-out;
-}
-
-@keyframes ripple-effect {
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-
-@keyframes ripple-effect-larger {
-  100% {
-    opacity: 0;
-    transform: scale(1.4);
-  }
-}
-
-$form-width: 20rem, 25rem, 32rem, 48rem;
-$form-height: 25rem, 30rem, 35rem, 35rem, 40rem;
-$first-form-animation-duration: 0.8s;
-
-
-
 .open #participantBasic {
-  animation: zoom-in $first-form-animation-duration ease-out forwards;
+  animation: zoom-in 0.8s ease-out forwards;
   transform-style: preserve-3d;
 }
 
-
-@keyframes zoom-in {
-  from {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 
 // Spinner animation
 
@@ -131,30 +67,4 @@ $first-form-animation-duration: 0.8s;
   transform-origin: center;
 }
 
-@keyframes spin {
-  from {
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform: rotateZ(360deg);
-  }
-}
 
-
-// Datepicker animations
-#storyForm {
-  ._720kb-datepicker-calendar._720kb-datepicker-open {
-    animation: datepicker-open 0.3s ease-out forwards;
-  }
-}
-@keyframes datepicker-open {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  to {
-    opacity: 1;
-    box-shadow: 0 0 2.3em rgba(0, 0, 0, 0.5);
-    transform: scale(1);
-  }
-}
