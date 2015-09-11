@@ -22,6 +22,6 @@ test:
 
 production:
   <<: *default
-  database: aiesec_data_production
-  username: aiesec_data
-  password: aiesec
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>

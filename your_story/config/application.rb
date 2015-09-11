@@ -26,7 +26,6 @@ module YourStory
     config.middleware.use Rack::Deflater
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.gulp = {command: 'PATH="$(npm bin)":"$PATH" gulp', directory: Rails.root.join('client') }
     config.jwt_key = ENV["JWT_KEY"] || "super_secret_string"
     config.configuration = {
         error_messages: {
