@@ -35,7 +35,7 @@ gem 'jwt'
 # gem 'capistrano-rails', group: :development
 
 group :production do
-  gem 'passenger'
+  gem 'thin'
 end
 
 group :development, :test do
