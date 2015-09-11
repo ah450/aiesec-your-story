@@ -23,7 +23,7 @@ class Api::StoriesController < ParticipantAssocController
     
     def json_builder(subject)
       subject.json_builder.merge({
-        url: api_participant_stories_path(subject.participant, subject),
+        url: api_participant_story_path(subject.participant, subject),
         participant_url: api_participant_path(subject.participant),
         state_url: api_states_path(subject.state)
         })

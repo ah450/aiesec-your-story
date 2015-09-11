@@ -15,8 +15,8 @@ class Participant < ActiveRecord::Base
     json['profile_type'] = json['profile_type'].underscore
     json.merge({
       local_chapter: local_chapter.json_builder,
-      stories: stories.map { |e| e.json_builder  },
-      avatars: avatars.map { |e| e.json_builder  }
+      avatars: avatars.map { |e| e.json_builder },
+      stories: stories.map { |e| e.json_builder }
       })
   end
 
