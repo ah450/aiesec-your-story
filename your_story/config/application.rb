@@ -22,8 +22,6 @@ module YourStory
 
     config.autoload_paths << "#{Rails.root}/app/exceptions"
     config.encoding = 'utf-8'
-    # Enable gzip compression for json
-    config.middleware.use Rack::Deflater
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.jwt_key = ENV["JWT_KEY"] || "super_secret_string"
