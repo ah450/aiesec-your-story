@@ -6,6 +6,7 @@ var gzip = require('gulp-gzip');
 var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
 requireDir('./gulp-tasks');
+var minimist = require('minimist');
 
 
 gulp.task('clean', function () {
@@ -72,3 +73,14 @@ gulp.task('rails:dev', ['dummy_dev'], function() {
   return gulp.src('build/**/*')
     .pipe(gulp.dest('../public'));
 });
+
+
+var options = minimist(process.argv.slice(2), {
+  string: 'dest',
+  default: {dest: '/var/www/html'}
+})
+
+gulp.task('deploy', ['dist'], function () {
+  return gulp.src('dist/**/*')
+    .pipe(gulp.dest(options.dest));
+})

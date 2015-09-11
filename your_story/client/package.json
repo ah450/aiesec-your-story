@@ -11,7 +11,10 @@
   "scripts": {
     "test": "gulp test",
     "db": "gulp setup-db",
-    "dev": "gulp dev"
+    "dev": "gulp dev",
+    "rails": "gulp rails:production",
+    "deploy": "gulp deploy",
+    "dist": "gulp dist"
   },
   "bugs": {
     "url": "https://github.com/ah450/aiesec-your-story/issues"
@@ -47,6 +50,7 @@
     "gulp-watch": "^4.3.5",
     "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.9.0",
+    "minimist": "^1.2.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.4.3",
     "run-sequence": "^1.1.2"
