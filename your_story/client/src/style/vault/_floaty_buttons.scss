@@ -12,45 +12,16 @@
   height: 6em;
   overflow: hidden;
   box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.6), 0 0 1em rgba(0, 0, 0, 0.7);
-  background-color: $md-clr-grey-50;
+  background-image: url('images/aiesec_letter_logo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   transition: all 0.2s ease;
   &:hover {
     width: 7em;
     height: 7em;
     box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.7), 0 0 1.5em 0.5em rgba(0, 0, 0, 0.8);
     cursor: pointer;
-  }
-  .logo {
-    position: absolute;
-    display: inline-block;
-    width: 100%;
-    height: 4px;
-    top: calc(50% - 2px);
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    &::after {
-      position: absolute;
-      display: inline-block;
-      content: "";
-      left: 0;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      background-color: $md-clr-indigo-900;
-      transform: translateX(30%) rotateZ(90deg);
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      background-color: $md-clr-indigo-900;
-      transform: rotateZ(-56deg);
-    }
-
   }
 }
 
