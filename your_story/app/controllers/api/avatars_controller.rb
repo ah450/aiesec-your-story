@@ -8,7 +8,6 @@ class Api::AvatarsController < ParticipantAssocController
     @avatars = []
     begin
       Avatar.transaction do
-
         resource_params.files.each do |file|
           # Get extension from mime type
           filename = "#{Avatar.gen_name}#{Rack::Mime::MIME_TYPES.invert[file.content_type]}"
