@@ -14,3 +14,14 @@
   transform: scale(1.2);
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.7);
 }
+
+.btn-fab[disabled] {
+  cursor: not-allowed;
+  box-shadow: none;
+  background-color: $md-clr-grey-500;
+  color: $md-clr-grey-700;
+  &:hover, &:active {
+    transform: none;
+    box-shadow: none;
+  }
+}

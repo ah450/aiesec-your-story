@@ -3,6 +3,6 @@ angular.module 'aiesec'
     creation =
       createParticipant: ->
         @participantPromise = @participant.save()
-      createAvatar: ->
+      createAvatars: ->
         @participantPromise.then (participant) =>
-          participant.createAvatar @avatar
+          participant.createAvatars @avatars

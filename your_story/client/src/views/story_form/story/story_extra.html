@@ -41,16 +41,19 @@ novalidate
   <fieldset id="participantAvatar" class="form-line flex-row-between">
       <!-- Picture selection -->
       <legend class="flow-text">A picture describing your experience with <span class="aiesec-span">AIESEC</span></legend>
-      <button class="btn-fab"
+      <button class="btn-fab file-select-button"
       data-ripple-effect
+      data-ngf-multiple="true"
       data-ngf-select
-      data-ng-model="storyFormData.avatar"
+      data-ng-model="storyFormData.avatars"
       accept="image/*"
       required
       >
       <i class="material-icons">&#xE403;</i>
       </button>
-      <img id="avatarPreview" ngf-src="storyFormData.avatar || '/images/50-50-transparent.png'">
+      <file-gallery
+      data-gallery-files="storyFormData.avatars"
+      ></file-gallery>
   </fieldset>
 </div>
 <!-- Button wrapper for positioning across all forms -->

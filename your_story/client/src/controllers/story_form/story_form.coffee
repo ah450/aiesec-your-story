@@ -94,7 +94,7 @@ angular.module 'aiesec'
       currentCreation.participantPromise.then () ->
         promises = []
         promises.push $scope.createStory()
-        promises.push $scope.createAvatar()
+        promises.push $scope.createAvatars()
         $q.all promises
           .then () ->
             currentCreation.storyPromise.then () ->
@@ -117,9 +117,9 @@ angular.module 'aiesec'
 
     # Creates an avatar
     # returna promise
-    $scope.createAvatar = ->
-      currentCreation.avatar = $scope.storyFormData.avatar
-      currentCreation.createAvatar()
+    $scope.createAvatars = ->
+      currentCreation.avatars = $scope.storyFormData.avatars
+      currentCreation.createAvatars()
 
 
 

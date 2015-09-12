@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :participants, only: [:index, :create, :show] do
       resources :stories, only: [:index, :create, :show]
-      resources :avatars, only: [:create, :show]
+      resources :avatars, only: [:create, :show, :index]
     end
     resources :states, only: [:index, :show]
     resources :local_chapters, only: [:index, :show]

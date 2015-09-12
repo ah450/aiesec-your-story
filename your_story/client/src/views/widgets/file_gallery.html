@@ -1,0 +1,13 @@
+<div class="file-gallery-wrapper">
+  <canvas class="file-gallery-canvas" data-fg-canvas
+  data-fg-urls="urls"
+  data-fg-current-index="current"
+  ></canvas>
+  <div class="max-width flex-row-between">
+  <button class="btn-fab" data-ng-disabled="prevDisabled" data-ng-click="prev()" type="button"><i class="material-icons">&#xE408;</i></button>
+  <p class="flow-text" data-ng-show="urls.length > 0">
+  {{current + 1}}/{{urls.length}}
+  </p>
+  <button class="btn-fab" data-ng-disabled="nextDisabled" data-ng-click="next()" type="button"><i class="material-icons">&#xE409;</i></button>
+  </div>
+</div>

@@ -8,6 +8,27 @@
   box-sizing: border-box;
 }
 
-#participantAvatar button {
+#participantAvatar .file-select-button {
   margin-top: 2em;
+}
+
+.blocky-form .file-gallery-wrapper {
+  width: 10em;
+  height: 10em;
+  max-width: 10em;
+  max-height: 10em;
+  float: right;
+  display: inline-block;
+  box-sizing: border-box;
+  canvas {
+    width: 100%;
+    height: 70%;
+  }
+  .flex-row-between {
+    height: 3em;
+  }
+  .btn-fab {
+    width: 3em;
+    height: 3em;
+  }
 }

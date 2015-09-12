@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
       {}
     end
 
-    def render_array
+    def render_array(status=:ok)
       resources = instance_variable_get(plural_resource_variable)
        json =  {
         page: resources.current_page,
@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
         page_size: resources.size
       }
       json[resource_name.pluralize] = resources.map { |s| json_builder(s) }
-      render json: json
+      render json: json, status: status
     end
 
     def render_single(status=:ok)

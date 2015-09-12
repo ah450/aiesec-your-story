@@ -44,9 +44,10 @@ class Api::ParticipantsController < ApplicationController
     def json_builder(subject)
       json = subject.json_builder.merge({
         url: api_participant_path(subject),
-        stories_url: api_participant_stories_path(subject)
+        stories_url: api_participant_stories_path(subject),
+        avatars_url: api_participant_avatars_path(subject)
         })
-      json.merge({
+      json = json.merge({
         avatars: json[:avatars].map { |e| e.merge({
           url: api_participant_avatar_path(subject, e.id)
           })}

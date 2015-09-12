@@ -75,17 +75,18 @@ angular.module 'aiesec'
       getProfile: () ->
         @getResourceProperty 'profile'
 
-      createAvatar: (file, progress) ->
+      createAvatars: (files, progress) ->
         $q (resolve, reject) =>
           config =
             url: endpoints.builders.participants.avatar @resource.participant.id
             method: 'POST'
-            file: file
-            fileFormDataName: 'avatar[data]'
+            file: files
+            fileFormDataName: 'avatar[files][]'
           promise = Upload.upload config
           promise.progress progress if progress
           promise.then (data)->
-            resolve new Avatar data
+            # resolve new Avatar data
+            resolve (Avatar.new item for item in data)
           promise.error (data, status, headers, config)->
             info =
               data: data
