@@ -65,3 +65,52 @@
     transform-origin: right center;
   }
 }
+
+// fade out with display none
+@keyframes fade-out-display {
+  from{
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes blue-blink{
+  0%{
+    box-shadow: none;
+  }
+  90%{
+    box-shadow: 0px 0px 1em 0.4em transparentize($md-clr-light-blue-800, 0.6);
+  }
+}
+
+
+// Prrofile type animations
+@keyframes slide-up {
+  from {
+    top: 0px;
+  }
+  to {
+    top: -13em;
+  }
+}
+
+@keyframes left-p-type {
+  from{
+    left: 0px;
+  }
+  to {
+    left: 33%;
+  }
+}
+
+@keyframes right-p-type {
+  from {
+    right: 0px;
+  }
+  to {
+    right: 33%;
+  }
+}

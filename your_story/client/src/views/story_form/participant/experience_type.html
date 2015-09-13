@@ -8,19 +8,39 @@ novalidate
 >
 <!-- This form is for selecting the EXPERIENCE type -->
 <!-- Member, talent or citizen -->
-  <header class="max-width center-pseudo">
-    <h1 class="select-none roboto-condensed light-weight">
-    <span class="block aiesec-span">AIESEC</span>
-    <span class="block">EXPERIENCE?</span></h1>
+ <header class="max-width center-pseudo">
+    <h1 class="select-none roboto-condensed light-weight">EXPERIENCE?</h1>
   </header>
 
-  <fieldset class="form-line">
-    <div class="select-container" data-material-select data-options='profileOpts'></div>
-    <input type="hidden" id="expTypeSelectModel" class="display-none"
-    data-ng-model="profileOpts.selected" required>
-    <span class="error-required" data-ng-class="{hidden: !profileOpts.required()}">This field is required.</span>
-  </fieldset>
+<div class="type-container flex-perfect-center-container">
+  <div class="img-wrap flex-row-between">
+    <button type="button"
+    data-click-toggle="selected citizen-selected"
+    data-click-toggle-target="#experienceType"
+    class="citizen type-option"
+    >
+    <img src="images/global_citizen.png">
+    </button>
+    <button type="button"
+    class="member type-option"
+    data-click-toggle="selected member-selected"
+    data-click-toggle-target="#experienceType"
+    >
+      <img src="images/young_leaders.png">
+    </button>
+    <button type="button"
+    data-click-toggle="selected talent-selected"
+    data-click-toggle-target="#experienceType"
+    class="talent type-option"
+    >
+    <img src="images/talent.png">
+    </button>
+  </div>
+</div>
 
+
+<input type="hidden" class="display-none" data-ng-model="profileOpts.selected"
+  required>
   <!-- Next and previous buttons -->
   <!-- Button wrapper for positioning across all forms -->
   <div class="button-wrapper">
