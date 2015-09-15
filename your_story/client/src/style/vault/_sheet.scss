@@ -12,59 +12,6 @@
   @media (max-resolution: 1dppx) and (min-height: 700px) {
     border-width: 2px;
   }
-  header > h1 {
-    display: block;
-    font-family: $roboto-condensed;
-    font-weight: $light-weight;
-    font-size: 13vh;
-    color: $md-clr-light-blue-600;
-    width: 80vw;
-    span {
-      display: block;
-    }
-  }
-
-  blockquote {
-    position: relative;
-    display: block;
-    quotes: "\201C""\201D""\2018""\2019";
-    font-family: $roboto;
-    font-weight: $normal-weight;
-    font-size: 1.5em;
-    @media (min-height: 480px) and (min-width: 370px) {
-      font-size: 2em;
-    }
-    @media (min-height: 700px) and (min-width: 1200px) {
-      font-size: 3em;
-    }
-    color: $md-clr-light-blue-500;
-    padding: 1em;
-    &::before {
-      content: open-quote;
-      margin-right: 0.25em;
-      font-size: 2em;
-      line-height: 0.5em;
-    }
-    width: 80vw;
-    p {
-      background-color: transparent;
-      display: inline;
-      color: $md-clr-light-blue-600;
-      &::after {
-        content: close-quote;
-        margin-left: 0.25em;
-        font-size: 2em;
-        line-height: 1em;
-        vertical-align: -0.4em;
-      }
-    }
-    cite {
-      display: block;
-      font-size: 1rem;
-      float: right;
-      color: $md-clr-light-blue-900;
-    }
-  }
 }
 
 .story-box .lower.sheet {
@@ -73,17 +20,4 @@
   height: 50%;
   bottom: 0;
   left: 0;
-  header {
-    margin-top: 25vh;
-    @media (max-height: 750px) {
-      margin-top: 15vh;
-    }
-  }
-  header > h1 {
-    display: block;
-    font-family: $roboto-condensed;
-    font-weight: $light-weight;
-    font-size: 5em;
-    color: $md-clr-light-blue-600;
-  }
 }

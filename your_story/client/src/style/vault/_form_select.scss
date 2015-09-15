@@ -1,4 +1,4 @@
-// select panel
+// select panels
 .blocky-form .select-container {
   position: relative;
   background-color: $md-clr-grey-50;
@@ -15,48 +15,6 @@
     margin-top: 2.3em;
     
   }
-
-}
-
-#memberShipExtra .select-container {
-  position: relative;
-  width: 25em;
-  right: 0px;
-  margin: 30% auto 0 auto;
-  .select-panel {
-    @media (min-height: 600px) {
-      font-size: 2em;
-    }
-  }
-  & ~.error-required {
-    margin-top: 0.3em;
-    margin-left: 10%;
-    @media (min-height: 600px) {
-      font-size: 2em;
-    }
-  }
-}
-
-#experienceType .select-container {
-  margin: 25% auto 0px auto;
-  width: 25em;
-  .select-panel {
-    @media (min-height: 600px) {
-      font-size: 2em;
-    }
-  }
-  & ~.error-required {
-    position: absolute;
-    left: 0px;
-    display: block;
-    width: 40%;
-    margin: 0.3em auto 0px auto;
-    right: 0px;
-    float: none;
-    @media (min-height: 600px) {
-      font-size: 2em;
-    }
-  }
 }
 
 #participantBasic fieldset.form-line {
@@ -64,7 +22,6 @@
 }
 
 #storyBack .select-container {
-
   & ~.error-required {
     float: none;
     margin: 0.3em auto 0px auto;

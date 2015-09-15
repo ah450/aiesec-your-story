@@ -1,5 +1,9 @@
-<div class="story-box open" id="storyBox">
-  <a href="http://aiesec.org.eg" target="_blank">
+<div class="story-box" id="storyBox">
+  <a href="http://aiesec.org.eg" target="_blank"
+  data-analytics-on="click"
+  data-analytics-event="AIESEC Header click"
+  data-analytics-category="Story form interaction"
+  >
   <header id="aiesecHeader" class="z-index-3">
     <div class="blue-fill"></div>
     <img src="/images/aiesec_light_blue_600.png" class="logo-image">
@@ -13,12 +17,18 @@
     </blockquote>
   </div>
   <div class="lower sheet z-index-2 flex-perfect-center-container">
-    <header class="center-pseudo">
-      <h1>Stamp your AIESEC story</h1>
-    </header>
+    <div class="center-pseudo">
+      <img class="stamp-img" src="images/stamp.png">
+    </div>
   </div>
-  <!-- <div class="z-index-2 floaty-circle"></div> -->
-  <button class="floaty-aiesec-logo z-index-3" data-click-toggle="open" data-click-toggle-target="#storyBox">
+  <button
+  class="floaty-aiesec-logo z-index-3"
+  data-click-toggle="open"
+  data-click-toggle-target="#storyBox"
+  data-analytics-on="click"
+  data-analytics-event="Open Form"
+  data-analytics-category="Story form interaction"
+  >
   </button>
   <!-- Parent view for all form views -->
   <div id="formContent" class="z-index-1" data-ui-view="formContent"></div>
