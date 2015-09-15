@@ -8,10 +8,6 @@
   left: 0;
   width: 100%;
   height: 50%;
-  border-bottom: 1px solid $md-clr-grey-800;
-  @media (max-resolution: 1dppx) and (min-height: 700px) {
-    border-width: 2px;
-  }
 }
 
 .story-box .lower.sheet {

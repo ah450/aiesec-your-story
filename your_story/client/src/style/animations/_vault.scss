@@ -16,10 +16,14 @@
   }
 
   .floaty-aiesec-logo {
-    animation: pulse 0.5s infinite;
-    transform-style: preserve-3d;
+    animation: pulse 0.7s infinite;
     &:hover {
       animation: none;
+    }
+  }
+   .immortal-wrap {
+    img {
+      animation: pulse 1s ease-in-out infinite;
     }
   }
 }
@@ -33,9 +37,20 @@
   }
 
   .floaty-aiesec-logo {
-    transition: all .3s ease-in;
     transform: scale(0);
     animation: none;
+  }
+
+  .floaty-logo-wrapper .immortal-wrap {
+    img {
+      animation: none;
+    }
+    .first-half {
+      animation: fade-out-left 1s ease-in forwards;
+    }
+    .second-half {
+      animation: fade-out-right 1s ease-in forwards;
+    }
   }
 }
 

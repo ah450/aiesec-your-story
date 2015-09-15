@@ -10,26 +10,36 @@
   </header>
   </a>
   <div class="upper sheet z-index-2 flex-perfect-center-container">
-    <blockquote>
-      <p>What we have done for ourselves alone dies with us; what we have done for others and the world remains and is immortal</p>
-      <br>
-      <cite>--Albert Pike</cite>
-    </blockquote>
+    <img class="quote-img" src="images/quote.png">
   </div>
   <div class="lower sheet z-index-2 flex-perfect-center-container">
     <div class="center-pseudo">
       <img class="stamp-img" src="images/stamp.png">
     </div>
   </div>
-  <button
-  class="floaty-aiesec-logo z-index-3"
-  data-click-toggle="open"
-  data-click-toggle-target="#storyBox"
-  data-analytics-on="click"
-  data-analytics-event="Open Form"
-  data-analytics-category="Story form interaction"
-  >
-  </button>
+  <div class="floaty-logo-wrapper">
+    <button
+    class="floaty-aiesec-logo z-index-3"
+    data-click-toggle="open"
+    data-click-toggle-target="#storyBox"
+    data-analytics-on="click"
+    data-analytics-event="Open Form"
+    data-analytics-category="Story form interaction"
+    >
+    </button>
+    <div class="immortal-wrap">
+      <div class="first-half">
+        <img class="i-img" src="images/i.png">
+        <img class="m1-img" src="images/m1.png">
+        <img class="m2-img" src="images/m2.png">
+      </div>
+      <div class="second-half">
+        <img class="r-img" src="images/r.png">
+        <img class="t-img" src="images/t.png">
+        <img class="a-img" src="images/a.png">
+        <img class="l-img" src="images/l.png">
+      </div>
+  </div>
   <!-- Parent view for all form views -->
   <div id="formContent" class="z-index-1" data-ui-view="formContent"></div>
 </div>

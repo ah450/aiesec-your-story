@@ -1,6 +1,104 @@
+// Typography for the landing page
 .story-box {
   .stamp-img {
     max-width: 90vw;
     height: auto;
   }
+
+  .quote-img {
+    max-width: 85vw;
+    max-height: 35vh;
+    height: auto;
+  }
+
+  .immortal-wrap {
+    img {
+      display: block;
+      position: absolute;
+      z-index: 10;
+      @media(max-width: 409px) {
+        max-height: 4em;
+        width: auto;
+      }
+    }
+    .first-half {
+      position: absolute;
+      top: calc(50% - 3em);
+      left: calc(50% - 12em);
+      transition: transform .5s ease;
+      transform-origin: 50% 50%;
+      box-sizing: border-box;
+
+    }
+    .second-half {
+      position: absolute;
+      top: calc(50% - 3em);
+      left: calc(50% + 5em);
+      transition: transform .2s ease;
+    }
+    .i-img {
+      @media(max-width: 409px) {
+        left: -1em;
+        top: 0.8em;
+      }
+      @media(min-width: 410px){
+        left: -8em;
+        top: 2em;
+      }
+    }
+    .m1-img {
+      @media(max-width: 409px) {
+        left: 0em;
+        top: 0.5em;
+        height: 3em;
+      }
+      @media(min-width: 410px){
+        left: -6em;
+        top: 1em;
+      }
+    }
+    .m2-img {
+      @media(max-width: 409px) {
+        left: 3.5em;
+      }
+    }
+    .r-img {
+      @media(max-width: 409px) {
+        left: -0.5em;
+      }
+    }
+    .t-img {
+      @media(max-width: 409px) {
+        left: 2.5em;
+        height: 3.2em;
+        top: 0.5em;
+      }
+      @media(min-width: 410px){
+        left: 6em;
+        top: 1em;
+      }
+    }
+    .a-img {
+      @media(max-width: 409px) {
+        left: 5em;
+        height: 2.7em;
+        top: 0.7em;
+      }
+      @media(min-width: 410px){
+        left: 10em;
+        top: 2em;
+      }
+    }
+    .l-img {
+      @media(max-width: 409px) {
+        left: 8em;
+        top: 1em;
+      }
+      @media(min-width: 410px){
+        left: 14em;
+        top: 2.5em;
+      }
+    }
+  }
 }
+

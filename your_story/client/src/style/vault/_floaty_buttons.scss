@@ -1,50 +1,69 @@
 // landing page floaty button
-.story-box .floaty-aiesec-logo {
+.story-box .floaty-logo-wrapper {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-sizing: border-box;
-  border-radius: 50%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   margin: auto;
-  width: 6em;
-  height: 6em;
-  overflow: hidden;
-  box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.6), 0 0 1em rgba(0, 0, 0, 0.7);
-  background-image: url('images/aiesec_letter_logo.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: all 0.2s ease;
-  &:hover {
-    width: 7em;
-    height: 7em;
-    box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.7), 0 0 1.5em 0.5em rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-  }
-}
-
-.story-box .floaty-circle {
-  position: absolute;
-  width: 14em;
-  height: 14em;
-  background-color: $md-clr-light-blue-600;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border-radius: 50%;
-  &::after {
-    content: "";
+  .floaty-aiesec-logo {
     position: absolute;
-    border-radius: inherit;
-    background-color: $md-clr-orange-600;
-    height: 10em;
-    width: 10em;
-    top: 2em;
-    left: 2em;
-    z-index: 3;
+    top: calc(50% - 2.5em);
+    @media (max-width: 409px) {
+      top: calc(50% - 3.5em);
+    }
+    left: calc(50% - 3em);
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 6em;
+    height: 6em;
+    box-shadow: inset 0px 0px 1.5em rgba(0, 0, 0, 0.6), 0px 0px 1em 1em rgba(0, 0, 0, 0.5);
+    background-image: url('images/aiesec_letter_logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 0.5s ease;
+    &:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 7em;
+      height: 7em;
+      top: -0.5em;
+      left: -0.5em;
+      transition: inherit;
+      background-color: transparent;
+      background-image: url('images/o.png');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .story-box .floaty-circle {
+    position: absolute;
+    width: 14em;
+    height: 14em;
+    background-color: $md-clr-light-blue-600;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    border-radius: 50%;
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      background-color: $md-clr-orange-600;
+      height: 10em;
+      width: 10em;
+      top: 2em;
+      left: 2em;
+      z-index: 3;
+    }
   }
 }

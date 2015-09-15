@@ -11,7 +11,7 @@
     background-color: $md-clr-light-blue-600;
     height: 100%;
     position: absolute; // show with no content and no absolute parent height
-    width: calc(100% - 200px);
+    width: calc(100% - 195px);
     @media (max-height: 650px) {
       width: calc(100% - 100px);
     }
