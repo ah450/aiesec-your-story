@@ -11,6 +11,22 @@
     height: auto;
   }
 
+  .cite-img {
+    position: absolute;
+    display: block;
+    right: 15vw;
+    top: 5em;
+    width: auto;
+    @media(max-width: 409px) {
+      top: 2em;
+      right: 1em;
+      max-height: 0.8em;
+    }
+    @media(max-width: 500px){
+      right: 2em;
+    }
+  }
+
   .immortal-wrap {
     img {
       display: block;
