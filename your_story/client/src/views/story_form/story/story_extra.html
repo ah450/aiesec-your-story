@@ -61,6 +61,9 @@ novalidate
   <div class="button-container">
       <button data-flip="#storyFormFlipper" type="button" title="back" class="btn-raised">BACK</button>
       <button type="submit" title="next"
+      data-analytics-on="click"
+      data-analytics-category="Story form interaction"
+      data-analytics-event="Form submission"
       class="btn-raised"
       data-ng-disabled="storyBack.$invalid">Next</button>
   </div>

@@ -3,7 +3,7 @@ angular.module 'aiesecValidations', []
 angular.module 'aiesec', ['ngResource', 'ui.router', 'ui.router.title',
   'aiesecTemplates', 'satellizer', 'LocalStorageModule',
   'ngFileUpload', 'ngAnimate', 'fontToFit', 'aiesecValidations',
-  'angucomplete-alt']
+  'angucomplete-alt', 'angulartics', 'angulartics.google.analytics']
 
 # Configuration blocks.
 
