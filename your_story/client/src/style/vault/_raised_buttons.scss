@@ -4,7 +4,7 @@
   color: white;
   background-color: $md-clr-light-blue-600;
   padding: 1em;
-  border-radius: 5%;
+  border-radius: 4px;
   font-size: 1.4rem;
   font-weight: $normal-weight;
   text-align: center;
@@ -14,6 +14,8 @@
   font-weight: $bold-weight;
   transition: background-color .3s ease,
     box-shadow .3s ease-out, color .3s ease;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 .btn-raised[disabled] {

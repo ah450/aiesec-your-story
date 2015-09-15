@@ -9,16 +9,12 @@ angular.module 'aiesec'
   .directive 'clickToggle', () ->
     directive =
       restrict: 'A'
-      scope:
-        klass: "@clickToggle"
-        target: "@?clickToggleTarget"
-        preventDefault: "@?preventDefault"
-      link: (scope, element) ->
+      link: (scope, element, attrs) ->
         element.click ->
           target = element
-          if scope.target
-            target = $ scope.target
-          target.toggleClass scope.klass
+          if attrs.clickToggleTarget
+            target = $ attrs.clickToggleTarget
+          target.toggleClass attrs.clickToggle
           scope.$emit 'toggled'
           scope.$apply()
-          return false if scope.preventDefault
+          return false if attrs.preventDefault

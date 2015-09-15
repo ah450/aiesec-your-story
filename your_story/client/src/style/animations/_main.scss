@@ -66,14 +66,13 @@
   }
 }
 
-// fade out with display none
-@keyframes fade-out-display {
+// fade out
+@keyframes fade-out{
   from{
     opacity: 1;
   }
   to {
     opacity: 0;
-    display: none;
   }
 }
 
@@ -96,7 +95,7 @@
     top: -13em;
   }
 }
-
+// left adjust for profile types
 @keyframes left-p-type {
   from{
     left: 0px;
@@ -106,6 +105,7 @@
   }
 }
 
+// right adjust for profile types
 @keyframes right-p-type {
   from {
     right: 0px;

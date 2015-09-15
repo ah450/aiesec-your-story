@@ -1,3 +1,4 @@
+# Shares a participant instance between the story form controllers
 angular.module 'aiesec'
   .factory 'currentCreation', ()->
     creation =

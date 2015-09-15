@@ -12,34 +12,77 @@ novalidate
     <h1 class="select-none roboto-condensed light-weight">EXPERIENCE?</h1>
   </header>
 
+<!-- Main types (Citizen, Member and Talent) -->
 <div class="type-container flex-perfect-center-container">
-  <div class="img-wrap flex-row-between">
+  <div class="type-wrap flex-row-between">
     <button type="button"
     data-click-toggle="selected citizen-selected"
     data-click-toggle-target="#experienceType"
     class="citizen type-option"
+    data-ng-click="selectProfile(pTypes.citizen_profile)"
     >
-    <img src="images/global_citizen.png">
+     <img src="images/global_citizen.png">
     </button>
     <button type="button"
     class="member type-option"
     data-click-toggle="selected member-selected"
     data-click-toggle-target="#experienceType"
+    data-ng-click="selectProfile(pTypes.member_profile)"
     >
       <img src="images/young_leaders.png">
     </button>
     <button type="button"
     data-click-toggle="selected talent-selected"
     data-click-toggle-target="#experienceType"
+    data-ng-click="selectProfile(pTypes.talent_profile)"
     class="talent type-option"
     >
-    <img src="images/talent.png">
+     <img src="images/talent.png">
     </button>
   </div>
 </div>
 
+<!-- In and out options for citizen and talent profiles -->
+<div class="out-in-opts"
+data-ng-class="{done: experienceType.$valid}"
+>
+  <header class="max-width center-pseudo">
+    <h2>{{selectedExperienceHuman}}</h2>
+  </header>
+  <div class="max-width center-pseudo">
+    <button type="button"
+    class="opt in-opt"
+    data-ng-click="selectInside()"
+    data-ng-hide="outGoing"
+    >
+      <p class="flow-text noto-serif normal-weight">
+        In Egypt
+      </p>
+    </button>
+    <button type="button"
+    class="opt out-opt"
+    data-ng-click="selectoutGoing()"
+    data-ng-hide="outGoing == false"
+    >
+      <p class="flow-text noto-serif normal-weight">
+        Outside of Egypt
+      </p>
+    </button>
+  </div>
+</div>
 
-<input type="hidden" class="display-none" data-ng-model="profileOpts.selected"
+<!-- member subtype options for member profiles -->
+<fieldset class="member-opt max-width">
+  <div class="form-line select-container" data-material-select data-options='memberExpOpts'></div>
+  <input type="hidden" id="memExptSelectInput" class="display-none"
+  data-ng-model="memberExpOpts.selected" required>
+  <span class="error-required" data-ng-class="{hidden: !memberExpOpts.required()}">This field is required.</span>
+</fieldset>
+
+  <!-- Hidden input for form validation -->
+  <input type="hidden"
+  class="display-none"
+  data-ng-model="profileOpts.selected"
   required>
   <!-- Next and previous buttons -->
   <!-- Button wrapper for positioning across all forms -->
@@ -51,6 +94,4 @@ novalidate
       data-ng-disabled="experienceType.$invalid">NEXT</button>
     </div>
   </div>
-
-
 </form>

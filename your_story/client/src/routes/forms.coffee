@@ -10,14 +10,15 @@ angular.module 'aiesec'
           localChapters
         pTypes: (profileTypes) ->
           profileTypes
-        profileTypeOpts: (profileTypeOptions) ->
-          profileTypeOptions
         $title: ->
           'AIESEC | Your Story'
 
     storyParticipantForm =
       name: 'storyForm.participant',
       url: '/info'
+      onExit: ->
+        $ 'body'
+          .addClass 'animate-view'
       views: {
         "formContent@storyForm":
           templateUrl: 'story_form/participant_form.html'
@@ -26,15 +27,7 @@ angular.module 'aiesec'
           templateUrl: 'story_form/participant/participant_basic.html'
         "experienceType@storyForm.participant":
           templateUrl: 'story_form/participant/experience_type.html'
-        }
-
-    storyMemberExtraForm =
-      name: 'storyForm.memberExperience'
-      url: '/experience'
-      views: {
-        "formContent@storyForm":
-          templateUrl: 'story_form/member_experience.html'
-          controller: 'MemberExperienceController'
+          controller: 'ExperinceTypeController'
       }
 
     storyFormStory =
@@ -69,7 +62,6 @@ angular.module 'aiesec'
     $stateProvider
       .state(storyForm)
       .state(storyParticipantForm)
-      .state(storyMemberExtraForm)
       .state(storyFormStory)
       .state(storyFormThankYou)
     $urlRouterProvider.otherwise '/share/info'
