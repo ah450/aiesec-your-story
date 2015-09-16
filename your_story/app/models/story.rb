@@ -1,8 +1,8 @@
 class Story < ActiveRecord::Base
   belongs_to :participant
   belongs_to :state
-  has_one :issue
-  has_one :company
+  has_one :issue, dependent: :destroy
+  has_one :company, dependent: :destroy
   validates_presence_of :title, :highlight, :participant, :state, :date
   accepts_nested_attributes_for :issue
   accepts_nested_attributes_for :company

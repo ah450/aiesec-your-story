@@ -1,6 +1,6 @@
 // Various animations for the vault layout
 
-#storyBox {
+.story-box {
   .upper.sheet {
     transition: transform .5s cubic-bezier(.25,.96,.46,.7);
     transform-style: preserve-3d;
@@ -18,7 +18,15 @@
   .floaty-aiesec-logo {
     animation: pulse 0.7s infinite;
     &:hover {
-      animation: none;
+      // Issue with chrome, border radius and transform transition
+      @include animation(0.3s, ease-out, forwards) {
+        from {
+          transform: scale(1);
+        }
+        to{
+          transform: scale(1.2);
+        }
+      }
     }
   }
    .immortal-wrap {
@@ -28,7 +36,7 @@
   }
 }
 
-#storyBox.open {
+.story-box.open {
   .upper.sheet {
     transform: translateY(-100%);
   }

@@ -10,7 +10,7 @@ angular.module 'aiesec'
         ctx = element[0].getContext '2d'
         rendered = false
         clearCanvas = ->
-          ctx.clearRect 0, 0, element.width(), element.height()
+          ctx.clearRect 0, 0, element[0].width, element[0].height
         drawUrl = (url) ->
           image = new Image
           image.onload = () ->

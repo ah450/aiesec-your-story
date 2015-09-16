@@ -1,5 +1,5 @@
 class Participant < ActiveRecord::Base
-  has_many :stories, dependent: :delete_all
+  has_many :stories, dependent: :destroy
   belongs_to :profile, polymorphic: true, dependent: :destroy
   belongs_to :local_chapter
   has_many :avatars, dependent: :delete_all
