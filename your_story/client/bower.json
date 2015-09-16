@@ -12,7 +12,6 @@
     "angular-resource": "~1.4.5",
     "angular-ui-router": "~0.2.15",
     "angular-ui-router-title": "~0.0.4",
-    "angularjs-datepicker": "~0.2.10",
     "angulartics": "~0.20.1",
     "angulartics-google-analytics": "~0.1.1",
     "device.js": "devicejs#~0.2.7",
@@ -28,12 +27,5 @@
   },
   "resolutions": {
     "angular": "1.4.5"
-  },
-  "overrides": {
-    "angularjs-datepicker": {
-      "main": [
-        "src/js/angular-datepicker.js"
-      ]
-    }
   }
 }

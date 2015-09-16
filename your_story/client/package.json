@@ -12,54 +12,43 @@
     "test": "gulp test",
     "db": "gulp setup-db",
     "dev": "gulp dev",
-    "rails": "gulp rails:production",
-    "deploy": "gulp deploy",
-    "dist": "gulp dist"
+    "deploy": "gulp production --dest /var/www/html",
+    "dist": "gulp production"
   },
   "bugs": {
     "url": "https://github.com/ah450/aiesec-your-story/issues"
   },
   "homepage": "",
+ "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.2",
+    "karma-jasmine": "^0.3.6"
+  },
   "dependencies": {
     "autoprefixer": "^6.0.2",
-    "bower": "^1.5.2",
     "coffeelint-stylish": "^0.1.2",
     "connect-modrewrite": "^0.8.2",
+    "fs": "0.0.2",
     "gulp": "^3.9.0",
-    "gulp-angular-templatecache": "^1.7.0",
     "gulp-bower": "0.0.10",
     "gulp-coffee": "^2.3.1",
     "gulp-coffeelint": "^0.5.0",
     "gulp-concat": "^2.6.0",
     "gulp-concat-css": "^2.2.0",
     "gulp-connect": "^2.2.0",
-    "gulp-css-url-adjuster": "^0.2.3",
     "gulp-gzip": "^1.2.0",
     "gulp-jshint": "^1.11.2",
-    "gulp-manifest": "0.0.10",
     "gulp-minify-css": "^1.2.1",
-    "gulp-minify-html": "^1.0.4",
-    "gulp-modernizr": "1.0.0-alpha",
-    "gulp-ng-annotate": "^1.1.0",
+    "gulp-modernizr": "0.0.0",
     "gulp-order": "^1.1.1",
     "gulp-postcss": "^6.0.0",
     "gulp-sass": "^2.0.4",
-    "gulp-shell": "^0.4.3",
-    "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
-    "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.9.0",
-    "minimist": "^1.2.0",
-    "require-dir": "^0.3.0",
-    "rimraf": "^2.4.3",
-    "run-sequence": "^1.1.2"
-  },
-  "devDependencies": {
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.13.9",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-coverage": "^0.5.2",
-    "karma-jasmine": "^0.3.6"
+    "merge2": "^0.3.6",
+    "rimraf": "^2.4.3"
   }
 }

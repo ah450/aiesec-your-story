@@ -6,7 +6,7 @@
       [
         "your_story/client/build",
         "your_story/client/dist",
-        "your_story/client/lib",
+        "your_story/client/libs",
         "your_story/client/temp",
         "your_story/client/node_modules",
         "your_story/client/bower_components",
