@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var gulp = require('gulp');
 var concat = require('gulp-concat');
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');

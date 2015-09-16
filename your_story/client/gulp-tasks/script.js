@@ -109,12 +109,12 @@ gulp.task('uglify-helper', ['scripts-no-templates', 'templates-min', 'polyfills-
 });
 
 gulp.task('polyfills', function() {
-  return gulp.src('polyfills/**/*.js')
+  return gulp.src('polyfills/**/*')
     .pipe(gulp.dest('build/polyfills'));
 });
 
 gulp.task('polyfills-min', function() {
-  return gulp.src('polyfills/**/*.js')
+  return gulp.src('polyfills/**/*')
     .pipe(uglify({
       mangle: false,
     }))
