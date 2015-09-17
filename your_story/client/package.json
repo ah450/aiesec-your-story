@@ -19,7 +19,7 @@
     "url": "https://github.com/ah450/aiesec-your-story/issues"
   },
   "homepage": "",
- "devDependencies": {
+  "devDependencies": {
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.9",
     "karma-chrome-launcher": "^0.2.0",
@@ -47,6 +47,7 @@
     "gulp-sass": "^2.0.4",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
+    "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.9.0",
     "merge2": "^0.3.6",
     "rimraf": "^2.4.3"
