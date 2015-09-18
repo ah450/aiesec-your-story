@@ -91,3 +91,18 @@
 }
 
 
+
+// Backgrounds
+.story-box.open {
+  background: url("images/aiesec_1.jpg"), url("images/aiesec_2.jpg");
+  background-repeat: no-repeat;
+  background-size: 50vw 100vh;
+  @include animation (1s, ease-out, forwards) {
+    from {
+      background-position: -51vw 0vh, 101vw 0vh;
+    }
+    to {
+      background-position: 0vw 0vh, 50vw 0vh;
+    }
+  }
+}

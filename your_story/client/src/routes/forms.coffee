@@ -33,6 +33,9 @@ angular.module 'aiesec'
     storyFormStory =
       name: 'storyForm.story'
       url: '/story'
+      onEnter: ->
+        $ '.story-box'
+          .addClass 'story'
       views: {
         "formContent@storyForm":
           templateUrl: 'story_form/story_form.html'
