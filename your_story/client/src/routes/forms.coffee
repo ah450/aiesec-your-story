@@ -24,8 +24,6 @@ angular.module 'aiesec'
         "formContent@storyForm":
           templateUrl: 'story_form/participant_form.html'
           controller: 'ParticipantFormController'
-        "participantBasic@storyForm.participant":
-          templateUrl: 'story_form/participant/participant_basic.html'
         "experienceType@storyForm.participant":
           templateUrl: 'story_form/participant/experience_type.html'
           controller: 'ExperinceTypeController'

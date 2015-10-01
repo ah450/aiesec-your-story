@@ -114,7 +114,7 @@ angular.module 'aiesec'
             resolve new Participant participant
             return
           failure = (response) ->
-            console.log 'failed to find participant by id', id,
+            console.error 'failed to find participant by id', id,
               response
             reject response
             return

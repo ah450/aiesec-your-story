@@ -1,11 +1,3 @@
-<form
-class="blocky-form"
-id="experienceType"
-autocompelte="off"
-name="experienceType"
-data-ng-submit="processForm()"
-novalidate
->
 <!-- This form is for selecting the EXPERIENCE type -->
 <!-- Member, talent or citizen -->
  <header class="max-width center-pseudo">
@@ -17,7 +9,7 @@ novalidate
   <div class="type-wrap flex-row-between">
     <button type="button"
     data-click-toggle="selected citizen-selected"
-    data-click-toggle-target="#experienceType"
+    data-click-toggle-target="#participantBasic"
     class="citizen type-option"
     data-ng-click="selectProfile(pTypes.citizen_profile)"
     >
@@ -26,14 +18,14 @@ novalidate
     <button type="button"
     class="member type-option"
     data-click-toggle="selected member-selected"
-    data-click-toggle-target="#experienceType"
+    data-click-toggle-target="#participantBasic"
     data-ng-click="selectProfile(pTypes.member_profile)"
     >
       <img src="images/young_leaders.png">
     </button>
     <button type="button"
     data-click-toggle="selected talent-selected"
-    data-click-toggle-target="#experienceType"
+    data-click-toggle-target="#participantBasic"
     data-ng-click="selectProfile(pTypes.talent_profile)"
     class="talent type-option"
     >
@@ -44,7 +36,7 @@ novalidate
 
 <!-- In and out options for citizen and talent profiles -->
 <div class="out-in-opts"
-data-ng-class="{done: experienceType.$valid}"
+data-ng-class="{done: participantBasic.$valid}"
 >
   <header class="max-width center-pseudo">
     <h2>{{selectedExperienceHuman}}</h2>
@@ -79,19 +71,14 @@ data-ng-class="{done: experienceType.$valid}"
   <span class="error-required" data-ng-class="{hidden: !memberExpOpts.required()}">This field is required.</span>
 </fieldset>
 
-  <!-- Hidden input for form validation -->
-  <input type="hidden"
-  class="display-none"
-  data-ng-model="profileOpts.selected"
-  required>
-  <!-- Next and previous buttons -->
-  <!-- Button wrapper for positioning across all forms -->
-  <div class="button-wrapper">
-    <div class="button-container">
-      <button data-flip="#storyFormFlipper"
-      type="button" class="btn-raised">BACK</button>
-      <button type="submit" class="btn-raised"
-      data-ng-disabled="experienceType.$invalid">NEXT</button>
-    </div>
-  </div>
-</form>
+<!-- Hidden input for form validation -->
+<input type="hidden"
+class="display-none"
+data-ng-model="profileOpts.selected"
+required>
+
+
+<div class="submit-button max-width flex-perfect-center-container">
+  <button type="button" data-ng-click="processForm()" class="btn-raised"
+  data-ng-disabled="participantBasic.$invalid">NEXT</button>
+</div>

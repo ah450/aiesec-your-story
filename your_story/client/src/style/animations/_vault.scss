@@ -68,12 +68,14 @@
 #formContent.ng-leave {
   animation: slide-out-right 1s ease-in;
   transform-style: preserve-3d;
+  overflow: hidden;
 }
 
 .animate-view {
   #formContent.ng-enter {
     animation: slide-in-left 1s ease-out;
     transform-style: preserve-3d;
+    overflow: hidden;
   }
 }
 

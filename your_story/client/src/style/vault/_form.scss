@@ -4,13 +4,10 @@
 
 .story-box #formContent {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
-  @include display-flex();
-  @include justify-content(center);
-  @include align-items(center);
+  top: 0px;
+  left: 0px;
   overflow: auto;
   .blocky-form {
     max-width: 90vw;
@@ -18,6 +15,16 @@
     position: relative;
     width: 48rem;
     height: 40rem;
+    margin: auto;
+    &#participantBasic {
+      height: auto;
+      overflow: auto;
+      margin-top: 8vh;
+      .submit-button {
+        margin-top: 10vh;
+        margin-bottom: 2vh;
+      }
+    }
   }
 }
 

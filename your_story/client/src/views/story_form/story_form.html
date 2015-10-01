@@ -1,4 +1,4 @@
-<div class="flip-container" id="storyFormFlipper" data-ng-if="!submitting">
+<div class="flip-container max-width max-height flex-perfect-center-container" id="storyFormFlipper" data-ng-if="!submitting">
   <div class="flipper">
     <div class="flip-front"
     data-ui-view="storyBasic"
@@ -14,13 +14,15 @@
   <!-- End flipper -->
 </div>
 <!-- End flip container -->
-<section class="blocky-form flex-perfect-center-container flex-column-center" data-ng-if="submitting">
-  
-  <div class="refresh-spinner">
-    <i class="material-icons">&#xE5D5;</i>
-  </div>
+<div class="max-width max-height flex-perfect-center-container">
+  <section class="blocky-form flex-perfect-center-container flex-column-center" data-ng-if="submitting">
+    
+    <div class="refresh-spinner">
+      <i class="material-icons">&#xE5D5;</i>
+    </div>
 
-  <p class="stand-by flow-text">
-  Please wait - Don't close this tab
-  </p>
-</section>
+    <p class="stand-by flow-text">
+    Please wait - Don't close this tab
+    </p>
+  </section>
+</div>

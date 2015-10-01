@@ -1,6 +1,6 @@
 //Styling for experience_type.html
 // Main profile types
-#experienceType .type-container {
+#participantBasic .type-container {
   position: relative;
   width: 100%;
   height: 70%;
@@ -27,7 +27,7 @@
 }
 
 // On desktop use hover effect for interactivity
-.desktop #experienceType {
+.desktop #participantBasic {
   .type-container {
     .type-option {
       opacity: 0.7;
@@ -41,7 +41,7 @@
 }
 
 // On mobile don't depend on hover event
-.mobile #experienceType {
+.mobile #participantBasic {
   .type-container {
     .type-option {
       box-shadow: 0 0 1em rgba(0, 0, 0, 0.7);
@@ -50,7 +50,7 @@
 }
 
 
-.desktop #experienceType.selected {
+.desktop #participantBasic.selected {
   .type-option {
     &:hover {
       // Show back image on hover after selection
@@ -64,7 +64,7 @@
 
 }
 
-.mobile #experienceType.selected {
+.mobile #participantBasic.selected {
   // always show back on mobile
   .type-option {
     opacity: 0.7;
@@ -75,7 +75,7 @@
 }
 
 // Sub option styling
-#experienceType {
+#participantBasic {
   // Options for Talent and Citizen profiles
   .out-in-opts {
     position: relative;
@@ -110,7 +110,7 @@
 }
 
 
-#experienceType.selected {
+#participantBasic.selected {
   // make header go away
   & > header {
     animation: fade-out 0.75s ease-out 1s forwards;
@@ -142,10 +142,6 @@
 
   // When member is selected
   &.member-selected {
-    // raise container
-    .type-container {
-      animation: slide-up 1s ease-out 0.5 * 2s forwards;
-    }
     .member {
       animation: blue-blink 0.5s linear 0s 2;
       &::after {
@@ -154,8 +150,8 @@
     }
     // Show member subtype select panel
     .member-opt {
-      top: -18em;
-      animation: member-opt-animation 0.5s linear 0.5 * 2 + 1.1s forwards;
+      top: -4em;
+      animation: member-opt-animation 0.5s linear 0.5 * 2 forwards;
     }
   }
 
@@ -183,12 +179,8 @@
 
   // When talent or citizen is selected
   &:not(.member-selected) {
-    // Show in-out option for talent and citizen
-    .type-container {
-      animation: slide-up 1s ease-out 0.5 * 2 + 1s forwards;
-    }
     .out-in-opts {
-      bottom: 13em;
+      top: 2em;
       animation: out-in-opt-animation 0s ease-out 0.5 * 2 + 1.3s forwards,
                 slide-in-left 0.7s cubic-bezier(0,.24,0,.44) 0.5 * 2 + 1.3s;
       header {

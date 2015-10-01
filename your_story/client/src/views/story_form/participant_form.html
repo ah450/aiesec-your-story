@@ -1,14 +1,53 @@
-<div class="flip-container" id="storyFormFlipper">
-  <div class="flipper">
-    <div class="flip-front"
-      data-ui-view="participantBasic">
-    </div>
-    <!-- End Front side -->
-    <div class="flip-back"
-    data-ui-view="experienceType">
-    </div>
-    <!-- end Back side -->
+<form
+data-ng-submit=""
+class="blocky-form"
+id="participantBasic"
+autocomplete="on"
+name="participantBasic"
+novalidate
+>
+
+  <div class="max-width center-pseudo">
+    <h1 class="roboto-condensed light-weight">ABOUT YOU</h1>
   </div>
-  <!-- end flipper -->
-</div>
-<!-- end flip container -->
+
+  <!-- Group fieldsets to evenly space them out -->
+  <div id="participantBasicFields" class="max-width flex-column-between">
+    <fieldset>
+    <!-- First and last name -->
+        <div class="form-line" data-ripple-effect>
+          <input type="text" id="fname" name="fname"
+          data-ng-model="participantFormData.fname"
+          autocapitalize="words"
+          required>
+          <label for="fname">First Name</label>
+          <span class="error-required" data-ng-class="{hidden: !participantBasic.fname.$error.required}">This field is required.</span>
+        </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-line" data-ripple-effect>
+        <input type="text" id="lname" name="lname"
+        data-ng-model="participantFormData.lname"
+        autocapitalize="words"
+        required>
+        <label for="lname">Last Name</label>
+        <span class="error-required" data-ng-class="{hidden: !participantBasic.lname.$error.required}">This field is required.</span>
+      </div>
+    </fieldset>
+
+    <fieldset class="max-width">
+    <!-- Local chapter select -->
+      <div class="form-line">
+        <div class="select-container" data-material-select data-options='lcOpts'></div>
+        <input type="hidden" id="select-input" class="display-none" data-ng-model="lcOpts.selected" required>
+        <span class="error-required" data-ng-class="{hidden: !lcOpts.required()}">This field is required.</span>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="max-width relative"
+  data-ui-view="experienceType">
+  </div>
+</form>
+
