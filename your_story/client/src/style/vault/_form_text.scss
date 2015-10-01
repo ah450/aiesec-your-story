@@ -2,7 +2,7 @@
 form input[type="text"], form input[type="password"] {
   display: block;
   position: relative;
-  left: 0;
+  left: 0px;
   width: 100%;
   background-color: transparent;
   z-index: 2;
@@ -19,7 +19,7 @@ form input[type="text"], form input[type="password"] {
     position: absolute;
     z-index: 1;
     top: 0.3rem; // compensate for font-size difference between label and input
-    left: 0;
+    left: 0px;
     width: 100%;
     background-color: transparent;
     font-family: $roboto;
@@ -76,7 +76,7 @@ form input[type="text"], form input[type="password"] {
     position: absolute;
     z-index: 1;
     top: 0.3rem; // compensate for font-size difference between label and input
-    left: 0;
+    left: 0px;
     width: 100%;
     background-color: transparent;
     font-family: $roboto;
