@@ -7,6 +7,8 @@ var gulpMinCss = require('gulp-minify-css');
 var order = require('gulp-order');
 var merge = require('merge2');
 
+
+
 function processSass() {
   var compiledSass = gulp.src('src/style/main.scss')
     .pipe(sass());

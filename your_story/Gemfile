@@ -31,6 +31,7 @@ gem 'listen'
 # gem 'unicorn'
 gem 'kaminari'
 gem 'jwt'
+gem 'scss_lint', require: false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

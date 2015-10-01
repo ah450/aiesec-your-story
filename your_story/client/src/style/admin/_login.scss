@@ -23,23 +23,26 @@
     .error {
       color: $md-clr-red-A700;
     }
-  }
-  #loginForm.processing {
-    header, fieldset, .buttons {
-      display: none
-    }
-    .refresher {
-      display: block;
-      .refresh-spinner .material-icons {
-        font-size: 10em;
+
+    &.processing {
+      @include animation (1s, ease-out, forwards) {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
-    }
-    @include animation (1s, ease-out, forwards) {
-      from {
-        opacity: 0;
+      header,
+      fieldset,
+      .buttons {
+        display: none;
       }
-      to {
-        opacity: 1;
+      .refresher {
+        display: block;
+        .refresh-spinner .material-icons {
+          font-size: 10em;
+        }
       }
     }
   }

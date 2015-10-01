@@ -10,7 +10,7 @@ angular.module 'aiesec'
       login: (info, expiration=configurations.default_token_exp) ->
         deferred = $q.defer()
         $auth.login _.extend info, {expiration: expiration}
-          .then (response) =>
+          .then (response) ->
             deferred.resolve response
           .catch (response) ->
             deferred.reject response
