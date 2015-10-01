@@ -1,5 +1,4 @@
 class Api::StoriesController < ParticipantAssocController
-  before_filter :parent_set
 
   def create
     @story = Story.new story_params

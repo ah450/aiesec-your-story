@@ -1,0 +1,6 @@
+<div id="adminWrapper">
+<section class="admin-banner" data-ng-controller="AdminBannerController">
+  <button data-ng-if="loggedIn()" type="button" data-ng-click="logout()" class="logout-button roboto-condensed">LOG OUT</button>
+</section>
+<section id="adminContent" data-ui-view="adminContent"></section>
+</div>

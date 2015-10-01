@@ -1,0 +1,46 @@
+// Admin login form styling
+#adminWrapper {
+  #loginFormWrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  #loginForm {
+    position: relative;
+    width: 20em;
+    header {
+      margin-bottom: 2.5em;
+    }
+    .form-line {
+      position: relative;
+      &:first-child {
+        margin-bottom: 1em;
+      }
+    }
+    .refresher {
+      display: none;
+    }
+    .error {
+      color: $md-clr-red-A700;
+    }
+  }
+  #loginForm.processing {
+    header, fieldset, .buttons {
+      display: none
+    }
+    .refresher {
+      display: block;
+      .refresh-spinner .material-icons {
+        font-size: 10em;
+      }
+    }
+    @include animation (1s, ease-out, forwards) {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}

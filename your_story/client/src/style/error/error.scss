@@ -1,0 +1,14 @@
+#errorWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #ecf0f1;
+  a {
+    text-decoration: underline;
+    text-transform: uppercase;
+    color: $md-clr-blue-A400;
+    font-family: $roboto-condensed;
+    font-weight: $bold-weight;
+    font-size: 1.2em;
+  }
+}

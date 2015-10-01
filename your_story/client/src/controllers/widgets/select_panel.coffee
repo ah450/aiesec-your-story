@@ -1,5 +1,5 @@
 angular.module 'aiesec'
-  .controller 'SelectPanel', ($scope)->
+  .controller 'SelectPanelController', ($scope)->
     $scope.select = (item) ->
       $scope.options.selected = item
 

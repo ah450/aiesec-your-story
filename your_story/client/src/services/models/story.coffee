@@ -10,7 +10,10 @@ angular.module 'aiesec'
       query:
         method: 'GET'
         cache: true
-        isArray: true
+        isArray: false
+      update:
+        method: 'PUT'
+  
     _Resource = $resource endpoints.stories.resourceUrl,
             resourceDefaultParams, resourceActions
     class Story extends Model
@@ -25,13 +28,13 @@ angular.module 'aiesec'
         resource = @getResource()
         $q (resolve, reject) ->
           params =
-            participant_id: participant.id
+            participant_id: participant.getID()
             id: storyID
           success = (story) ->
             resolve new Story story
             return
           failure = (response) ->
-            console.log 'failed to find story by id', particiant, storyID,
+            console.error 'failed to find story by id', particiant, storyID,
               response
             reject response
             return
@@ -51,8 +54,39 @@ angular.module 'aiesec'
       setDate: (value) ->
         @setResourceProperty 'date', value
 
+      getDate: ->
+        @getResourceProperty 'date'
+
       setHighlight: (value) ->
         @setResourceProperty 'highlight', value
+
+      @property 'highlight',
+        get: ->
+          @getHighlight()
+        set: (value) ->
+          @modified = true
+          @setHighlight value
+
+      @property 'date',
+        get: ->
+          @getDate()
+        set: (value) ->
+          @modified = true
+          @setDate value
+
+      @property 'title',
+        get: ->
+         @getTitle()
+        set: (value) ->
+          @modified = true
+          @setTitle value
+
+      getTitle: ->
+        @getResourceProperty 'title'
+          .capitalize()
+
+      getHighlight: ->
+        @getResourceProperty 'highlight'
 
       setTitle: (value) ->
         @setResourceProperty 'title', value
@@ -76,13 +110,13 @@ angular.module 'aiesec'
       # Returns a new pagination instance
       @all: (participant) ->
         params =
-          participant_id: participant.id
+          participant_id: participant.getID()
         Model.allHelper params, @getResource(), @pluralName, (resource)->
           new Story resource
 
       @allNoPagination: (participant) ->
         params =
-          participant_id: participant.id
+          participant_id: participant.getID()
         Model.allNoPaginationHelper params, @getResource(),
           @pluralName, Story
 

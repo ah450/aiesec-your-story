@@ -53,9 +53,9 @@ class Api::ParticipantsController < ApplicationController
           })}
         })
       json.merge({
-        stories: json[:stories].map { |e| e.merge({
+        stories: json[:stories].map { |e| {story: e.merge({
           url: api_participant_story_path(subject, e.id)
-          })}
+          })}}
         })
     end
 end

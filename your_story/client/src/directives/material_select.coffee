@@ -5,5 +5,5 @@ angular.module 'aiesec'
       templateUrl: 'widgets/select_panel.html',
       scope:
         options: '='
-      controller: 'SelectPanel'
+      controller: 'SelectPanelController'
 

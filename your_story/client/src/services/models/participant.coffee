@@ -10,18 +10,19 @@ angular.module 'aiesec'
       query:
         method: 'GET'
         cache: true
-        isArray: true
+        isArray: false
     _Resource = $resource endpoints.participants.resourceUrl,
             resourceDefaultParams, resourceActions
     class Participant extends Model
       constructor: (resource, exists=true) ->
         super resource
         if exists
-          @stories = (new Story story for story in @resource.stories)
+          @stories = (Story.fromObject story for story in @getResourceProperty 'stories')
+          @avatars = (new Avatar avatar for avatar in @getResourceProperty 'avatars')
         else
           @stories = []
 
-      newStory: () ->
+      newStory: ->
         story = Story.fromObject {}
         story.setParticipantID @getID()
         @stories.push(story)
@@ -51,12 +52,18 @@ angular.module 'aiesec'
 
       getLastName: ->
         @getResourceProperty 'last_name'
+          .capitalize()
 
       getFirstName: ->
         @getResourceProperty 'first_name'
+          .capitalize()
 
       getFullName: ->
         [@getFirstName(), @getLastName()].join ' '
+
+      getLCName: ->
+        @getResourceProperty 'local_chapter'
+          .name
 
       setType: (pType, outgoing=null) ->
         profile_attributes = {}
@@ -99,7 +106,7 @@ angular.module 'aiesec'
         _Resource
 
       @findById: (id) ->
-        resource = @getResource
+        resource = @getResource()
         $q (resolve, reject) ->
           params =
             id: id
@@ -114,20 +121,22 @@ angular.module 'aiesec'
           resource.get params, success, failure
           return
 
-      @all: () ->
-        Model.allHelper {}, @getResource, @pluralName, (resource) ->
+      @all: ->
+        Model.allHelper {}, @getResource(), @pluralName, (resource) ->
           new Participant resource
 
-      @allNoPagination: () ->
-        Model.allNoPaginationHelper params, @getResource,
+      @allNoPagination: ->
+        Model.allNoPaginationHelper params, @getResource(),
           @pluralName, Participant
 
       @fromObject: (data) ->
         resource = @getResource()
         namespacedData =
           participant: data
-        return new Participant(new resource(namespacedData), false)
+        new Participant(new resource(namespacedData), false)
 
       @pluralName: 'participants'
 
+      @allSpecial: ->
+        @fromObject({id: 'all'})
 

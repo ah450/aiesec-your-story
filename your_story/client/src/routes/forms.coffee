@@ -1,9 +1,10 @@
 angular.module 'aiesec'
-  .config ($stateProvider, $urlRouterProvider) ->
+  .config ($stateProvider) ->
 
     storyForm =
       name: 'storyForm'
       url: '/share'
+      abstract: true
       templateUrl: 'story_form/root.html'
       resolve:
         lcs: (localChapters) ->
@@ -67,5 +68,3 @@ angular.module 'aiesec'
       .state(storyParticipantForm)
       .state(storyFormStory)
       .state(storyFormThankYou)
-    $urlRouterProvider.otherwise '/share/info'
-    $urlRouterProvider.when '/share', '/share/info'

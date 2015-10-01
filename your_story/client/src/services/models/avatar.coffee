@@ -3,7 +3,8 @@ angular.module 'aiesec'
     class Avatar
       constructor: (@data) ->
       
-      getUrl: ()->
-        @data.url
+      @property 'url',
+        get: ->
+          @data.url
 
 

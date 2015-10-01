@@ -4,6 +4,6 @@ angular.module 'aiesec'
     directive =
       restrict: 'AE'
       templateUrl: 'widgets/file_gallery.html'
-      controller: 'FileGallery'
+      controller: 'FileGalleryController'
       scope:
         files: '=galleryFiles'

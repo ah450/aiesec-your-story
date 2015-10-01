@@ -1,9 +1,9 @@
 angular.module 'aiesec'
   .factory 'Pagination', ($q) ->
     class Pagination
-      constructor: (@resource, @pluralName, @pageSize=10,  @params={},
+      constructor: (@resource, @pluralName, @params={}, @factory=_.identity, @pageSize=10,
         @currentPage=1, @totalPages=0,
-        @factory=_.identity, @data=[],
+        @data=[],
         @loaded=false) ->
       
       # Access element
@@ -12,13 +12,12 @@ angular.module 'aiesec'
           if not @loaded or @currentPage != page
             @load page, resolve, reject, index
           else
-            resolve data[index]
-          return
+            resolve @data[index]
         
       # Function used internally to load pages
       load: (page, resolve, reject, index) ->
         @loaded = false
-        success = (page) ->
+        success = (page) =>
           @data = (@factory item for item in page[@pluralName])
           @currentPage = page['page']
           @totalPages = page['total_pages']
@@ -38,17 +37,14 @@ angular.module 'aiesec'
 
       # Handels failure for load
       loadFailure: (reject, response) ->
-        console.log 'failed to load page', @currentPage, 'for', @resource
+        console.error 'failed to load page', @currentPage, 'for', @resource
         reject @data
         return
 
       # Sets the page
       page: (pageNum) ->
-        return @currentPage if not pageNum
-        if @currentPage != pageNum
-          $q (resolve, reject) ->
-            if not @loaded or @currentPage != page
-              @load page, resolve, reject
-            else
-              resolve data[index]
-            return
+        $q (resolve, reject) =>
+          if not @loaded or @currentPage != pageNum
+            @load pageNum, resolve, reject
+          else
+            resolve @data

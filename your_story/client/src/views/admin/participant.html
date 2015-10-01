@@ -1,0 +1,31 @@
+<div class="participant-wrapper">
+<section class="participant">
+  <div data-ng-include="'partials/participant_slug.html'"></div>
+  <form data-ng-submit=""
+  novalidate
+  name="storyEdit"
+  class="story">
+    <header class="max-width center-pseudo">
+      <h2 class="roboto-condensed light-weight" contenteditable data-ng-model="story.title" required></h2>
+    </header>
+    <p class="right">{{story.getDate() | date : 'longDate'}}</p>
+    <div class="controls clear-both">
+      <button type="button" class="btn-fab" data-ng-click="save()" data-ng-disabled="!canSave()"><i class="material-icons">&#xE161;</i></button>
+    </div>
+    <div class="clear-both highlight" contenteditable data-ng-model="story.highlight"
+    data-minwords="50"
+    data-maxwords="100"
+    required
+    ></div>
+  </form>
+</section>
+<section class="avatars-gallery">
+  <figure class="flex-perfect-center-container" data-ng-repeat="avatar in participant.avatars">
+    <img data-ng-src="{{avatar.url}}">
+  </figure>
+  <div class="controls flex-row-between">
+    <button type="button" class="btn-fab" data-ng-click="prevImage()"><i class="material-icons">&#xE045;</i></button>
+    <button type="button" class="btn-fab" data-ng-click="nextImage()"><i class="material-icons">&#xE044;</i></button>
+  </div>
+</section>
+</div>

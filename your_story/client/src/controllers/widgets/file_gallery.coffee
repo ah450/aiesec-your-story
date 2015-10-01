@@ -1,6 +1,6 @@
 # Controller for multi file upload image preview widget
 angular.module 'aiesec'
-  .controller 'FileGallery', ($scope) ->
+  .controller 'FileGalleryController', ($scope) ->
     $scope.urls = []
     $scope.current = 0
     $scope.nextDisabled = true

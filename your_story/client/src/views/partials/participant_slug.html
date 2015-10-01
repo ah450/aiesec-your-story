@@ -1,0 +1,10 @@
+<header class="max-width center-pseudo">
+  <a ui-sref-active="active" data-ui-sref="admin.participant({participantID: participant.getID()})">
+    <h2 class="roboto-condensed light-weight">{{participant.getFullName()}}</h2>
+  </a>
+</header>
+<section class="detail roboto">
+  <p>Local Chapter: {{participant.getLCName()}}</p>
+  <p>Experience Type: {{participant.getType() | profileType : pTypes}}</p>
+  <p>Subtype: {{participant.getProfile() | profileSubtype}}</p>
+</section>

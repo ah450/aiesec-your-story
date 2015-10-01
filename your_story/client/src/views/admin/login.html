@@ -1,0 +1,44 @@
+<div id="loginFormWrapper" class="flex-perfect-center-container">
+  <form
+  data-ng-submit="login()"
+  id="loginForm"
+  name="loginForm"
+  novalidate
+  data-ng-class="{'processing': processing}"
+  >
+    <header>
+      <h2 class="roboto-condensed light-weight">ENTER CREDENTIALS</h2>
+    </header>
+    <fieldset>
+      <div class="form-line">
+        <input type="text" id="email" name="email"
+        data-ng-model="userData.email"
+        required
+        >
+        <label for="email">Email</label>
+        <span class="error-required" data-ng-class="{hidden: !loginForm.email.$error.required}">This field is required</span>
+      </div>
+      <div class="form-line">
+        <input type="password" id="password" name="password"
+        data-ng-model="userData.password"
+        required
+        >
+        <label>Password</label>
+        <span class="error-required" data-ng-class="{hidden: !loginForm.password.$error.required}">This field is required</span>
+      </div>
+    </fieldset>
+    <p class="error">{{error}}</p>
+    <div class="buttons max-width center-pseudo">
+      <div class="center-pseudo">
+        <button type="submit" class="btn-raised"
+        data-ng-disabled="loginForm.$invalid"
+        >Login</button>
+      </div>
+    </div>
+    <div class="refresher max-width max-height flex-perfect-center-container">
+      <div class="refresh-spinner">
+        <i class="material-icons">&#xE5D5;</i>
+      </div>
+    </div>
+  </form>
+</div>

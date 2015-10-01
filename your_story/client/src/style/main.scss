@@ -30,6 +30,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+a.active {
+  pointer-events: none;
+  cursor: default;
+}
+
 // Webfont
 
 .wf-loading {
@@ -40,4 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 @import 'widgets/main';
 @import 'vault/main';
 @import 'animations/main';
-@import 'utility/main.scss';
+@import 'utility/main';
+@import 'admin/admin';
+@import 'error/error';

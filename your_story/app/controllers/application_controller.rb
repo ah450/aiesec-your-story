@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   respond_to :json
   before_action :set_resource, only: [:destroy, :show, :update]
   before_action :authenticate, :authorize, only: [:destroy, :update]
+  after_filter :no_cache, only: [:destory, :update]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ArgumentError, with: :argument_error
   rescue_from ActionController::ParameterMissing, with: :argument_error
@@ -51,6 +52,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def no_cache
+      response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate" # HTTP 1.1.
+      response.headers["Pragma"] = "no-cache" # HTTP 1.0.
+      response.headers["Expires"] = "0" # Proxies.
+    end
+
     # Returns the resource from the created instance variable
     # @return [Object]
     def get_resource
@@ -82,7 +89,7 @@ class ApplicationController < ActionController::Base
         total_pages:  resources.total_pages,
         page_size: resources.size
       }
-      json[resource_name.pluralize] = resources.map { |s| json_builder(s) }
+      json[resource_name.pluralize] = resources.map { |s| {resource_name => json_builder(s)} }
       render json: json, status: status
     end
 
@@ -166,7 +173,7 @@ class ApplicationController < ActionController::Base
 
     # Set Header and response
     def prepare_unauthorized_response
-      response['WWW-Authenticate'] = 'Token realm="ImpactAppUser"'
+      response.headers['WWW-Authenticate'] = 'Token realm="ImpactAppUser"'
       response.status = :unauthorized
     end
 
