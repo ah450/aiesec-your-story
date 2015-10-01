@@ -7,7 +7,7 @@ angular.module 'aiesec'
         @history.push data
 
       pop: ->
-        @history.pop
+        @history.pop()
 
       @property 'empty',
         get: ->
