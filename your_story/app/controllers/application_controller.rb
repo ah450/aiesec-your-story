@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  respond_to :json
   before_action :set_resource, only: [:destroy, :show, :update]
   before_action :authenticate, :authorize, only: [:destroy, :update]
   after_filter :no_cache, only: [:destory, :update]
@@ -183,5 +182,10 @@ class ApplicationController < ActionController::Base
 
     def plural_resource_variable
       "@#{resource_name.pluralize}"
+    end
+
+
+    def json_builder(subject)
+      subject.json_builder
     end
 end

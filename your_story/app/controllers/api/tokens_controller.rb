@@ -1,6 +1,5 @@
 class Api::TokensController < ApplicationController
   skip_filter :authorize, :authenticate, only: [:create]
-  after_filter
   
   def create
     user = User.find_by_email(token_params[:email])
