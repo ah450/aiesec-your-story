@@ -158,6 +158,9 @@ class ApplicationController < ActionController::Base
       authenticate_with_http_token do |token, options|
         @current_user = User.find_by_token token
       end
+      if @current_user.nil?
+        raise AuthenticationError
+      end
     end
 
     # To be overriden by subclasses
