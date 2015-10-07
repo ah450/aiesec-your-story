@@ -155,10 +155,15 @@ class ApplicationController < ActionController::Base
 
     # Attempts to set current user
     def authenticate
-      authenticate_with_http_token do |token, options|
+      pattern = /^Bearer /
+      header  = request.headers["Authorization"] # <= env
+      if header && header.match(pattern)
+        token = header.gsub(pattern, '')
         @current_user = User.find_by_token token
-      end
-      if @current_user.nil?
+        if @current_user.nil?
+          raise AuthenticationError
+        end
+      else
         raise AuthenticationError
       end
     end
