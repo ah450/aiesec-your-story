@@ -155,7 +155,7 @@ class ApplicationController < ActionController::Base
 
     # Attempts to set current user
     def authenticate
-      authenticate_with_http_token("ImpactAppUser") do |token, options|
+      authenticate_with_http_token do |token, options|
         @current_user = User.find_by_token token
       end
     end
