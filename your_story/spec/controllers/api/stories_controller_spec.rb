@@ -28,6 +28,26 @@ describe Api::StoriesController do
     end
   end
 
+  describe "update" do
+    let(:story){FactoryGirl.create(:story)}
+    let(:user){FactoryGirl.create(:user)}
+    it "Should not allow unauthorized updates" do
+      title = "Hello this is a new title"
+      put :update, id: story.id, participant_id: story.participant.id, story: {title: title}
+      expect(response).to be_unauthorized
+      story.reload
+      expect(story.title).to_not eql title
+    end
+    it "Should allow authorized updates" do
+      request.headers['Authorization'] = "Bearer #{user.token}"
+      title = "Hello this is a new title"
+      put :update, id: story.id, participant_id: story.participant.id, story: {title: title}
+      expect(response).to be_success
+      story.reload
+      expect(story.title).to eql title
+    end
+  end
+
 
   describe "show" do
     let(:story) {FactoryGirl.create(:story)}
