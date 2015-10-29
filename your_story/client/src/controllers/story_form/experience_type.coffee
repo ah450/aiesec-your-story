@@ -52,7 +52,7 @@ angular.module 'aiesec'
       $scope.memberExpOpts.selected = true
 
     $scope.memberExpOpts =
-      data: memberProfileTypes
+      data: memberProfileTypes.reverse()
       dirty: false
       required: ->
         @dirty && angular.isUndefined @selected

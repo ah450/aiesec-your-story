@@ -12,7 +12,7 @@
     "test": "gulp test",
     "db": "gulp setup-db",
     "dev": "gulp dev",
-    "deploy": "gulp production --dest /var/www/html",
+    "deploy": "gulp production --dest ../public",
     "dist": "gulp production"
   },
   "bugs": {

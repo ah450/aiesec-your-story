@@ -5,25 +5,23 @@
 .story-box #formContent {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
+  max-height: 90vh;
   top: 0px;
   left: 0px;
-  overflow: auto;
+  top: 8vh;
+  overflow: hidden;
   .blocky-form {
     max-width: 90vw;
-    overflow: hidden;
+    top: 5vh;
     position: relative;
-    width: 48rem;
-    height: 40rem;
+    width: 80vw;
+    max-width: 40rem;
+    font-size: 0.8rem;
+    height: 75vh;
     margin: auto;
     &#participantBasic {
       height: auto;
-      overflow: auto;
-      margin-top: 8vh;
-      .submit-button {
-        margin-top: 10vh;
-        margin-bottom: 2vh;
-      }
     }
   }
 }
@@ -109,7 +107,6 @@
 // Wrapper for participant basic's fieldsets
 #participantBasicFields {
   height: 60%;
-  margin-top: 5%;
 }
 
 // wrapper for story back form's fieldsets

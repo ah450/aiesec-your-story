@@ -11,8 +11,8 @@ angular.module 'aiesec'
     $scope.lcOpts =
       data: lcs
       dataDisplay: (item) ->
-        item.name if item
-      title: 'Home LC in Egypt'
+        item.local_chapter.name if item
+      title: 'Home LC in Egypt (were intern in)'
       dirty: false
       required: ->
         @dirty && angular.isUndefined @selected
@@ -21,7 +21,7 @@ angular.module 'aiesec'
 
     $scope.$watch 'lcOpts.selected', (newValue) ->
       if newValue
-        $scope.participant.setLC newValue
+        $scope.participant.setLC newValue.local_chapter
 
     # Watch input fields
     # keep participant up to date
