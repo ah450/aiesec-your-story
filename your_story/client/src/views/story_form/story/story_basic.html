@@ -6,7 +6,7 @@
   >
 
   <header class="max-width center-pseudo select-none">
-    <h3 class="roboto-condensed light-weight">Highlight your {{experienceType()}} experience</h2>
+    <h3 class="roboto-condensed light-weight flow-text">Highlight your {{experienceType()}} experience</h2>
   </header>
 
   <fieldset>
@@ -23,8 +23,11 @@
   </fieldset>
 
   <fieldset>
+      <legend>
+        <h4 class="roboto-condensed light-weight flow-text">Why was this experience important</h4>
+      </legend>
       <div data-ripple-effect class="text-container">
-        <textarea placeholder="Talk about the journey you went through"
+        <textarea placeholder="Talk about your challenges and how you developed."
         spellcheck="true"
         data-ng-model="storyFormData.highlight"
         name="highlight"

@@ -1,6 +1,7 @@
 angular.module 'aiesec'
   .controller 'AdminParticipantsController', ($scope, lcs, pTypes, participantPages) ->
     $scope.hasPages = participantPages.totalPages > 1
+    $scope.totalPages = participantPages.totalPages
     $scope.goPage = (num) ->
       $scope.currentPage = num
       $scope.loadingPage = true

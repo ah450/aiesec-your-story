@@ -1,4 +1,6 @@
-
+/*
+Admin Participant list view styles
+ */
 #adminWrapper {
   a {
     color: $md-clr-blue-600;
@@ -35,23 +37,30 @@
   }
   // Participant list styling
   .participants-list {
+    max-height: 80vh;
+    overflow: auto;
     .participant {
       border: 1px solid $md-clr-light-blue-A100;
       &:first-child {
         margin-top: 0px;
       }
     }
+    .page-controls {
+
+    }
   }
 
   // Particpant detail styling
 
   .participant-wrapper {
+    overflow: auto;
     margin-left: 5%;
     width: 95%;
     font-size: 2em;
     .participant {
       display: inline-block;
       width: 45%;
+      overflow: auto;
       .story {
         width: 95%;
         margin: 1em auto 0 auto;

@@ -5,24 +5,23 @@
 .story-box #formContent {
   position: absolute;
   width: 100vw;
-  height: 90vh;
-  max-height: 90vh;
-  top: 0px;
+  height: 92vh;
   left: 0px;
   top: 8vh;
-  overflow: hidden;
+  overflow: auto;
+  
   .blocky-form {
-    max-width: 90vw;
     top: 5vh;
     position: relative;
     width: 80vw;
-    max-width: 40rem;
+    max-width: 90vw;
     font-size: 0.8rem;
-    height: 75vh;
+    height: auto;
     margin: auto;
-    &#participantBasic {
-      height: auto;
-    }
+  }
+
+  #storyForm {
+    min-height: 80vh;
   }
 }
 
@@ -86,6 +85,12 @@
 // Space between firstfieldset and header
 #storyForm fieldset:first-child {
   margin-top: 2em;
+}
+
+#storyForm {
+  legend {
+    margin-left: 0.5rem;
+  }
 }
 
 // Style validations for higlight text field
