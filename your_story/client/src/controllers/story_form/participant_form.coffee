@@ -12,7 +12,7 @@ angular.module 'aiesec'
       data: lcs
       dataDisplay: (item) ->
         item.local_chapter.name if item
-      title: 'Home LC in Egypt (were intern in)'
+      title: 'Home LC in Egypt (That hosted you)'
       dirty: false
       required: ->
         @dirty && angular.isUndefined @selected
