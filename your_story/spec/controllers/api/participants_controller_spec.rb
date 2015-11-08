@@ -76,4 +76,37 @@ describe Api::ParticipantsController do
     end
   end
 
+  describe "destroy" do
+    let(:admin){FactoryGirl.create(:user)}
+    let(:participant){FactoryGirl.create(:participant)}
+    let(:story){FactoryGirl.create(:story, participant: participant)}
+
+    context "with credentials" do
+      before(:each) do
+        request.headers['Authorization'] = "Bearer #{admin.token}"
+      end
+      it "should delete participant" do
+        partID = participant.id
+        delete :destroy, id: participant.id
+        expect(Participant.exists?(partID)).to be false
+      end
+      it "should delete associated avatars" do
+        avatarsID = participant.avatars.map { |a| a.id }
+        delete :destroy, id: participant.id
+        avatarsID.each { |id| expect(Avatar.exists?(id)).to be false}
+      end
+      it "should delete associated stories" do
+        storyID = story.id
+        delete :destroy, id: participant.id
+        expect(Story.exists?(storyID)).to be false
+      end
+    end
+    context "without credentials" do
+      it "should response with unauthorized" do
+        delete :destroy, id: participant.id
+        expect(response).to be_unauthorized
+      end
+    end
+  end
+
 end

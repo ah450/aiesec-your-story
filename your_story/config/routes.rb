@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :participants, only: [:index, :create, :show] do
+    resources :participants, only: [:index, :create, :show, :destroy] do
       resources :stories, only: [:index, :create, :show, :update]
       resources :avatars, only: [:create, :show, :index]
     end

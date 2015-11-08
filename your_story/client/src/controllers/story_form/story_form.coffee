@@ -79,10 +79,7 @@ angular.module 'aiesec'
         0
 
     $scope.currentMax = ->
-      if $scope.numWords() >= 50
-        100
-      else
-        50
+      250
      
     $scope.submitting = false
 
