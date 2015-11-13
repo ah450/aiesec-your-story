@@ -45,9 +45,50 @@ Admin Participant list view styles
         margin-top: 0px;
       }
     }
-    .page-controls {
-
+  }
+  .page-refresh {
+    width: 10em;
+    height: 10em;
+    .refresh-spinner {
+      .material-icons {
+        font-size: 8em;
+      }
     }
+  }
+  .page-controls {
+    width: 75%;
+    @include display-flex();
+    @include justify-content(space-between);
+    @include flex-flow(row, nowrap);
+    @include align-items(center);
+    margin: auto;
+    .page-number {
+      color: $md-clr-light-blue-A700;
+      font-family: $noto-serif;
+      font-weight: $normal-weight;
+    }
+  }
+
+  button[class^=pagination-arrow] {
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-top: 2em solid transparent;
+    border-bottom: 2em solid transparent;
+    background-color: transparent;
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: $md-clr-grey-500;
+    }
+  }
+
+  .pagination-arrow-left {
+    border-right: 2em solid $md-clr-blue-500;
+
+  }
+
+  .pagination-arrow-right {
+    border-left: 2em solid $md-clr-blue-500;
   }
 
   // Particpant detail styling

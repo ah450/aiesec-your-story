@@ -1,3 +1,4 @@
+<div data-ng-if="!loadingPage">
 <section id="results">
   <ul class="participants-list">
     <li class="participant" data-ng-repeat="participant in data">
@@ -10,10 +11,23 @@
   </p>
 
 <section class="page-controls" data-ng-if="hasPages">
-  
+  <button data-ng-disabled="currentPage == 1" data-ng-click="goPage(currentPage - 1)" class="pagination-arrow-left"></button>
+  <span class="page-number">{{currentPage}}/{{totalPages}}</span>
+  <button data-ng-click="goPage(currentPage + 1)" data-ng-disabled="currentPage == totalPages" class="pagination-arrow-right"></button>
 </section>
 
 </section>
 <section id="filters">
 
 </section>
+</div>
+<div class="max-screen flex-perfect-center-container" data-ng-if="loadingPage">
+  <section class="page-refresh flex-perfect-center-container flex-column-center" >
+    <div class="refresh-spinner">
+      <i class="material-icons">&#xE5D5;</i>
+    </div>
+    <p class="stand-by flow-text">
+    Loading..
+    </p>
+  </section>
+</div>
