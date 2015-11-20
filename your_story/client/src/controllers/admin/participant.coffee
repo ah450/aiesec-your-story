@@ -1,8 +1,9 @@
 angular.module 'aiesec'
-  .controller 'AdminParticipantController', ($scope, participant, pTypes) ->
+  .controller 'AdminParticipantController', ($scope, participant, pTypes, $state) ->
     $scope.pTypes = pTypes
     $scope.participant = participant
     $scope.story = participant.stories[0]
+    $scope.deleting = false
     $scope.canSave = ->
       return $scope.story.modified
 
@@ -27,3 +28,9 @@ angular.module 'aiesec'
       currentIndex = (currentIndex + 1) % participant.avatars.length
       figures.eq(currentIndex).addClass 'active'
       return
+
+    $scope.delete = ->
+      $scope.deleting = true
+      $scope.participant.delete().then ->
+        $state.go 'admin.participants', {}, {reload: true}
+          

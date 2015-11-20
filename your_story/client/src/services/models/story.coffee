@@ -54,6 +54,12 @@ angular.module 'aiesec'
       setDate: (value) ->
         @setResourceProperty 'date', value
 
+      setDuration: (value) ->
+        @setResourceProperty 'duration', value
+
+      getDuration: ->
+        @getResourceProperty 'duration'
+
       getDate: ->
         @getResourceProperty 'date'
 

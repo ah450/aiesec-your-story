@@ -81,7 +81,7 @@
         data-ng-model-options="{allowInvalid: true}"
         required
         >
-        <label for="year">YEAR (YYYY)</label>
+        <label for="year">Start Year (YYYY)</label>
         <span class="error-required display-block"
         data-ng-class='{hidden: storyForm.day.$valid}'
         >
@@ -112,6 +112,26 @@
           </span>
           <span ng-show="storyForm.month.$error.range">
           Enter a number between 1 and 12.
+          </span>
+        </span>
+      </div>
+      <!-- Duration -->
+      <div class="duration-field">
+        <input type="text" id="duration" name="duration"
+        data-ng-model="storyFormData.duration"
+        autocapitalize="false"
+        data-number-only
+        data-ng-model-options="{allowInvalid: true}"
+        required>
+        <label for="duration">Duration in months</label>
+        <span class="error-required display-block"
+        data-ng-class='{hidden: storyForm.duration.$valid}'
+        >
+          <span ng-show="storyForm.duration.$error.required">
+          This field is required.
+          </span>
+          <span ng-show="storyForm.duration.$error.numberOnly">
+          Enter a number i.e 4.
           </span>
         </span>
       </div>

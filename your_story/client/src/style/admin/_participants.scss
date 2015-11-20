@@ -97,7 +97,7 @@ Admin Participant list view styles
     overflow: auto;
     margin-left: 5%;
     width: 95%;
-    font-size: 2em;
+    font-size: 1em;
     .participant {
       display: inline-block;
       width: 45%;
@@ -106,8 +106,9 @@ Admin Participant list view styles
         width: 95%;
         margin: 1em auto 0 auto;
         .highlight {
-          padding: 0.5em;
-          height: 10em;
+          padding: 0.5rem;
+          height: 10rem;
+          font-size: 2em;
           width: calc(100% - 0.5em);
           overflow: auto;
         }

@@ -1,5 +1,6 @@
-<div class="participant-wrapper">
+<div class="participant-wrapper" data-ng-if="!deleting">
 <section class="participant">
+  <button data-ng-click="delete()" class="btn-fab right">DELETE</button>
   <div data-ng-include="'partials/participant_slug.html'"></div>
   <form data-ng-submit=""
   novalidate
@@ -28,4 +29,15 @@
     <button type="button" class="btn-fab" data-ng-click="nextImage()"><i class="material-icons">&#xE044;</i></button>
   </div>
 </section>
+</div>
+
+<div class="max-screen flex-perfect-center-container" data-ng-if="deleting">
+  <section class="page-refresh flex-perfect-center-container flex-column-center" >
+    <div class="refresh-spinner">
+      <i class="material-icons">&#xE5D5;</i>
+    </div>
+    <p class="stand-by flow-text">
+    Loading..
+    </p>
+  </section>
 </div>

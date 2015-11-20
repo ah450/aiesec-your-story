@@ -48,6 +48,16 @@ angular.module 'aiesec'
           @resource.$save success, failure
           return
 
+      delete: ->
+        $q (resolve, reject) =>
+          success = ->
+            resolve null
+          failure = (res) =>
+            console.error 'failed to delete model'
+            console.error res, @
+            reject res
+          @resource.$delete success, failure
+
       update: ->
         @modified = false
         $q (resolve, reject) =>

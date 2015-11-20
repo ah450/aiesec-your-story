@@ -9,7 +9,7 @@ angular.module 'aiesec'
         cache: true
       query:
         method: 'GET'
-        cache: true
+        cache: false
         isArray: false
     _Resource = $resource endpoints.participants.resourceUrl,
             resourceDefaultParams, resourceActions

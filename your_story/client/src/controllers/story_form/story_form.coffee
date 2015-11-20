@@ -110,6 +110,7 @@ angular.module 'aiesec'
       story.setTitle $scope.storyFormData.title
       story.setHighlight $scope.storyFormData.highlight
       story.setStateID $scope.storyFormData.state.id
+      story.setDuration $scope.storyFormData.duration
       currentCreation.storyPromise = story.save()
 
     # Creates an avatar
