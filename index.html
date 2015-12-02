@@ -15,16 +15,22 @@
     }
   </style>
   <script src="three.min.js"></script>
+  <script src="OrbitControls.js"></script>
 </head>
 <body>
 <script>
-var scene = new THREE.Scene()
+    var scene = new THREE.Scene()
     var aspectRatio = window.innerWidth / window.innerHeight
     var camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 10000)
     camera.position.z = 10
     var renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setClearColor(0)
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.25
+    controls.enableZoom = false
 
     var clock = new THREE.Clock()
     var time = 0
