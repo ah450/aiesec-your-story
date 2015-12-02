@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIESEC</title>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+  <script src="three.min.js"></script>
+</head>
+<body>
+<script>
+var scene = new THREE.Scene()
+    var aspectRatio = window.innerWidth / window.innerHeight
+    var camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 10000)
+    camera.position.z = 10
+    var renderer = new THREE.WebGLRenderer()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setClearColor(0)
+
+    var clock = new THREE.Clock()
+    var time = 0
+    var earthOrbitRadius = 100,
+        earthOrbitAngle = 0
+        earthOrbitSpeed = 0.5
+    document.body.appendChild(renderer.domElement)
+
+    var group = new THREE.Object3D()
+
+
+    scene.add(new THREE.AmbientLight(0x404040))
+
+    var ambientLight = new THREE.AmbientLight(0xFFFF99)
+    scene.add(ambientLight)
+
+    var light = new THREE.PointLight(0xFFFFFF, 1, 0)
+    light.position.set(0, 0, 10)
+    scene.add(light)
+
+
+    var geometry = new THREE.SphereGeometry(2, 32, 32)
+    var texture = THREE.ImageUtils.loadTexture("images/earthmap1k.jpg")
+    var bumpTexture = THREE.ImageUtils.loadTexture('images/earthbump1k.jpg')
+    var specularMap = THREE.ImageUtils.loadTexture('images/earthspec1k.jpg')
+
+    var material = new THREE.MeshPhongMaterial({
+        color: 0xaaaaaa,
+        ambient: 0xaaaaaa,
+        specular: 0x333333,
+        map: texture,
+        bumpMap: bumpTexture,
+        bumpScale: 0.5,
+        shininess: 10,
+        specularMap: specularMap
+    })
+
+    var earth = new THREE.Mesh(geometry, material)
+    var cloudGeometry = new THREE.SphereGeometry(0.5, 32, 32)
+    var cloudMaterial = new THREE.MeshPhongMaterial({
+
+    })
+
+    var starFieldGeometry  = new THREE.SphereGeometry(90, 32, 32)
+    // create the material, using a texture of startfield
+    var starFieldMaterial = new THREE.MeshBasicMaterial({
+      map: THREE.ImageUtils.loadTexture('images/galaxy_starfield.png'),
+      side: THREE.BackSide
+    })
+    // create the mesh based on geometry and material
+    var starField  = new THREE.Mesh(starFieldGeometry, starFieldMaterial)
+    scene.add(starField)
+    group.add(earth)
+    scene.add(group)
+
+    // starField.position.z = -10;
+    function render() {
+        requestAnimationFrame(render)
+
+        var delta = clock.getDelta()
+        group.rotation.y += 0.1 * delta
+
+        var time = clock.getElapsedTime() * 0.5
+        // group.position.x = Math.cos(time) * 5
+        // group.position.z = Math.sin(time) * 5
+
+        renderer.render(scene, camera)
+    }
+
+    render()
+</script>
+</body>
+</html>
