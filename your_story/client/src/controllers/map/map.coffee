@@ -84,7 +84,7 @@ angular.module 'aiesec'
             shininess: 1
           markerObject = new THREE.Mesh mesh.geometry, material
           markerObject.participant = participant
-          markerObject.scale.set 0.2, 0.2, 0.2
+          markerObject.scale.set 0.5, 0.5, 0.5
           markerObject.position.add posVector
           markerObject.lookAt new THREE.Vector3 0, 0, 0
           markerObject.castShadow = true
@@ -173,13 +173,14 @@ angular.module 'aiesec'
 
 
     $scope.moveUp =  (speed) ->
-      camera.rotation.x -= speed
-      # target = cameraParent.rotation.x - speed
-      # updateFunction = (value) ->
-      #   cameraParent.rotation.x = value
-      # animation = new Animation 'easeOutQuart', cameraParent.rotation.x,
-      #   target, 100, updateFunction
-      # registerAnimation animation
+      # cameraParent.rotation.x -= speed
+      # console.log cameraParent.rotation.x
+      target = cameraParent.rotation.x - speed
+      updateFunction = (value) ->
+        cameraParent.rotation.x = value
+      animation = new Animation 'easeOutQuart', cameraParent.rotation.x,
+        target, 100, updateFunction
+      registerAnimation animation
 
     $scope.moveDown =  (speed) ->
       $scope.moveUp -speed
@@ -240,23 +241,38 @@ angular.module 'aiesec'
 
     MOUSE =
       start: null
-      end: null
+      rotating: false
 
     mouseDownHandler = (event) ->
       if event.which is 1
-        if start is null
-          MOUSE.start = [event.clientX, event.clientY]
+          MOUSE.rotating = true
+          MOUSE.start = new THREE.Vector2 event.clientX, event.clientY
+
+
+    mouseMoveHandler = (event) ->
+      if MOUSE.rotating
+        rotateEnd = new THREE.Vector2 event.clientX, event.clientY
+        delta = new THREE.Vector2
+        delta.subVectors MOUSE.start, rotateEnd
+        rotationX = 2 * Math.PI * delta.x / window.innerWidth  * 0.5
+        rotationY = 2 * Math.PI * delta.y / window.innerHeight  * 0.5
+        cameraParent.rotation.x += rotationY
+        cameraParent.rotation.y += rotationX
+        MOUSE.start.copy rotateEnd
 
 
     mouseUpHandler = (event) ->
       if event.which is 1
-        console.log 'ss'
+        MOUSE.start = null
+        MOUSE.rotating = false
 
     $(renderer.domElement).on 'mousedown', mouseDownHandler
     $(renderer.domElement).on 'mouseup', mouseUpHandler
+    $(renderer.domElement).on 'mousemove', mouseMoveHandler
 
     $scope.$on '$destroy', ->
       $(renderer.domElement).off 'mousedown', mouseDownHandler
       $(renderer.domElement).off 'mouseup', mouseUpHandler
+      $(renderer.domElement).off 'mousemove', mouseMoveHandler
 
 
