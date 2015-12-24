@@ -66,6 +66,13 @@ angular.module 'aiesec'
       setHighlight: (value) ->
         @setResourceProperty 'highlight', value
 
+      getState: ->
+        @getResourceProperty 'state'
+
+      @property 'state',
+        get: ->
+          @getState()
+
       @property 'highlight',
         get: ->
           @getHighlight()

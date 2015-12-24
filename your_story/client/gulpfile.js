@@ -118,7 +118,7 @@ gulp.task('reload', ['build'], function() {
 gulp.task('dev', ['watch', 'server']);
 
 gulp.task('watch', function() {
-  watch(['./src/**', './images/**', './polyfillsStream/**', 'bower.json'], function() {
+  watch(['src/**', 'images/**', 'assets/**', 'polyfillsStream/**', 'bower.json'], function() {
     gulp.start('reload');
   });
 });

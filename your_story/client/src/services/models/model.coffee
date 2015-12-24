@@ -10,8 +10,9 @@ angular.module 'aiesec'
       # Usually it's a function that constructs instances of
       # a model subclass
       # Returns a pagination instance
-      @allHelper: (params, resource, pluralName, factory) ->
-        pagination = new Pagination resource, pluralName, params, factory
+      @allHelper: (params, resource, pluralName, factory, paginationArgs...) ->
+        pagination = new Pagination resource, pluralName, params,
+          factory, paginationArgs...
         success = ->
           return pagination
         failure = (reason) ->

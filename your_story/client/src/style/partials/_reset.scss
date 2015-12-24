@@ -43,6 +43,10 @@ button {
   appearance: none;
 }
 
+canvas {
+  display: block;
+}
+
 input:matches([type="button"], [type="submit"], [type="reset"]) {
   appearance: none;
 }

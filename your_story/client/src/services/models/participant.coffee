@@ -121,9 +121,10 @@ angular.module 'aiesec'
           resource.get params, success, failure
           return
 
-      @all: ->
+      @all: (paginationArgs...) ->
         Model.allHelper {}, @getResource(), @pluralName, (resource) ->
           new Participant resource
+        , paginationArgs...
 
       @allNoPagination: ->
         Model.allNoPaginationHelper params, @getResource(),
